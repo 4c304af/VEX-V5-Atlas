@@ -1,0 +1,403 @@
+{
+  "schemaVersion": 1,
+  "snapshotId": "f621ff04238b2c41074af197c92f8143a9638658fc6f21a3719487b45fe88399",
+  "snapshotDate": "2026-10-26",
+  "documents": [
+    {
+      "id": "3-Wire_Devices/3-Wire_Expander",
+      "title": "3-Wire Expander",
+      "zhTitle": "三线端口扩展器",
+      "sha256": "89a1ca4d84994f7f1797ee80081fb133b47a09c7df0b8411a11d2cd89bd8f2bf"
+    },
+    {
+      "id": "3-Wire_Devices/Accelerometer",
+      "title": "Accelerometer",
+      "zhTitle": "加速度计",
+      "sha256": "e68bc305376c03ec4e353c339909724491ab22a500e76e0b55a6883e526c1461"
+    },
+    {
+      "id": "3-Wire_Devices/AnalogIn",
+      "title": "Analog In",
+      "zhTitle": "模拟输入",
+      "sha256": "88d08a0d1a1b6f039def8d5699b4a91213863482e9f05b76c91b1be4acc01f67"
+    },
+    {
+      "id": "3-Wire_Devices/Bumper",
+      "title": "Bumper Switch",
+      "zhTitle": "碰撞开关",
+      "sha256": "002447ce2b0200e217c1d233ed098c69db3991ff78568ba3e50bb52f9b29e53b"
+    },
+    {
+      "id": "3-Wire_Devices/DigitalIn",
+      "title": "Digital In",
+      "zhTitle": "数字输入",
+      "sha256": "8c62cc53163882bc190935b0beae604416605dd4aff61a371f3882e22a71fa10"
+    },
+    {
+      "id": "3-Wire_Devices/DigitalOut",
+      "title": "Digital Out",
+      "zhTitle": "数字输出",
+      "sha256": "98c25e33ad25c488e14ee76d838f020d9cd2c044b427884b83008332c21adcdc"
+    },
+    {
+      "id": "3-Wire_Devices/Encoder",
+      "title": "Encoder",
+      "zhTitle": "编码器",
+      "sha256": "a05563f130bcf80a682aa4bb2c07255b07f7ddbb0382cb014d4d8e6156dd23d2"
+    },
+    {
+      "id": "3-Wire_Devices/Gyro",
+      "title": "Gyro Sensor",
+      "zhTitle": "陀螺仪",
+      "sha256": "ca780f52523ce6577db37fc0e3c25431fe35fb4409abf84a2ab52617efbe5a4b"
+    },
+    {
+      "id": "3-Wire_Devices/LED",
+      "title": "LED Indicator",
+      "zhTitle": "LED 指示灯",
+      "sha256": "bda53e269c2482027ac924c7152537ae54ab39208d8351186bf1ddb51601b15c"
+    },
+    {
+      "id": "3-Wire_Devices/Light",
+      "title": "Light Sensor",
+      "zhTitle": "光线传感器",
+      "sha256": "83fda7e807dc24e646115b5525babf0d96b0015b3b55de30210b24d8025f8c42"
+    },
+    {
+      "id": "3-Wire_Devices/Limit",
+      "title": "Limit Switch",
+      "zhTitle": "限位开关",
+      "sha256": "f34e3645c0ad6ee6867f11c3b70753938565ec96294c94f0923d321512f0dfe5"
+    },
+    {
+      "id": "3-Wire_Devices/Line",
+      "title": "Line Tracker",
+      "zhTitle": "巡线传感器",
+      "sha256": "4eb50fe20e3da2b97092c3846b0c19769de5031e4fbccfd1710abe030b050544"
+    },
+    {
+      "id": "3-Wire_Devices/PWM",
+      "title": "PWM Out",
+      "zhTitle": "PWM 输出",
+      "sha256": "b240888b1bb14ea261445c087cabd3c5adea71e2c52b915ac4620ae319d70e57"
+    },
+    {
+      "id": "3-Wire_Devices/Pneumatics",
+      "title": "Pneumatics",
+      "zhTitle": "气动装置",
+      "sha256": "070daf49acd6d21976bccd72d8122637ac2196503eb43f8b6a34e8fd0ffd26f9"
+    },
+    {
+      "id": "3-Wire_Devices/Potentiometer",
+      "title": "Potentiometer",
+      "zhTitle": "电位器",
+      "sha256": "692ebf3d64131fd39d22f26db88f719165782d5652a5c78d3d75967189b8d632"
+    },
+    {
+      "id": "3-Wire_Devices/Range_Finder",
+      "title": "Range Finder",
+      "zhTitle": "超声波测距传感器",
+      "sha256": "7b5a8334415ae5b424a4837c97bbdae9965d51c8c2ce0de2e256602fa62b7f10"
+    },
+    {
+      "id": "3-Wire_Devices/index",
+      "title": "3-Wire Devices",
+      "zhTitle": "三线设备",
+      "sha256": "7e3fad19294813d8f4067e5448f24a09e0a049df29040d18343913e9a25565d4"
+    },
+    {
+      "id": "Brain/Battery",
+      "title": "Battery",
+      "zhTitle": "电池",
+      "sha256": "0942e356c3e3187dff874df86d5676f5255c14b38cfb784439af18d18a4a6b77"
+    },
+    {
+      "id": "Brain/SDcard",
+      "title": "SDcard",
+      "zhTitle": "SD 卡",
+      "sha256": "97b133d1d36f2d6e8f20755ea001bbfebe5048ee230440cf9260232e0b6e613b"
+    },
+    {
+      "id": "Brain/Screen",
+      "title": "Screen",
+      "zhTitle": "屏幕",
+      "sha256": "13f80daa77a5bb72d197f583bf37f043eccfdb0d47bc9a97178ee77a3a1857aa"
+    },
+    {
+      "id": "Brain/index",
+      "title": "Brain",
+      "zhTitle": "主控器",
+      "sha256": "da82d02336d79d66670dcb71b143cd5381db006185f9a1688190cd97982a269a"
+    },
+    {
+      "id": "Brain/timer",
+      "title": "Timer",
+      "zhTitle": "计时器",
+      "sha256": "2e24e5be09dee499309c98d6ba57019647e76850713a5214611b90c97e9371ff"
+    },
+    {
+      "id": "CTE_Workcell/Arm",
+      "title": "CTE Arm",
+      "zhTitle": "CTE 机械臂",
+      "sha256": "89ee5f6fe05945264c8e818285197b764a81de143c499376e1e0b77f4b15d1ea"
+    },
+    {
+      "id": "CTE_Workcell/ObjectDetector",
+      "title": "Object Sensor",
+      "zhTitle": "物体检测传感器",
+      "sha256": "79dfe51047fc828fa42873136cfdf7a2b8128659d9cfab1638094661c8a1ac99"
+    },
+    {
+      "id": "CTE_Workcell/Pneumatics",
+      "title": "Pneumatics",
+      "zhTitle": "气动装置",
+      "sha256": "ae45a2587942eb4bd26a4dba59d6d34ce203d0a25888469f321ec4c5ea754ddc"
+    },
+    {
+      "id": "CTE_Workcell/SignalTower",
+      "title": "Signal Tower",
+      "zhTitle": "信号灯塔",
+      "sha256": "d5b288cd4fc5abe433356108d4da6fa8f1f6ba829dac3ff689680cc4f9bec61c"
+    },
+    {
+      "id": "CTE_Workcell/index",
+      "title": "CTE Workcell",
+      "zhTitle": "CTE 工作站",
+      "sha256": "78e6ba18fb8257761c4b6de0bbbbe424deb44dddec86bd59d4651165492141f9"
+    },
+    {
+      "id": "Competition",
+      "title": "Competition",
+      "zhTitle": "竞赛控制",
+      "sha256": "95dfe735fcb92fb1441526632b5e10249a484a42c0accd31785f046ad931e6f7"
+    },
+    {
+      "id": "Console",
+      "title": "Console",
+      "zhTitle": "控制台",
+      "sha256": "a943069f49bfb2a4bc3fa0eb72fa40e064bf74a5572c0ae54691ca3f7a4df04d"
+    },
+    {
+      "id": "Controller/Axis",
+      "title": "Axis",
+      "zhTitle": "摇杆轴",
+      "sha256": "9177d8f8d9af3e5ed8dd1df33af6779285ad1d4422907ae9c35423687f409895"
+    },
+    {
+      "id": "Controller/Button",
+      "title": "Button",
+      "zhTitle": "按钮",
+      "sha256": "56de650832e883047485bc762dd2e99b6d1e3d6382edd46e7507b149291b6fb5"
+    },
+    {
+      "id": "Controller/Screen",
+      "title": "Screen",
+      "zhTitle": "屏幕",
+      "sha256": "06334a51d63bc4c2715c1e559063cc261c4558c4f9940870b7c79e9487029fe6"
+    },
+    {
+      "id": "Controller/index",
+      "title": "Controller",
+      "zhTitle": "遥控器",
+      "sha256": "625aa5fc7a6d5119681e0a6c6e59b30a905d096cb318ee214092aecb05287e3c"
+    },
+    {
+      "id": "Drivetrain/index",
+      "title": "Drivetrain",
+      "zhTitle": "传动系统",
+      "sha256": "1110bef28b295f16d8768759581b1ea7babf686d19603707a0d8c8c88fe19dc7"
+    },
+    {
+      "id": "Drivetrain/smartdrive",
+      "title": "smartdrive",
+      "zhTitle": "智能传动系统",
+      "sha256": "d6984320aaa3cfd0f36a65bff8874ebf5193b3e94d8ee021587f0c43331d641a"
+    },
+    {
+      "id": "Logic/Comments",
+      "title": "Comments",
+      "zhTitle": "注释",
+      "sha256": "475243b2c6215b5e6b6c3d3aa42f4cee63de8c6c38f45eefa7ccc6c8120f45fa"
+    },
+    {
+      "id": "Logic/Control",
+      "title": "Control",
+      "zhTitle": "流程控制",
+      "sha256": "c0edc7be8dd4cac7bdd019d266b985d17930855781675dfaeff672ff254f08c2"
+    },
+    {
+      "id": "Logic/Custom_color",
+      "title": "Custom Colors",
+      "zhTitle": "自定义颜色",
+      "sha256": "25929be082798f744bc129083a221a80f792422aed02f50928fe8645b1f0997e"
+    },
+    {
+      "id": "Logic/Custom_formatting",
+      "title": "Custom String Formatting",
+      "zhTitle": "自定义字符串格式",
+      "sha256": "9dbe46e86f1b14855cc05b0e9843513c8b924c1402b59e85330f8e907a007aaf"
+    },
+    {
+      "id": "Logic/Custom_timer",
+      "title": "Custom Timer",
+      "zhTitle": "自定义计时器",
+      "sha256": "5140329c2e5bf6ccbff62f94aa910dd0db253b58d4a5431a64ee16ad9bf5ef01"
+    },
+    {
+      "id": "Logic/Events",
+      "title": "Events",
+      "zhTitle": "事件",
+      "sha256": "7907b3310c718f53c098067da984f429fc8d30c4b9c449846d09f142d7e27999"
+    },
+    {
+      "id": "Logic/Functions",
+      "title": "Functions",
+      "zhTitle": "函数",
+      "sha256": "4c0d4f3b424fdc5bbfcea02a6f9458607e13c6b8e2ac07e0b2d9303f2b2ac72c"
+    },
+    {
+      "id": "Logic/Math",
+      "title": "Math",
+      "zhTitle": "数学函数",
+      "sha256": "77bf6612ab924d9e0cd2dc15eb601fd9c10bcbc1d4ca86f29de26e74c4bfe564"
+    },
+    {
+      "id": "Logic/Operators",
+      "title": "Operators",
+      "zhTitle": "运算符",
+      "sha256": "06ca365a78cb1ab7edced2d112468e942f7548b27945eb1e16b8f63cace9815e"
+    },
+    {
+      "id": "Logic/Random",
+      "title": "Random",
+      "zhTitle": "随机数",
+      "sha256": "3cb882b0b03f3309502d852ef1a88ab374f7cf3ca5b9c9b486c88daba5394f54"
+    },
+    {
+      "id": "Logic/Threads",
+      "title": "Threads",
+      "zhTitle": "线程",
+      "sha256": "33d6b6847a0d2c1b9bac06a282ba9927a0718759bd9f13183b50c30c904e7ed6"
+    },
+    {
+      "id": "Logic/Variables",
+      "title": "Variables",
+      "zhTitle": "变量",
+      "sha256": "7fe55e78e42a87ef83185b8c26a4b8fca25df472ac539a5e7e9ab213ce9f0cd7"
+    },
+    {
+      "id": "Logic/index",
+      "title": "Logic",
+      "zhTitle": "程序逻辑",
+      "sha256": "dc4fc8fbeffddbd88157ae062a64f7f4973bf25bd496535f8a86d62bb4fa9304"
+    },
+    {
+      "id": "Motors_and_MotorControllers/index",
+      "title": "Motors and Motor Controllers",
+      "zhTitle": "电机与电机控制器",
+      "sha256": "e260121cf6cd01fe69fa0e7cb6a90c923a82a9e6bead4afc3a9c96db94882d3e"
+    },
+    {
+      "id": "Motors_and_MotorControllers/mc55",
+      "title": "Motor Controller 55",
+      "zhTitle": "55 电机控制器",
+      "sha256": "448b1afaf0a918c45617077c97e30a6f1752010cba9c1472d1d3ee3bbcff5aed"
+    },
+    {
+      "id": "Motors_and_MotorControllers/motor_393",
+      "title": "Motor 393 (Motor Controller 29)",
+      "zhTitle": "393 电机（29 电机控制器）",
+      "sha256": "e8227eb984d675431c8559a90264436305557c7deecb152c1a8e200c6119ffd8"
+    },
+    {
+      "id": "Motors_and_MotorControllers/motor_and_motor_group",
+      "title": "Motor and Motor Group",
+      "zhTitle": "电机与电机组",
+      "sha256": "0aa8437bdccd1744ae86adeccdccc60abd76df5ef314788976c2c9b2ca6ecb30"
+    },
+    {
+      "id": "Motors_and_MotorControllers/servo_motor",
+      "title": "Servo Motor",
+      "zhTitle": "舵机",
+      "sha256": "6953e916098ed6ca134a60bd62ea65a553b89fd1532c16def443df581baa54cc"
+    },
+    {
+      "id": "Motors_and_MotorControllers/victor_motor",
+      "title": "Victor 883 Motor",
+      "zhTitle": "Victor 883 电机",
+      "sha256": "807703e4ebadf08594965695c385717185d5da879e12f470439372020c092b6a"
+    },
+    {
+      "id": "Smart_Port_Devices/AI_Vision_Sensor",
+      "title": "AI Vision Sensor",
+      "zhTitle": "AI 视觉传感器",
+      "sha256": "7f3f13dabd7084cdb08199edac575981a2e92524f16f66c017af134f698bad8f"
+    },
+    {
+      "id": "Smart_Port_Devices/Distance_Sensor",
+      "title": "Distance Sensor",
+      "zhTitle": "距离传感器",
+      "sha256": "bb71e5ecc32308a96ac134d0316e0f277b9bbf3d7bbb16642f86f15d63295d3a"
+    },
+    {
+      "id": "Smart_Port_Devices/GPS_Sensor",
+      "title": "GPS Sensor",
+      "zhTitle": "GPS 定位传感器",
+      "sha256": "e743356fc61997a4e32c8e7d39bfef6b1ac8735b7fd507d4568ce37f1d7917fa"
+    },
+    {
+      "id": "Smart_Port_Devices/Inertial_Sensor",
+      "title": "Inertial Sensor",
+      "zhTitle": "惯性传感器",
+      "sha256": "62964fa1073b2e9c652b1d9069b199e1ee6b17a59533c8c098c809602efa04eb"
+    },
+    {
+      "id": "Smart_Port_Devices/Optical_Sensor",
+      "title": "Optical Sensor",
+      "zhTitle": "光学传感器",
+      "sha256": "b6ff79af28befb5f5f69ed89b93ddcf5ea48b4c53c8882dc4750f109e233a246"
+    },
+    {
+      "id": "Smart_Port_Devices/Rotation_Sensor",
+      "title": "Rotation Sensor",
+      "zhTitle": "旋转传感器",
+      "sha256": "f153d7f03d005972f14b139faa187e6923b1a32e3e19201a084d3e5a8093b77c"
+    },
+    {
+      "id": "Smart_Port_Devices/Vision_Sensor",
+      "title": "Vision Sensor",
+      "zhTitle": "视觉传感器",
+      "sha256": "97e30d6297242dcb2f4c7b30e211758cb0db8ef364a8d0c65fe4df80d645f790"
+    },
+    {
+      "id": "Smart_Port_Devices/index",
+      "title": "Smart Port Devices",
+      "zhTitle": "智能端口设备",
+      "sha256": "badf66a6282526ead3a713bed54872df086518af1a1de61579dcd0c26cf7571d"
+    },
+    {
+      "id": "VEXlink/MessageLink",
+      "title": "Message Link",
+      "zhTitle": "消息通信",
+      "sha256": "2703e9f559b4ddc884d750f34ac5bac4dd77b7c46a6416d9ce1bb89c777b3b33"
+    },
+    {
+      "id": "VEXlink/SerialLink",
+      "title": "Serial Link",
+      "zhTitle": "串行通信",
+      "sha256": "ffe550e4c4191b66421d9eb5633dfe231e98bff829c1177c8449a91a4b7162ba"
+    },
+    {
+      "id": "VEXlink/index",
+      "title": "VEXlink",
+      "zhTitle": "VEXlink 通信",
+      "sha256": "59d534872b10561d7d96940afc15bf0392e1414bd9f05d4aaa16e3605346de06"
+    },
+    {
+      "id": "index",
+      "title": "C++",
+      "zhTitle": "C++ 参考指南",
+      "sha256": "1e80b4559ce859a9c9727b39bea44d7eec76254915921c810b0277c718cd1f55"
+    }
+  ]
+}

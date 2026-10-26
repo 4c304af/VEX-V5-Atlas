@@ -1,0 +1,402 @@
+{
+  "snapshotDate": "2026-10-26",
+  "origin": "https://api.vex.com/v5/home/cpp/index.html",
+  "documents": [
+    {
+      "id": "3-Wire_Devices/3-Wire_Expander",
+      "title": "3-Wire Expander",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/3-Wire_Expander.html",
+      "sha256": "9551abe8d434885d2bcfece9c655fef6ae062692cef3ed3e03919831779d7c23"
+    },
+    {
+      "id": "3-Wire_Devices/Accelerometer",
+      "title": "Accelerometer",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/Accelerometer.html",
+      "sha256": "c5fa3ba3ba6ac5f256b2bc62b459cf656ff977eef889471436bfbf8feaf22705"
+    },
+    {
+      "id": "3-Wire_Devices/AnalogIn",
+      "title": "Analog In",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/AnalogIn.html",
+      "sha256": "12fb145c91b5f93feb32072573b9b0bee44f1d80e5cdc2ca552db2d8116197ad"
+    },
+    {
+      "id": "3-Wire_Devices/Bumper",
+      "title": "Bumper Switch",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/Bumper.html",
+      "sha256": "5dd671e0c77eaf692d1361f6bc0ecfeb47addb629d0b37014250917a65c93379"
+    },
+    {
+      "id": "3-Wire_Devices/DigitalIn",
+      "title": "Digital In",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/DigitalIn.html",
+      "sha256": "10b2b14557edb7ab59a0a6339c6ff7929000455dc649fdacabef81f975027de9"
+    },
+    {
+      "id": "3-Wire_Devices/DigitalOut",
+      "title": "Digital Out",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/DigitalOut.html",
+      "sha256": "98d7fba0f53102204ed4587d0a0c1f888cc3bbae2398d1664b85461afedb51c6"
+    },
+    {
+      "id": "3-Wire_Devices/Encoder",
+      "title": "Encoder",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/Encoder.html",
+      "sha256": "84f27739f1c6c107d06dd02ab650a74a314aade675491ac8ff7fce981764e963"
+    },
+    {
+      "id": "3-Wire_Devices/Gyro",
+      "title": "Gyro Sensor",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/Gyro.html",
+      "sha256": "9e606914e815f686e0708f50d23d1a77c33c1d6ae6f4f7ca38ec7223f5bf9819"
+    },
+    {
+      "id": "3-Wire_Devices/LED",
+      "title": "LED Indicator",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/LED.html",
+      "sha256": "67542f87c5a14cd731f1ce1ea326522c2f5b4ea3296b1e125be996c87b43db27"
+    },
+    {
+      "id": "3-Wire_Devices/Light",
+      "title": "Light Sensor",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/Light.html",
+      "sha256": "3ef945b1f6b6f7e0c07e96b0647b171ef0fca61b912fa31f6fd78f687e62e2e6"
+    },
+    {
+      "id": "3-Wire_Devices/Limit",
+      "title": "Limit Switch",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/Limit.html",
+      "sha256": "8e902cd6c179aedf164ddc302f1f8316f6eafec42784e47d53dea74b858897cd"
+    },
+    {
+      "id": "3-Wire_Devices/Line",
+      "title": "Line Tracker",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/Line.html",
+      "sha256": "5858becaae8b76168c8f34ecd3aaa6cb44e53e48e05221e6be9a7077ab67fccd"
+    },
+    {
+      "id": "3-Wire_Devices/PWM",
+      "title": "PWM Out",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/PWM.html",
+      "sha256": "82c437cc2786be05a3c95443e16be098567380ef66f3eb5897726d4ae105a551"
+    },
+    {
+      "id": "3-Wire_Devices/Pneumatics",
+      "title": "Pneumatics",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/Pneumatics.html",
+      "sha256": "8351c3c5f0ed0e1227470e6d69d1bd80fb04920e10cea9ca621413f4a026d986"
+    },
+    {
+      "id": "3-Wire_Devices/Potentiometer",
+      "title": "Potentiometer",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/Potentiometer.html",
+      "sha256": "3a6d474091c7ea91fc1252595e0d8a4f9bc4266d092b868e7bc0c3cad0c18197"
+    },
+    {
+      "id": "3-Wire_Devices/Range_Finder",
+      "title": "Range Finder",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/Range_Finder.html",
+      "sha256": "912264e6ce34d3ffde96c0cfd285715186dae49e55998ccfc62a80876dcc3d5f"
+    },
+    {
+      "id": "3-Wire_Devices/index",
+      "title": "3-Wire Devices",
+      "source": "https://api.vex.com/v5/home/cpp/3-Wire_Devices/index.html",
+      "sha256": "d1b4c7692f642218cff8d55c88fdd4cfc9b1ddd8e2b56d001bcf7fdf8ac423b2"
+    },
+    {
+      "id": "Brain/Battery",
+      "title": "Battery",
+      "source": "https://api.vex.com/v5/home/cpp/Brain/Battery.html",
+      "sha256": "57f18ae0632af750af29ebc4b1f946adfe31c735807964a2de69ab4c72201e06"
+    },
+    {
+      "id": "Brain/SDcard",
+      "title": "SDcard",
+      "source": "https://api.vex.com/v5/home/cpp/Brain/SDcard.html",
+      "sha256": "447d4469eed4b7bf57363a7b463e6c6ae712bc21bf900682d0669d20c16cc438"
+    },
+    {
+      "id": "Brain/Screen",
+      "title": "Screen",
+      "source": "https://api.vex.com/v5/home/cpp/Brain/Screen.html",
+      "sha256": "ff4e6cf933b00867a5b0b92d860ec077e775a8e8a02c88020ded5ee7c130ec4a"
+    },
+    {
+      "id": "Brain/index",
+      "title": "Brain",
+      "source": "https://api.vex.com/v5/home/cpp/Brain/index.html",
+      "sha256": "479e4c3a0cdb1aff9c715faf3535daeaab8793a61a28715d482771f5374ed0bc"
+    },
+    {
+      "id": "Brain/timer",
+      "title": "Timer",
+      "source": "https://api.vex.com/v5/home/cpp/Brain/timer.html",
+      "sha256": "071497b945807755fe540121ed5e96578b47de75776f3b8048f570a1902e1805"
+    },
+    {
+      "id": "CTE_Workcell/Arm",
+      "title": "CTE Arm",
+      "source": "https://api.vex.com/v5/home/cpp/CTE_Workcell/Arm.html",
+      "sha256": "983d274c03727ff183317a093061c97292e89dc4a1ee1aaef22aacadfbb4604c"
+    },
+    {
+      "id": "CTE_Workcell/ObjectDetector",
+      "title": "Object Sensor",
+      "source": "https://api.vex.com/v5/home/cpp/CTE_Workcell/ObjectDetector.html",
+      "sha256": "0b02b7ac6c9fa507f09bbd8db7d0b94c47de517317481d28c2330975e27068fb"
+    },
+    {
+      "id": "CTE_Workcell/Pneumatics",
+      "title": "Pneumatics",
+      "source": "https://api.vex.com/v5/home/cpp/CTE_Workcell/Pneumatics.html",
+      "sha256": "78c798eb4fca8dc331983ec0c67f77200b9d92a98cd10238ebe5a9bc0dd5b6e7"
+    },
+    {
+      "id": "CTE_Workcell/SignalTower",
+      "title": "Signal Tower",
+      "source": "https://api.vex.com/v5/home/cpp/CTE_Workcell/SignalTower.html",
+      "sha256": "4f8b7ac07e5b56f1dd3de6214783d64791bcb1d4558fdfc1dd3b514f8723ae4a"
+    },
+    {
+      "id": "CTE_Workcell/index",
+      "title": "CTE Workcell",
+      "source": "https://api.vex.com/v5/home/cpp/CTE_Workcell/index.html",
+      "sha256": "6c6677955cfa210508fd2e0d4d3cfea4b28b59790e5785fa94791dcdb0cfcea7"
+    },
+    {
+      "id": "Competition",
+      "title": "Competition",
+      "source": "https://api.vex.com/v5/home/cpp/Competition.html",
+      "sha256": "2564b0b2f23763e616c4ed127fcc35d9e27e28e7f23bb38eafbbf8ab44bdbd24"
+    },
+    {
+      "id": "Console",
+      "title": "Console",
+      "source": "https://api.vex.com/v5/home/cpp/Console.html",
+      "sha256": "b7107ec780e164676e9f6ea857c415abd2189b495a17880585fb01b80276dbc3"
+    },
+    {
+      "id": "Controller/Axis",
+      "title": "Axis",
+      "source": "https://api.vex.com/v5/home/cpp/Controller/Axis.html",
+      "sha256": "f78327f1bb9ec1713e1ee72909b686867b06fbfd000ebd9346362ba543d44df8"
+    },
+    {
+      "id": "Controller/Button",
+      "title": "Button",
+      "source": "https://api.vex.com/v5/home/cpp/Controller/Button.html",
+      "sha256": "e5936f4aa70334c9543b198eac2b8cedef3f88afc7c96a0d3d1cfa5b9e67cf74"
+    },
+    {
+      "id": "Controller/Screen",
+      "title": "Screen",
+      "source": "https://api.vex.com/v5/home/cpp/Controller/Screen.html",
+      "sha256": "0f33d61cca011693e3045c924a8661eb4b28318976adfacc4ce21866302ea29b"
+    },
+    {
+      "id": "Controller/index",
+      "title": "Controller",
+      "source": "https://api.vex.com/v5/home/cpp/Controller/index.html",
+      "sha256": "785eb5bcb1cb7aff7600b34e443527d65511eb5a87de87303a72fed3da59b6d1"
+    },
+    {
+      "id": "Drivetrain/index",
+      "title": "Drivetrain",
+      "source": "https://api.vex.com/v5/home/cpp/Drivetrain/index.html",
+      "sha256": "aaf467f4e3cab1028d1c350512e3478f37e210280acfc04ba880d99ddcf04f54"
+    },
+    {
+      "id": "Drivetrain/smartdrive",
+      "title": "smartdrive",
+      "source": "https://api.vex.com/v5/home/cpp/Drivetrain/smartdrive.html",
+      "sha256": "399c559d6196637405ffa243cfa2f98650e005f4f35d11d3b18cffb23fd3c97a"
+    },
+    {
+      "id": "Logic/Comments",
+      "title": "Comments",
+      "source": "https://api.vex.com/v5/home/cpp/Logic/Comments.html",
+      "sha256": "21c7c63c610eb0bfb3a63d8e5dc73015719f214b968d69794093857c44c72b8a"
+    },
+    {
+      "id": "Logic/Control",
+      "title": "Control",
+      "source": "https://api.vex.com/v5/home/cpp/Logic/Control.html",
+      "sha256": "7c64378dcdb65d8f461293ded54ba92f005f2f80677f1904ded528884dde67fc"
+    },
+    {
+      "id": "Logic/Custom_color",
+      "title": "Custom Colors",
+      "source": "https://api.vex.com/v5/home/cpp/Logic/Custom_color.html",
+      "sha256": "61a76f10c836342d8fd5c19e69bf148f2410de5efb82aa40d5a4e452c025e120"
+    },
+    {
+      "id": "Logic/Custom_formatting",
+      "title": "Custom String Formatting",
+      "source": "https://api.vex.com/v5/home/cpp/Logic/Custom_formatting.html",
+      "sha256": "d8c6d43727b3b30a004be87d76c5781dd4f66cc43d7d01bda41158df521846a4"
+    },
+    {
+      "id": "Logic/Custom_timer",
+      "title": "Custom Timer",
+      "source": "https://api.vex.com/v5/home/cpp/Logic/Custom_timer.html",
+      "sha256": "0d63bfc009b9ba16e0dfbd47ea4abcfbd8781a3c689dd197e79ba8c92bd0b7be"
+    },
+    {
+      "id": "Logic/Events",
+      "title": "Events",
+      "source": "https://api.vex.com/v5/home/cpp/Logic/Events.html",
+      "sha256": "84dbbaa6d1ed337bf653ae3979f7da90d3ec54b7494ea2f254d1521ef89e6cd9"
+    },
+    {
+      "id": "Logic/Functions",
+      "title": "Functions",
+      "source": "https://api.vex.com/v5/home/cpp/Logic/Functions.html",
+      "sha256": "21a855d7faba34bf04a447b3da71ffcbdbf532fcaafe774bed00c36dce658420"
+    },
+    {
+      "id": "Logic/Math",
+      "title": "Math",
+      "source": "https://api.vex.com/v5/home/cpp/Logic/Math.html",
+      "sha256": "6e3f86bdc46e550aff1146ef486eaaa1b80f22ce7c58c8d87fa9d1f4faf6e49d"
+    },
+    {
+      "id": "Logic/Operators",
+      "title": "Operators",
+      "source": "https://api.vex.com/v5/home/cpp/Logic/Operators.html",
+      "sha256": "9b9606f3b71a2981323ec500aba298f89a7dbb2c90d1fe7c960387a4e2cfd5eb"
+    },
+    {
+      "id": "Logic/Random",
+      "title": "Random",
+      "source": "https://api.vex.com/v5/home/cpp/Logic/Random.html",
+      "sha256": "635bf098a802377c7b995dce1878ce6d10af04d4ac74783f7037230fb0ea7cb6"
+    },
+    {
+      "id": "Logic/Threads",
+      "title": "Threads",
+      "source": "https://api.vex.com/v5/home/cpp/Logic/Threads.html",
+      "sha256": "2fa072ea366a2e512f46705074fbf8b81983fdcb0e5f1fdeff24f88182646686"
+    },
+    {
+      "id": "Logic/Variables",
+      "title": "Variables",
+      "source": "https://api.vex.com/v5/home/cpp/Logic/Variables.html",
+      "sha256": "f48fb5f882b2a6b2f43a9cc528689dda5932db44bea929e480c351cae9c5cdd3"
+    },
+    {
+      "id": "Logic/index",
+      "title": "Logic",
+      "source": "https://api.vex.com/v5/home/cpp/Logic/index.html",
+      "sha256": "f12ed441744589c3b45df369c2023e07bd2a42cd8ad77c5527dc598edc310adb"
+    },
+    {
+      "id": "Motors_and_MotorControllers/index",
+      "title": "Motors and Motor Controllers",
+      "source": "https://api.vex.com/v5/home/cpp/Motors_and_MotorControllers/index.html",
+      "sha256": "c33a0833b46ef758e65f38281478953de3a1e5fd09c6513e76a193235a7afb3c"
+    },
+    {
+      "id": "Motors_and_MotorControllers/mc55",
+      "title": "Motor Controller 55",
+      "source": "https://api.vex.com/v5/home/cpp/Motors_and_MotorControllers/mc55.html",
+      "sha256": "4ee87ba8825647c095d755562dd1a5c62690a597b3f6387be129c73fe53eb744"
+    },
+    {
+      "id": "Motors_and_MotorControllers/motor_393",
+      "title": "Motor 393 (Motor Controller 29)",
+      "source": "https://api.vex.com/v5/home/cpp/Motors_and_MotorControllers/motor_393.html",
+      "sha256": "0f88f9b9e93656b5c7ef132bd6b0d5b7e4268f61d2ace057a79ef5de60648cc5"
+    },
+    {
+      "id": "Motors_and_MotorControllers/motor_and_motor_group",
+      "title": "Motor and Motor Group",
+      "source": "https://api.vex.com/v5/home/cpp/Motors_and_MotorControllers/motor_and_motor_group.html",
+      "sha256": "c2c41d7f24bc57443733c50237cdaaf829ed5abbe1d6baf0769a9ddfc40c190a"
+    },
+    {
+      "id": "Motors_and_MotorControllers/servo_motor",
+      "title": "Servo Motor",
+      "source": "https://api.vex.com/v5/home/cpp/Motors_and_MotorControllers/servo_motor.html",
+      "sha256": "128b0b8cf4b781b50e6a2cabea41ac92fa9d7d1d54291b507c17dabaa7c93440"
+    },
+    {
+      "id": "Motors_and_MotorControllers/victor_motor",
+      "title": "Victor 883 Motor",
+      "source": "https://api.vex.com/v5/home/cpp/Motors_and_MotorControllers/victor_motor.html",
+      "sha256": "a28610dcf8a3b021d6a2ba36c169e41c19e97ce9c86c033588f078e9a10f94cb"
+    },
+    {
+      "id": "Smart_Port_Devices/AI_Vision_Sensor",
+      "title": "AI Vision Sensor",
+      "source": "https://api.vex.com/v5/home/cpp/Smart_Port_Devices/AI_Vision_Sensor.html",
+      "sha256": "14af7a5a60fab931be9c864ce267f684ba06185db89d512183bf522b984efad3"
+    },
+    {
+      "id": "Smart_Port_Devices/Distance_Sensor",
+      "title": "Distance Sensor",
+      "source": "https://api.vex.com/v5/home/cpp/Smart_Port_Devices/Distance_Sensor.html",
+      "sha256": "a5b5b2db5fc5d6f1b743a3e916c6fa61eecac9b842005cbbba589f011a20bd9e"
+    },
+    {
+      "id": "Smart_Port_Devices/GPS_Sensor",
+      "title": "GPS Sensor",
+      "source": "https://api.vex.com/v5/home/cpp/Smart_Port_Devices/GPS_Sensor.html",
+      "sha256": "42c6701f5c525e2cbc62c9f7d5baf34118690676085932123ef1f6337f83bc97"
+    },
+    {
+      "id": "Smart_Port_Devices/Inertial_Sensor",
+      "title": "Inertial Sensor",
+      "source": "https://api.vex.com/v5/home/cpp/Smart_Port_Devices/Inertial_Sensor.html",
+      "sha256": "96d121bcd6f514e83ef449cddc70273157041df2532565d86f9914ef49ae7753"
+    },
+    {
+      "id": "Smart_Port_Devices/Optical_Sensor",
+      "title": "Optical Sensor",
+      "source": "https://api.vex.com/v5/home/cpp/Smart_Port_Devices/Optical_Sensor.html",
+      "sha256": "1be61a6cd41eda53778be0a70c2c7a2d989a88e288130ca97c4cc1aefb6273a1"
+    },
+    {
+      "id": "Smart_Port_Devices/Rotation_Sensor",
+      "title": "Rotation Sensor",
+      "source": "https://api.vex.com/v5/home/cpp/Smart_Port_Devices/Rotation_Sensor.html",
+      "sha256": "d073f11a3faa19ff1fc6cd43af577ebefde268643e9710e33379bade8fc7e880"
+    },
+    {
+      "id": "Smart_Port_Devices/Vision_Sensor",
+      "title": "Vision Sensor",
+      "source": "https://api.vex.com/v5/home/cpp/Smart_Port_Devices/Vision_Sensor.html",
+      "sha256": "fb414475c9300f05ae5af66baff2c0ba19cae556b02f9aa887fc31f75ffa6b51"
+    },
+    {
+      "id": "Smart_Port_Devices/index",
+      "title": "Smart Port Devices",
+      "source": "https://api.vex.com/v5/home/cpp/Smart_Port_Devices/index.html",
+      "sha256": "1494e475f2395fd794cb7973f5a6b830149276d9d7e0468a87656d3a227d7b9a"
+    },
+    {
+      "id": "VEXlink/MessageLink",
+      "title": "Message Link",
+      "source": "https://api.vex.com/v5/home/cpp/VEXlink/MessageLink.html",
+      "sha256": "973c054a57bf8776f6d4156e90b9e8dd26f8838a16bada064baad2abe7526a43"
+    },
+    {
+      "id": "VEXlink/SerialLink",
+      "title": "Serial Link",
+      "source": "https://api.vex.com/v5/home/cpp/VEXlink/SerialLink.html",
+      "sha256": "0fd1149cbcf9d53a40cc3e2815bba9c789c52b8e4caf6a5d2f3165a2cdbb71c0"
+    },
+    {
+      "id": "VEXlink/index",
+      "title": "VEXlink",
+      "source": "https://api.vex.com/v5/home/cpp/VEXlink/index.html",
+      "sha256": "5952e498e146a55f013a9b8f82255e10e5c618d54eff87d31431e00e81db0f7e"
+    },
+    {
+      "id": "index",
+      "title": "C++",
+      "source": "https://api.vex.com/v5/home/cpp/index.html",
+      "sha256": "cb406fe08f328a7a4974a4ab791c85780af37eb8e7aa991e0a492c79e9ff8e39"
+    }
+  ]
+}

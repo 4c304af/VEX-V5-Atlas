@@ -1,0 +1,34 @@
+name: Windows build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run verify:docs
+      - run: npm run test:updates
+      - run: npm run setup:windows
+      - run: npm run package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: V5-Atlas-Windows-x64
+          path: |
+            release/V5-Atlas-*-Windows-x64.exe
+            release/SHA256SUMS.txt

@@ -1,0 +1,43 @@
+{
+  "name": "offline-vexv5cpp-api",
+  "productName": "V5 Atlas",
+  "version": "1.0.2",
+  "description": "VEX V5 C++ bilingual offline reference",
+  "author": "V5 Atlas Contributors",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "python tools/prepare_update_manifest.py && tsc -b && vite build",
+    "desktop": "npm run package && python tools/launch_windows.py",
+    "package": "npm run build && python tools/package_windows.py",
+    "test": "playwright test",
+    "test:desktop": "node tools/test_desktop.mjs",
+    "test:updates": "python tools/test_update_checker.py",
+    "verify:docs": "python tools/verify_docs.py",
+    "setup:windows": "python tools/setup_windows.py",
+    "test:desktop-updates": "node tools/test_desktop_updates.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/manrope": "^5.3.0",
+    "lucide-react": "^0.577.0",
+    "motion": "^12.38.0",
+    "prismjs": "^1.30.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "@types/node": "^24.10.0",
+    "@types/prismjs": "^1.26.5",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.0.0",
+    "typescript": "^6.0.2",
+    "vite": "8.3.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/4c304af/offline-vexv5cpp-api.git"
+  }
+}

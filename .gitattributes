@@ -1,0 +1,9 @@
+* text=auto eol=lf
+/sources/en/** -text
+*.png -text
+*.jpg -text
+*.jpeg -text
+*.ico -text
+*.woff2 -text
+*.zip -text
+*.exe -text
