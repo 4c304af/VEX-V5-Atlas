@@ -37,7 +37,7 @@ internal static class UpdateFiles {
 
 // Only release metadata and assets from this public repository are accepted.
 internal sealed class ReleaseTransport : IDisposable {
-    internal const string Repository="4c304af/v5atlas";
+    internal const string Repository="4c304af/VEX-V5-Atlas";
     internal const string LegacyRepository="4c304af/offline-vexv5cpp-api";
     private readonly HttpClient client;
     internal ReleaseTransport() {

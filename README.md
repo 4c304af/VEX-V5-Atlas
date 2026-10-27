@@ -6,13 +6,13 @@
 
 A bilingual, offline Windows desktop reference for the VEX V5 C++ API, with a Material 3 Expressive interface, automatic documentation synchronization, and application updates.
 
-[下载 Windows 版本](https://github.com/4c304af/v5atlas/releases/latest) · [官方 C++ API](https://api.vex.com/v5/home/cpp/index.html) · [第三方内容说明](THIRD_PARTY_NOTICES.md)
+[下载 Windows 版本](https://github.com/4c304af/VEX-V5-Atlas/releases/latest) · [官方 C++ API](https://api.vex.com/v5/home/cpp/index.html) · [第三方内容说明](THIRD_PARTY_NOTICES.md)
 
 ![V5 Atlas 概览](docs/images/overview.png)
 
 ## 使用
 
-在 [Releases](https://github.com/4c304af/v5atlas/releases) 下载 `V5-Atlas-1.1.0-Windows-x64.exe`。关闭正在运行的旧版后，双击新版运行。首次启动不会在程序所在目录生成附带文件；文档资源、WebView2 缓存、收藏、偏好与错误日志统一保存在 `%LOCALAPPDATA%\V5 Atlas`。检测到程序旁的旧版 `.v5-atlas` 时，会复制其中的阅读配置与已下载文档；旧数据保留，新位置已有的数据不会被覆盖。程序自更新时，仍需对可执行文件所在目录有写入权限。
+在 [Releases](https://github.com/4c304af/VEX-V5-Atlas/releases) 下载 `V5-Atlas-1.1.0-Windows-x64.exe`。关闭正在运行的旧版后，双击新版运行。首次启动不会在程序所在目录生成附带文件；文档资源、WebView2 缓存、收藏、偏好与错误日志统一保存在 `%LOCALAPPDATA%\V5 Atlas`。检测到程序旁的旧版 `.v5-atlas` 时，会复制其中的阅读配置与已下载文档；旧数据保留，新位置已有的数据不会被覆盖。程序自更新时，仍需对可执行文件所在目录有写入权限。
 
 运行平台为 Windows 10/11 x64，使用系统的 Microsoft Edge WebView2 Runtime。文档、搜索、示例、图片、字体和动画在本地运行；“文档更新”支持自动同步，也可手动核对，点击官方来源链接会打开系统浏览器。
 
@@ -57,8 +57,8 @@ English: The repository checks official C++ documentation hourly and builds veri
 前端使用 React、TypeScript、Vite、Motion 和 Prism。Windows 启动器使用 .NET Framework 与 Microsoft WebView2 WinForms SDK 1.0.2903.40。构建需要 Windows x64、Node.js 24、Python 3.10 或更高版本，以及 .NET Framework 4.8 的 C# 编译器。
 
 ```powershell
-git clone https://github.com/4c304af/v5atlas.git
-cd v5atlas
+git clone https://github.com/4c304af/VEX-V5-Atlas.git
+cd VEX-V5-Atlas
 npm ci
 npm run setup:windows
 npm run package

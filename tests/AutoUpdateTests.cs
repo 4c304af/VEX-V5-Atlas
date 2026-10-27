@@ -34,11 +34,11 @@ internal static class AutoUpdateTests {
         Assert(store.ActiveRoot==first,"Did not recover previous complete library");
         Console.WriteLine("PASS added/modified bilingual pages, unchanged snapshot, persistence and corrupt-library fallback");
         Assert(!Directory.GetDirectories(Path.Combine(root,"documents"),"staging-*").Any(),"Leaked staging files");
-        Assert(ReleaseTransport.Allowed(new Uri("https://github.com/4c304af/v5atlas/releases/download/v1.2.0/app.exe"),false),"Trusted asset blocked");
+        Assert(ReleaseTransport.Allowed(new Uri("https://github.com/4c304af/VEX-V5-Atlas/releases/download/v1.2.0/app.exe"),false),"Trusted asset blocked");
         Assert(ReleaseTransport.Allowed(new Uri("https://github.com/4c304af/offline-vexv5cpp-api/releases/download/v1.2.0/app.exe"),false),"Legacy release asset blocked");
-        Assert(ReleaseTransport.Allowed(new Uri("https://api.github.com/repos/4c304af/v5atlas/releases/latest"),true),"Renamed repository redirect blocked");
+        Assert(ReleaseTransport.Allowed(new Uri("https://api.github.com/repos/4c304af/VEX-V5-Atlas/releases/latest"),true),"Renamed repository redirect blocked");
         Assert(!ReleaseTransport.Allowed(new Uri("https://api.github.com/repos/other/v5atlas/releases/latest"),true),"Foreign API redirect allowed");
-        Assert(!ReleaseTransport.Allowed(new Uri("http://github.com/4c304af/v5atlas/releases/download/x"),false),"HTTP allowed");
+        Assert(!ReleaseTransport.Allowed(new Uri("http://github.com/4c304af/VEX-V5-Atlas/releases/download/x"),false),"HTTP allowed");
         Assert(!ReleaseTransport.Allowed(new Uri("https://github.com/other/project/releases/download/x"),false),"Foreign repo allowed");
         Assert(!ReleaseTransport.Allowed(new Uri("https://evil.example/app.exe"),true),"Foreign redirect allowed");
         Assert(!ReleaseTransport.Allowed(new Uri("https://release-assets.githubusercontent.com/x"),false),"Unsolicited CDN URL allowed");
