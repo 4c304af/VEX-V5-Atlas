@@ -5,7 +5,7 @@ root=Path(__file__).resolve().parents[1];build=root/'build'/('live-release-'+uui
 source=build/'LiveRelease.cs'
 source.write_text('''using System;using System.IO;using System.Threading;
 class LiveRelease { static int Main(string[] a) {try{
- string target=Path.Combine(a[0],"old.exe");File.WriteAllText(target,"isolated test target");
+ Directory.CreateDirectory(a[0]);string target=Path.Combine(a[0],"old.exe");File.WriteAllText(target,"isolated test target");
  var updater=new AutomaticUpdater(a[0],a[1],"1.0.0",target);
  var result=updater.RunAsync(false,true,new Progress<string>(p=>Console.WriteLine(p)),CancellationToken.None).GetAwaiter().GetResult();
  if(result.application.status!="ready"||updater.ReadyVersion()!=result.application.version)throw new Exception("Download not ready: "+result.application.error);
