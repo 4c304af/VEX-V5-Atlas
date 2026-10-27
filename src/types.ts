@@ -8,7 +8,9 @@ export interface Entry {
 }
 export interface Catalog { snapshotDate: string;snapshotId?:string; documents: Entry[]; translation: string }
 export interface Doc { id: string; en: string; zh: string; headings: Heading[] }
-export interface Settings { language: Language; theme: Theme; motion: boolean; fontSize: number; accent: string }
+export interface Settings { language: Language; theme: Theme; motion: boolean; fontSize: number; accent: string;autoDocuments?:boolean;autoApplication?:boolean }
+export interface AutoUpdatePart {status:'skipped'|'current'|'updated'|'ready'|'error'|'cancelled';version?:string;error?:string}
+export interface AutoUpdateResult {documents:AutoUpdatePart;application:AutoUpdatePart;checkedAt:string}
 export interface Read { id: string; time: number }
 export type Page = { kind: 'home' | 'library' | 'favorites' | 'history' | 'settings' | 'glossary' | 'updates'; group?: string } | { kind: 'doc'; id: string; anchor?: string };
 export interface DocumentationChange { id:string;title:string;zhTitle?:string;kind:'added'|'modified'|'removed';source:string }
@@ -22,5 +24,8 @@ declare global {
     minimize(): void; maximize(): void; close(): void; openSource(url: string): Promise<boolean>;
     checkDocUpdates?:(onProgress?:(progress:DocumentationProgress)=>void)=>Promise<DocumentationUpdateResult>;
     cancelDocUpdateCheck?:()=>void;
+    automaticUpdatesEnabled?:boolean;
+    runAutoUpdates?:(options:{documents:boolean;application:boolean},onProgress?:(value:string)=>void)=>Promise<AutoUpdateResult>;
+    restartToUpdate?:()=>void;
   } }
 }

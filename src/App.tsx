@@ -8,6 +8,7 @@ import 'prismjs/components/prism-cpp';
 import '@fontsource-variable/manrope';
 import RobotArt from './RobotArt';
 import DocumentationUpdates, { useDocumentationUpdates } from './DocumentationUpdates';
+import AutoUpdates, {useAutoUpdates} from './AutoUpdates';
 import appPackage from '../package.json';
 import { DEFAULT_SETTINGS, GROUPS, QUICK, TERMS, groupFor } from './data';
 import type { Catalog, Doc, Entry, Page, Read, Settings } from './types';
@@ -46,6 +47,7 @@ export default function App() {
   const [toast, setToast] = useState('');
   const [retry, setRetry] = useState(0);
   const documentationUpdates=useDocumentationUpdates(catalog?.snapshotId);
+  const autoUpdates=useAutoUpdates(settings);
   const scrollRef = useRef<HTMLElement>(null);
   const zh = settings.language !== 'en';
   const t = useCallback((cn: string, en: string) => zh ? cn : en, [zh]);
@@ -54,9 +56,10 @@ export default function App() {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch('./docs/catalog.json', { signal: controller.signal }).then(r => { if (!r.ok) throw Error(); return r.json(); }).then(setCatalog).catch(e => { if (e.name !== 'AbortError') setLoadError(true); });
+    fetch('./docs/catalog.json', { cache:'no-store',signal: controller.signal }).then(r => { if (!r.ok) throw Error(); return r.json(); }).then(value=>{setLoadError(false);setCatalog(value);}).catch(e => { if (e.name !== 'AbortError') setLoadError(true); });
     return () => controller.abort();
   }, [retry]);
+  useEffect(()=>{const refresh=()=>setRetry(n=>n+1);window.addEventListener('atlas:library-updated',refresh);return()=>window.removeEventListener('atlas:library-updated',refresh);},[]);
   useEffect(() => { const change = () => { setPage(pageFromHash()); setSidebarOpen(false); }; window.addEventListener('hashchange',change); return () => window.removeEventListener('hashchange',change); }, []);
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
@@ -142,7 +145,7 @@ export default function App() {
             })}
           </nav>
           <div className="sidebar-bottom">
-            <button className={'subtle-link '+(page.kind==='updates'?'selected':'')} onClick={() => navigate({kind:'updates'})}><RefreshCw size={17} className={documentationUpdates.busy?'update-spinning':''}/>{t('文档更新','Documentation updates')}</button>
+            <button className={'subtle-link '+(page.kind==='updates'?'selected':'')} onClick={() => navigate({kind:'updates'})}><RefreshCw size={17} className={documentationUpdates.busy||autoUpdates.busy?'update-spinning':''}/>{t('文档更新','Documentation updates')}{autoUpdates.result?.application.status==='ready'&&<small className="update-ready-badge">{t('新版','NEW')}</small>}</button>
             <button className={'subtle-link '+(page.kind==='glossary'?'selected':'')} onClick={() => navigate({kind:'glossary'})}><Languages size={17}/>{t('中英术语表','Bilingual glossary')}<ArrowUpRight size={14}/></button>
             <button className={'subtle-link '+(page.kind==='settings'?'selected':'')} onClick={() => navigate({kind:'settings'})}><Settings2 size={17}/>{t('偏好设置','Preferences')}</button>
             <div className="offline-card"><span className="status-dot"/><div><strong>{t('已准备好离线探索','Ready to explore offline')}</strong><span>{entries.length || '66'} {t('篇文档 · 无需网络连接','documents · no connection needed')}</span></div><WifiOff size={17}/></div>
@@ -187,9 +190,9 @@ export default function App() {
                     <footer className="page-footer"><span>V5 ATLAS <i>✳</i> MADE FOR THE MOMENT OF DISCOVERY.</span><span>{t('基于 VEX 官方 C++ API · 独立离线阅读器','Based on the official VEX C++ API · Independent offline reader')}</span></footer>
                   </>}
 
-                  {page.kind==='updates'&&<DocumentationUpdates catalog={catalog} state={documentationUpdates} zh={zh} t={t} source={source}/>}
+                  {page.kind==='updates'&&<><AutoUpdates state={autoUpdates} settings={settings} setSetting={changeSetting} t={t}/><DocumentationUpdates catalog={catalog} state={documentationUpdates} zh={zh} t={t} source={source}/></>}
                   {['library','favorites','history'].includes(page.kind) && <LibraryPage entries={entries} page={page} favorites={favorites} reads={reads} zh={zh} t={t} openDoc={openDoc} favorite={favorite} navigate={navigate} onClearHistory={()=>setReads([])} />}
-                  {page.kind === 'doc' && <Reader entry={current} entries={entries} language={settings.language} zh={zh} t={t} favorites={favorites} favorite={favorite} openDoc={openDoc} anchor={page.anchor} navigate={navigate} notify={setToast} source={source} />}
+                  {page.kind === 'doc' && <Reader key={catalog.snapshotId} entry={current} entries={entries} language={settings.language} zh={zh} t={t} favorites={favorites} favorite={favorite} openDoc={openDoc} anchor={page.anchor} navigate={navigate} notify={setToast} source={source} />}
                   {page.kind === 'settings' && <>
                     <PageHeading label="MAKE IT YOURS" title={t('按你的方式，探索。','A space that feels like you.')} description={t('让阅读更舒适，让专注更自然。所有偏好仅保存在本机。','Make room for focus. All your preferences stay on this device.')}/>
                     <div className="settings-layout"><div>
@@ -258,7 +261,7 @@ function Reader({entry,entries,language,zh,t,favorites,favorite,openDoc,anchor,n
     if(!entry)return;
     setError(false);setDoc(null);
     const controller=new AbortController();
-    fetch('./docs/'+entry.key+'.json',{signal:controller.signal}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(setDoc).catch(e=>{if(e.name!=='AbortError')setError(true);});
+    fetch('./docs/'+entry.key+'.json',{cache:'no-store',signal:controller.signal}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(setDoc).catch(e=>{if(e.name!=='AbortError')setError(true);});
     return()=>controller.abort();
   },[entry?.key,retry]);
   useEffect(()=>{

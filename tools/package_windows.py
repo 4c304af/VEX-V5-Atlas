@@ -34,7 +34,7 @@ args=[str(csc),'/nologo','/target:winexe','/platform:x64','/optimize+',
       '/reference:System.Web.Extensions.dll','/reference:'+str(core),'/reference:'+str(forms),
       '/reference:System.Net.Http.dll',
       '/resource:'+str(bundle)+',atlas.bundle','/resource:'+str(build/'bundle-id.txt')+',atlas.bundle-id',
-      '/resource:'+str(icon)+',atlas.icon',str(ROOT/'desktop/Program.cs'),str(ROOT/'desktop/DocumentationUpdates.cs'),str(build/'AssemblyInfo.cs')]
+      '/resource:'+str(icon)+',atlas.icon',str(ROOT/'desktop/Program.cs'),str(ROOT/'desktop/DocumentationUpdates.cs'),str(ROOT/'desktop/AutoUpdates.cs'),str(build/'AssemblyInfo.cs')]
 subprocess.run(args,check=True,cwd=ROOT)
 digest=hashlib.sha256(exe.read_bytes()).hexdigest()
 (release/'SHA256SUMS.txt').write_text(digest+'  '+exe.name+'\n',encoding='utf-8')

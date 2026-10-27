@@ -176,6 +176,7 @@ def prepare_fragment(inner):
             protected.append(chinese)
             return ' ZXQ'+str(len(protected)-1)+'QXZ '
         content=re.sub(pattern,term,content,flags=re.I)
+    content=re.sub(r'(?<![\w])[-+]?\d+(?:\.\d+)?(?:%|°)?(?![\w])',protect,content)
     return content,protected
 
 def restore_fragment(translated, protected):
@@ -190,13 +191,14 @@ def translate_fragment_by_nodes(inner):
     """Conservative fallback: keep the DOM and translate only prose text nodes."""
     soup=BeautifulSoup(inner,'html.parser')
     nodes=[n for n in soup.find_all(string=True) if not n.find_parent(['code','pre']) and re.search('[a-zA-Z]{2,}',str(n))]
-    texts=[]
+    texts=[];protections=[]
     for node in nodes:
         text=str(node)
-        texts.append(text)
+        prepared,protected=prepare_fragment(text)
+        texts.append(prepared);protections.append(protected)
     if texts:
         values=translate_texts(texts)
-        for node,value in zip(nodes,values): node.replace_with(value)
+        for node,value,protected in zip(nodes,values,protections): node.replace_with(restore_fragment(value,protected))
     return str(soup)
 
 def needs_translation(el):
@@ -285,13 +287,14 @@ def main():
         for h in headings:
             node=zh_soup.find(id=h['id'])
             h['zh']=node.get_text(' ',strip=True) if node else h['en']
-        if zh_soup.h1: zh_soup.h1.string=TITLES.get(entry['title'],entry['title'])
+        if zh_soup.h1 and entry['title'] in TITLES: zh_soup.h1.string=TITLES[entry['title']]
+        zh_title=TITLES.get(entry['title'],zh_soup.h1.get_text(' ',strip=True) if zh_soup.h1 else entry['title'])
         key=entry['id'].replace('/','--')
         doc={'id':entry['id'],'en':str(en_soup),'zh':str(zh_soup),'headings':headings}
         (OUT/(key+'.json')).write_text(json.dumps(doc,ensure_ascii=False),encoding='utf-8')
         group=entry['id'].split('/')[0] if '/' in entry['id'] else 'Essentials'
         intro=en_soup.find('p'); zh_intro=zh_soup.find('p')
-        catalog.append({**entry,'key':key,'group':group,'zhTitle':TITLES.get(entry['title'],entry['title']),
+        catalog.append({**entry,'key':key,'group':group,'zhTitle':zh_title,
             'intro':intro.get_text(' ',strip=True) if intro else '',
             'zhIntro':zh_intro.get_text(' ',strip=True) if zh_intro else '',
             'headings':headings,

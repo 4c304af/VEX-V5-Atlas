@@ -15,7 +15,9 @@ for entry in snapshot['documents']:
     documents.append({'id':entry['id'],'title':entry['title'],'zhTitle':titles[entry['id']],
                       'sha256':hashlib.sha256(text.encode('utf-8')).hexdigest()})
 target=root/'public/docs/update-manifest.json'
-snapshot_id=hashlib.sha256(json.dumps(documents,sort_keys=True,ensure_ascii=False,separators=(',',':')).encode('utf-8')).hexdigest()
+corpus={entry['key']:hashlib.sha256((root/'public/docs'/(entry['key']+'.json')).read_text(encoding='utf-8').encode('utf-8')).hexdigest() for entry in catalog['documents']}
+catalog_content={key:value for key,value in catalog.items() if key!='snapshotId'}
+snapshot_id=hashlib.sha256(json.dumps({'sources':documents,'catalog':catalog_content,'corpus':corpus},sort_keys=True,ensure_ascii=False,separators=(',',':')).encode('utf-8')).hexdigest()
 target.write_text(json.dumps({'schemaVersion':1,'snapshotId':snapshot_id,'snapshotDate':snapshot['snapshotDate'],
                              'documents':documents},ensure_ascii=False,indent=2),encoding='utf-8')
 catalog['snapshotId']=snapshot_id

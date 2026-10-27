@@ -19,6 +19,8 @@ internal static class Program {
     internal static string BundleRoot;
     internal static bool Testing;
     internal static string Profile;
+    internal static string DocumentsRoot;
+    internal static AutomaticUpdater Updater;
     private static Mutex instance;
     [DllImport("user32.dll")] private static extern bool SetProcessDpiAwarenessContext(IntPtr context);
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)] private static extern bool SetDllDirectory(string path);
@@ -26,6 +28,8 @@ internal static class Program {
     [STAThread]
     private static void Main(string[] args) {
         try {
+            string apply=args.FirstOrDefault(a=>a.StartsWith("--apply-update="));
+            if(apply!=null) { AutomaticUpdater.Apply(int.Parse(apply.Substring(15)));return; }
             Testing = args.Contains("--test");
             string customProfile = args.FirstOrDefault(a => a.StartsWith("--profile="));
             Profile = customProfile == null ? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ".v5-atlas", "profile") : Path.GetFullPath(customProfile.Substring(10));
@@ -36,6 +40,10 @@ internal static class Program {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ExtractBundle();
+            string dataRoot=Testing?Path.Combine(Profile,"atlas-data"):Path.Combine(AppDomain.CurrentDomain.BaseDirectory,".v5-atlas");
+            string appVersion=Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
+            Updater=new AutomaticUpdater(dataRoot,Path.Combine(BundleRoot,"app","docs"),appVersion,Assembly.GetExecutingAssembly().Location);
+            DocumentsRoot=Updater.Store.ActiveRoot;
             SetDllDirectory(BundleRoot);
             AppDomain.CurrentDomain.AssemblyResolve += delegate(object sender, ResolveEventArgs ev) {
                 string name = new AssemblyName(ev.Name).Name;
@@ -117,12 +125,25 @@ internal sealed class AtlasForm : Form {
             core.Settings.AreHostObjectsAllowed = false;
             core.Settings.IsPasswordAutosaveEnabled = false;
             core.Settings.IsGeneralAutofillEnabled = false;
-            core.SetVirtualHostNameToFolderMapping("v5-atlas.local", Path.Combine(Program.BundleRoot, "app"), CoreWebView2HostResourceAccessKind.DenyCors);
+            // Serve local resources here so an activated document dataset takes effect
+            // immediately. Virtual-host folder mappings bypass WebResourceRequested.
             core.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.All);
             core.WebResourceRequested += delegate(object sender, CoreWebView2WebResourceRequestedEventArgs ev) {
                 Uri uri;
                 if (!Uri.TryCreate(ev.Request.Uri, UriKind.Absolute, out uri) || uri.Scheme != "https" || uri.Host != "v5-atlas.local") {
                     ev.Response = environment.CreateWebResourceResponse(new MemoryStream(), 403, "Offline mode", "Content-Type: text/plain");
+                } else {
+                    bool document=uri.AbsolutePath.StartsWith("/docs/",StringComparison.Ordinal);
+                    string relative=Uri.UnescapeDataString(uri.AbsolutePath.Substring(document?6:1));
+                    if(relative=="")relative="index.html";
+                    string root=Path.GetFullPath(document?Program.DocumentsRoot:Path.Combine(Program.BundleRoot,"app"))+Path.DirectorySeparatorChar;
+                    string file=Path.GetFullPath(Path.Combine(root,relative.Replace('/',Path.DirectorySeparatorChar)));
+                    if(!file.StartsWith(root,StringComparison.OrdinalIgnoreCase)||!File.Exists(file))ev.Response=environment.CreateWebResourceResponse(new MemoryStream(),404,"Not found","Content-Type: text/plain");
+                    else {
+                        string extension=Path.GetExtension(file).ToLowerInvariant();
+                        string type=extension==".html"?"text/html; charset=utf-8":extension==".js"?"text/javascript; charset=utf-8":extension==".css"?"text/css; charset=utf-8":extension==".woff2"?"font/woff2":extension==".json"?"application/json; charset=utf-8":extension==".svg"?"image/svg+xml":extension==".jpg"||extension==".jpeg"?"image/jpeg":extension==".webp"?"image/webp":extension==".gif"?"image/gif":"image/png";
+                        ev.Response=environment.CreateWebResourceResponse(new MemoryStream(File.ReadAllBytes(file)),200,"OK","Content-Type: "+type+"\r\nCache-Control: no-store\r\nX-Content-Type-Options: nosniff");
+                    }
                 }
             };
             core.NavigationStarting += delegate(object sender, CoreWebView2NavigationStartingEventArgs ev) {
@@ -139,9 +160,10 @@ internal sealed class AtlasForm : Form {
                 const pending=new Map();let sequence=0;
                 window.chrome.webview.addEventListener('message',event=>{
                   const message=event.data;if(!message||typeof message!=='object')return;
+                  if(message.type==='library:updated'){window.dispatchEvent(new Event('atlas:library-updated'));return;}
                   const request=pending.get(message.requestId);if(!request)return;
-                  if(message.type==='docs:progress'){request.progress?.(message.progress);}
-                  if(message.type==='docs:result'){clearTimeout(request.timer);pending.delete(message.requestId);request.resolve(message.result);}
+                  if(message.type==='docs:progress'||message.type==='auto:progress'){request.progress?.(message.progress);}
+                  if(message.type==='docs:result'||message.type==='auto:result'){clearTimeout(request.timer);pending.delete(message.requestId);request.resolve(message.result);}
                 });
                 window.atlasDesktop=Object.freeze({
                   minimize:()=>send('minimize'),maximize:()=>send('maximize'),close:()=>send('close'),
@@ -152,9 +174,17 @@ internal sealed class AtlasForm : Form {
                     window.chrome.webview.postMessage(JSON.stringify({action:'docs:check',requestId}));
                   }),
                   cancelDocUpdateCheck:()=>send('docs:cancel'),
+                  automaticUpdatesEnabled:__AUTO_ENABLED__,
+                  runAutoUpdates:(options,progress)=>new Promise((resolve,reject)=>{
+                    const requestId='auto-'+(++sequence);
+                    const timer=setTimeout(()=>{pending.delete(requestId);send('docs:cancel');reject(new Error('timeout'));},600000);
+                    pending.set(requestId,{resolve,reject,progress,timer});
+                    window.chrome.webview.postMessage(JSON.stringify({action:'auto:run',requestId,documents:options.documents,application:options.application}));
+                  }),
+                  restartToUpdate:()=>send('auto:restart'),
                   openSource:url=>{let ok=false;try{const u=new URL(url);ok=u.protocol==='https:'&&u.hostname==='api.vex.com'&&u.pathname.startsWith('/v5/');}catch{}if(ok)send('source',url);return Promise.resolve(ok);}
                 });
-            ");
+            ".Replace("__AUTO_ENABLED__",Program.Testing?"false":"true"));
             core.Navigate(Origin + "/index.html");
         } catch (Exception error) {
             Program.Fail("webview",error);
@@ -178,6 +208,11 @@ internal sealed class AtlasForm : Form {
                     string requestId=message.ContainsKey("requestId")?message["requestId"] as string:null;
                     if(string.IsNullOrEmpty(requestId)||requestId.Length>80)break;
                     await CheckDocumentationAsync(requestId);break;
+                case "auto:run":
+                    string autoId=message.ContainsKey("requestId")?message["requestId"] as string:null;
+                    if(string.IsNullOrEmpty(autoId)||autoId.Length>80)break;
+                    await SynchronizeAsync(autoId,message.ContainsKey("documents")&&object.Equals(message["documents"],true),message.ContainsKey("application")&&object.Equals(message["application"],true));break;
+                case "auto:restart": if(!Program.Testing&&Program.Updater.Restart())Close();break;
                 case "source":
                     string url = message.ContainsKey("url") ? message["url"] as string : null;
                     Uri target;
@@ -198,7 +233,7 @@ internal sealed class AtlasForm : Form {
         var userCancellation=updateCancellation;
         DocumentationUpdateResult result;
         try {
-            var snapshot=json.Deserialize<DocumentationSnapshot>(File.ReadAllText(Path.Combine(Program.BundleRoot,"app","docs","update-manifest.json")));
+            var snapshot=json.Deserialize<DocumentationSnapshot>(File.ReadAllText(Path.Combine(Program.DocumentsRoot,"update-manifest.json")));
             var progress=new Progress<DocumentationProgress>(value=>{
                 PostUpdateMessage(new {type="docs:progress",requestId=requestId,progress=value});
             });
@@ -212,5 +247,17 @@ internal sealed class AtlasForm : Form {
             Debug.WriteLine(error);result=new DocumentationUpdateResult {status="error",errorCode=error is IOException?"invalid-snapshot":"network"};
         }finally { updateCancellation=null;userCancellation.Dispose(); }
         PostUpdateMessage(new {type="docs:result",requestId=requestId,result=result});
+    }
+    private async Task SynchronizeAsync(string requestId,bool documents,bool application) {
+        if(updateCancellation!=null) {PostUpdateMessage(new {type="auto:result",requestId=requestId,result=new AutoUpdateResult {documents=new AutoUpdatePart {status="error",error="busy"},application=new AutoUpdatePart {status="error",error="busy"}}});return;}
+        updateCancellation=new CancellationTokenSource();var cancellation=updateCancellation;
+        try {
+            cancellation.CancelAfter(TimeSpan.FromMinutes(9));
+            var progress=new Progress<string>(value=>PostUpdateMessage(new {type="auto:progress",requestId=requestId,progress=value}));
+            var result=await Program.Updater.RunAsync(documents,application,progress,cancellation.Token);
+            if(result.documents.status=="updated") {Program.DocumentsRoot=Program.Updater.Store.ActiveRoot;PostUpdateMessage(new {type="library:updated"});}
+            PostUpdateMessage(new {type="auto:result",requestId=requestId,result=result});
+        }catch(Exception error) {Debug.WriteLine(error);PostUpdateMessage(new {type="auto:result",requestId=requestId,result=new AutoUpdateResult {documents=new AutoUpdatePart {status="error",error="network"},application=new AutoUpdatePart {status="error",error="network"}}});}
+        finally {updateCancellation=null;cancellation.Dispose();}
     }
 }

@@ -1,7 +1,7 @@
 {
   "name": "offline-vexv5cpp-api",
   "productName": "V5 Atlas",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "VEX V5 C++ bilingual offline reference",
   "author": "V5 Atlas Contributors",
   "private": true,
@@ -10,13 +10,15 @@
     "dev": "vite --host 127.0.0.1",
     "build": "python tools/prepare_update_manifest.py && tsc -b && vite build",
     "desktop": "npm run package && python tools/launch_windows.py",
-    "package": "npm run build && python tools/package_windows.py",
+    "package": "npm run build && python tools/package_windows.py && python tools/package_docs.py",
     "test": "playwright test",
     "test:desktop": "node tools/test_desktop.mjs",
     "test:updates": "python tools/test_update_checker.py",
     "verify:docs": "python tools/verify_docs.py",
     "setup:windows": "python tools/setup_windows.py",
-    "test:desktop-updates": "node tools/test_desktop_updates.mjs"
+    "test:desktop-updates": "node tools/test_desktop_updates.mjs",
+    "test:auto-updates": "python tools/test_auto_updates.py",
+    "test:desktop-sync": "node tools/test_desktop_sync.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.3.0",
