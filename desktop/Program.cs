@@ -19,6 +19,8 @@ internal static class Program {
     internal static string BundleRoot;
     internal static bool Testing;
     internal static string Profile;
+    internal static string DataRoot = StoragePaths.DefaultRoot;
+    internal static string LogPath { get { return Path.Combine(DataRoot, "V5Atlas-startup.log"); } }
     internal static string DocumentsRoot;
     internal static AutomaticUpdater Updater;
     private static Mutex instance;
@@ -32,17 +34,19 @@ internal static class Program {
             if(apply!=null) { AutomaticUpdater.Apply(int.Parse(apply.Substring(15)));return; }
             Testing = args.Contains("--test");
             string customProfile = args.FirstOrDefault(a => a.StartsWith("--profile="));
-            Profile = customProfile == null ? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ".v5-atlas", "profile") : Path.GetFullPath(customProfile.Substring(10));
+            var storage = new StoragePaths(customProfile == null ? null : customProfile.Substring(10));
+            Profile = storage.Profile;
+            DataRoot = storage.DataRoot;
             bool created;
             instance = new Mutex(true, Testing ? "V5Atlas.Test." + Guid.NewGuid().ToString("N") : "V5Atlas.Desktop", out created);
             if (!created) return;
+            if (customProfile == null) storage.MigrateLegacy(AppDomain.CurrentDomain.BaseDirectory);
             try { SetProcessDpiAwarenessContext(new IntPtr(-4)); } catch (EntryPointNotFoundException) { }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ExtractBundle();
-            string dataRoot=Testing?Path.Combine(Profile,"atlas-data"):Path.Combine(AppDomain.CurrentDomain.BaseDirectory,".v5-atlas");
             string appVersion=Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
-            Updater=new AutomaticUpdater(dataRoot,Path.Combine(BundleRoot,"app","docs"),appVersion,Assembly.GetExecutingAssembly().Location);
+            Updater=new AutomaticUpdater(DataRoot,Path.Combine(BundleRoot,"app","docs"),appVersion,Assembly.GetExecutingAssembly().Location);
             DocumentsRoot=Updater.Store.ActiveRoot;
             SetDllDirectory(BundleRoot);
             AppDomain.CurrentDomain.AssemblyResolve += delegate(object sender, ResolveEventArgs ev) {
@@ -64,7 +68,7 @@ internal static class Program {
 
     internal static void Fail(string stage,Exception error) {
         Environment.ExitCode=1;
-        try { File.AppendAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"V5Atlas-startup.log"),DateTime.UtcNow.ToString("O")+" "+stage+"\r\n"+error+"\r\n"); } catch { }
+        try { Directory.CreateDirectory(DataRoot); File.AppendAllText(LogPath,DateTime.UtcNow.ToString("O")+" "+stage+"\r\n"+error+"\r\n"); } catch { }
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
@@ -74,7 +78,7 @@ internal static class Program {
         Assembly asm = Assembly.GetExecutingAssembly();
         string bundleId;
         using (StreamReader reader = new StreamReader(asm.GetManifestResourceStream("atlas.bundle-id"))) bundleId = reader.ReadToEnd().Trim();
-        BundleRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ".v5-atlas", "bundles", bundleId);
+        BundleRoot = Path.Combine(DataRoot, "bundles", bundleId);
         string marker = Path.Combine(BundleRoot, ".complete");
         if (File.Exists(marker) && File.Exists(Path.Combine(BundleRoot, "app", "index.html"))) return;
         Directory.CreateDirectory(BundleRoot);
@@ -188,7 +192,7 @@ internal sealed class AtlasForm : Form {
             core.Navigate(Origin + "/index.html");
         } catch (Exception error) {
             Program.Fail("webview",error);
-            if (!Program.Testing) MessageBox.Show("无法打开离线文档 / Unable to open offline documents.\n\n" + error.Message + "\n\n错误详情已保存在程序旁的 V5Atlas-startup.log。", "V5 Atlas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (!Program.Testing) MessageBox.Show("无法打开离线文档 / Unable to open offline documents.\n\n" + error.Message + "\n\n日志 / Log: " + Program.LogPath, "V5 Atlas", MessageBoxButtons.OK, MessageBoxIcon.Error);
             Close();
         }
     }

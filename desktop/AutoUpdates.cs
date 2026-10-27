@@ -210,11 +210,16 @@ internal sealed class AutomaticUpdater {
         Process.Start(new ProcessStartInfo(Path.Combine(root,"updates",ready,"app.exe"),"--apply-update="+Process.GetCurrentProcess().Id) {UseShellExecute=false,CreateNoWindow=true,WindowStyle=ProcessWindowStyle.Hidden});return true;
     }
     // Runs before loading WebView2, from the verified staged executable itself.
+    internal static bool IsUpdateLocation(string data,string target,string localData) {
+        string directory=Path.GetDirectoryName(Path.GetFullPath(target));
+        return string.Equals(Path.GetFullPath(data),Path.Combine(localData,"V5 Atlas"),StringComparison.OrdinalIgnoreCase)
+            || string.Equals(Path.GetFullPath(data),Path.Combine(directory,".v5-atlas"),StringComparison.OrdinalIgnoreCase);
+    }
     internal static void Apply(int processId) {
         string self=System.Reflection.Assembly.GetExecutingAssembly().Location;string folder=Path.GetDirectoryName(self);
         var stage=UpdateFiles.Json.Deserialize<StagedApplication>(File.ReadAllText(Path.Combine(folder,"stage.json")));
-        string data=Path.GetFullPath(Path.Combine(folder,"..",".."));string app=Path.GetDirectoryName(data);
-        if(Path.GetFileName(data)!=".v5-atlas"||Path.GetFileName(Path.GetDirectoryName(folder))!="updates"||Path.GetFileName(folder)!=stage.version||UpdateFiles.VersionOf(stage.version)==null||FileVersionInfo.GetVersionInfo(self).FileVersion!=stage.version+".0"||!string.Equals(Path.GetDirectoryName(Path.GetFullPath(stage.target)),app,StringComparison.OrdinalIgnoreCase)||Path.GetExtension(stage.target)!=".exe"||UpdateFiles.HashFile(self)!=stage.newHash||UpdateFiles.HashFile(stage.target)!=stage.oldHash)throw new InvalidDataException("invalid-update-stage");
+        string data=Path.GetFullPath(Path.Combine(folder,"..",".."));
+        if(!IsUpdateLocation(data,stage.target,Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData))||Path.GetFileName(Path.GetDirectoryName(folder))!="updates"||Path.GetFileName(folder)!=stage.version||UpdateFiles.VersionOf(stage.version)==null||FileVersionInfo.GetVersionInfo(self).FileVersion!=stage.version+".0"||Path.GetExtension(stage.target)!=".exe"||UpdateFiles.HashFile(self)!=stage.newHash||UpdateFiles.HashFile(stage.target)!=stage.oldHash)throw new InvalidDataException("invalid-update-stage");
         try {using(var process=Process.GetProcessById(processId)) {if(!string.Equals(process.MainModule.FileName,stage.target,StringComparison.OrdinalIgnoreCase))throw new InvalidDataException("wrong-process");if(!process.WaitForExit(45000))return;}}catch(ArgumentException) { }
         string temp=stage.target+".next",backup=stage.target+".previous";
         if(UpdateFiles.HashFile(stage.target)!=stage.oldHash)throw new InvalidDataException("target-changed");

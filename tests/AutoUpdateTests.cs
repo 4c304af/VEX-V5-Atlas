@@ -10,6 +10,11 @@ internal static class AutoUpdateTests {
     private static void Reject(Action action,string name) {try{action();throw new Exception("Accepted "+name);}catch(InvalidDataException) {Console.WriteLine("PASS reject "+name);}}
     private static int Main(string[] args) {
         string root=args[0],fixtures=args[1],bundled=args[2];Directory.CreateDirectory(root);
+        string local=Path.Combine(root,"local"),target=Path.Combine(root,"application","Atlas.exe");
+        Assert(AutomaticUpdater.IsUpdateLocation(Path.Combine(local,"V5 Atlas"),target,local),"User-data update staging rejected");
+        Assert(AutomaticUpdater.IsUpdateLocation(Path.Combine(root,"application",".v5-atlas"),target,local),"Legacy update staging rejected");
+        Assert(!AutomaticUpdater.IsUpdateLocation(Path.Combine(root,"unrelated"),target,local),"Unrelated staging accepted");
+        Console.WriteLine("PASS user-data and legacy update staging boundaries");
         var store=new DocumentationStore(root,bundled,"1.1.0");string baseline=store.Snapshot(store.ActiveRoot);
         Assert(store.ActiveRoot==bundled,"Expected embedded fallback");
         foreach(string name in new[]{"traversal","hash","empty-translation","missing","future","older","duplicate"}) {

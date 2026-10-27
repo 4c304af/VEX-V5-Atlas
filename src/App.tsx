@@ -7,6 +7,8 @@ import 'prismjs/components/prism-c';
 import 'prismjs/components/prism-cpp';
 import '@fontsource-variable/manrope';
 import RobotArt from './RobotArt';
+import AccentSettings from './AccentSettings';
+import { accentPalette } from './theme';
 import DocumentationUpdates, { useDocumentationUpdates } from './DocumentationUpdates';
 import AutoUpdates, {useAutoUpdates} from './AutoUpdates';
 import appPackage from '../package.json';
@@ -70,7 +72,13 @@ export default function App() {
   }, []);
   useEffect(() => {
     const media = matchMedia('(prefers-color-scheme: dark)');
-    const apply = () => { document.documentElement.dataset.theme = settings.theme === 'system' ? (media.matches ? 'dark' : 'light') : settings.theme; };
+    const apply = () => {
+      const theme = settings.theme === 'system' ? (media.matches ? 'dark' : 'light') : settings.theme;
+      document.documentElement.dataset.theme = theme;
+      for (const [key, value] of Object.entries(accentPalette(settings.accent, settings.customColor, theme === 'dark'))) {
+        document.documentElement.style.setProperty(key, value);
+      }
+    };
     apply(); media.addEventListener('change',apply);
     document.documentElement.lang = zh ? 'zh-CN' : 'en';
     document.documentElement.dataset.motion = settings.motion ? 'on' : 'off';
@@ -109,7 +117,6 @@ export default function App() {
     <div className="app-shell">
       <div className="titlebar" onDoubleClick={() => window.atlasDesktop?.maximize()}>
         <div className="titlebar-brand"><span className="tiny-mark">V5</span> ATLAS <span className="titlebar-separator" /> VEX V5 C++ API</div>
-        <span className="titlebar-caption">{t('你的离线机器人编程手册','Your offline robotics companion')}</span>
         {window.atlasDesktop && <div className="window-controls">
           <button aria-label={t('最小化','Minimize')} onClick={() => window.atlasDesktop!.minimize()}><Minus size={14}/></button>
           <button aria-label={t('最大化','Maximize')} onClick={() => window.atlasDesktop!.maximize()}><Square size={11}/></button>
@@ -120,7 +127,7 @@ export default function App() {
         {sidebarOpen && <button className="sidebar-shade" aria-label={t('收起导航','Close navigation')} onClick={() => setSidebarOpen(false)}/>}
         <aside className={'sidebar '+(sidebarOpen ? 'open' : '')}>
           <button className="brand" onClick={() => navigate({kind:'home'})} aria-label="V5 Atlas Home">
-            <img src="./icon.svg" alt=""/><div><strong>V5 Atlas<span className="brand-dot">.</span></strong><span>C++ OFFLINE REFERENCE</span></div>
+            <img src="./icon.svg" alt=""/><div><strong>V5 Atlas<span className="brand-dot">.</span></strong></div>
           </button>
           <button className="sidebar-search" onClick={() => setSearchOpen(true)}><Search size={17}/><span>{t('搜索文档','Search anything')}</span><kbd>⌃ K</kbd></button>
           <nav aria-label={t('主导航','Main navigation')} className="main-nav">
@@ -148,14 +155,13 @@ export default function App() {
             <button className={'subtle-link '+(page.kind==='updates'?'selected':'')} onClick={() => navigate({kind:'updates'})}><RefreshCw size={17} className={documentationUpdates.busy||autoUpdates.busy?'update-spinning':''}/>{t('文档更新','Documentation updates')}{autoUpdates.result?.application.status==='ready'&&<small className="update-ready-badge">{t('新版','NEW')}</small>}</button>
             <button className={'subtle-link '+(page.kind==='glossary'?'selected':'')} onClick={() => navigate({kind:'glossary'})}><Languages size={17}/>{t('中英术语表','Bilingual glossary')}<ArrowUpRight size={14}/></button>
             <button className={'subtle-link '+(page.kind==='settings'?'selected':'')} onClick={() => navigate({kind:'settings'})}><Settings2 size={17}/>{t('偏好设置','Preferences')}</button>
-            <div className="offline-card"><span className="status-dot"/><div><strong>{t('已准备好离线探索','Ready to explore offline')}</strong><span>{entries.length || '66'} {t('篇文档 · 无需网络连接','documents · no connection needed')}</span></div><WifiOff size={17}/></div>
           </div>
         </aside>
 
         <div className="workspace">
           <header className="topbar">
             <button className="icon-button mobile-menu" aria-label={t('打开导航','Open navigation')} onClick={() => setSidebarOpen(v=>!v)}><Menu size={21}/></button>
-            <div className="breadcrumb"><span>WORKSPACE</span><ChevronRight size={13}/><strong>{title}</strong></div>
+            <div className="breadcrumb"><strong>{title}</strong></div>
             <div className="topbar-actions">
               <span className="offline-pill"><span className="status-dot"/>{t('离线就绪','Offline ready')}</span>
               <div className="language-switch" aria-label={t('阅读语言','Reading language')}>
@@ -170,41 +176,40 @@ export default function App() {
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div key={page.kind === 'doc' ? page.id : page.kind+(page.group??'')} className={'page page-'+page.kind} {...transitions}>
                   {page.kind === 'home' && <>
-                    <div className="page-eyebrow"><span className="eyebrow-line"/>{t('好奇心，不必等待网络','CURIOSITY DOESN’T NEED A CONNECTION')}<span className="edition">VOL. 01 / VEX V5</span></div>
                     <section className="hero">
-                      <div className="hero-copy"><div className="hero-kicker"><Sparkles size={15}/>{t('从理解，到创造','FROM UNDERSTANDING TO CREATING')}</div>
-                        <h1>{t('灵感就位。','Ideas, meet motion.')}<br/><span>{t('让机器人动起来。','Make your next move.')}</span><span className="hero-spark">✳</span></h1>
-                        <p>{t('一份随时在手的 VEX V5 C++ 参考手册。','Your always-with-you VEX V5 C++ field guide.')}<br/>{t('查阅 API，读懂原理，把想法变成下一次行动。','Explore the API. Understand the details. Bring your ideas to life.')}</p>
+                      <div className="hero-copy">
+                        <h1>VEX V5 C++<br/><span>{t('离线参考手册','Offline reference')}</span><span className="hero-spark">✳</span></h1>
+                        <p>{t('查阅设备 API、函数与代码示例，支持中英对照。','Device APIs, functions, and code examples in Chinese and English.')}</p>
                         <div className="hero-buttons"><button className="primary-button" onClick={()=>navigate({kind:'library'})}>{t('探索 API 文档','Explore the API')}<ArrowRight size={18}/></button><button className="text-button" onClick={()=>openDoc('index')}>{t('从这里开始','Start here')}<ArrowUpRight size={17}/></button></div>
                       </div>
-                      <div className="hero-art"><span className="art-orbit"/><RobotArt animate={settings.motion}/><span className="art-caption">BUILD SOMETHING THAT MOVES YOU.</span></div>
+                      <div className="hero-art"><span className="art-orbit"/><RobotArt animate={settings.motion}/></div>
                     </section>
                     <div className="stats-strip"><span><FileCode2 size={17}/><strong>{entries.length}</strong>{t('篇完整文档','complete documents')}</span><i/><span><Languages size={18}/><strong>{t('中 / EN','ZH / EN')}</strong>{t('双语对照','side by side')}</span><i/><span><ShieldCheck size={18}/>{t('文档与示例全部本地存储','Docs & examples stored locally')}</span><span className="snapshot-label">SNAPSHOT · {catalog.snapshotDate.replaceAll('-','.')} </span></div>
                     <section className="quick-section"><div className="section-heading"><div><span className="section-index">01</span><h2>{t('从常用设备开始','Start with the essentials')}</h2></div><button className="text-button small" onClick={()=>navigate({kind:'library'})}>{t('查看全部','View all')}<ArrowRight size={16}/></button></div>
                       <div className="quick-grid">{QUICK.map((q,i)=><motion.button key={q.id} whileHover={{ y: -5 }} whileTap={{ scale: .98 }} className={'quick-card '+q.color} onClick={()=>openDoc(q.id)}><div className="quick-card-top"><span className="shape-icon"><q.icon size={25}/></span><ArrowUpRight size={19}/></div><code>{q.name}</code><strong>{t(q.zh,q.en)}</strong><div className="quick-card-footer">{t('查看参考','Open reference')}<span>0{i+1}</span></div></motion.button>)}</div>
                     </section>
-                    <div className="home-bottom-grid"><section className="continue-panel"><div className="section-heading"><div><span className="section-index">02</span><h2>{t('接着上次的灵感','Pick up where you left off')}</h2></div><Clock3 size={17}/></div>
+                    <div className="home-bottom-grid"><section className="continue-panel"><div className="section-heading"><div><span className="section-index">02</span><h2>{t('最近阅读','Recent reading')}</h2></div><Clock3 size={17}/></div>
                       {reads.filter(r=>entries.some(e=>e.id===r.id)).slice(0,3).map(read=>{const entry=entries.find(e=>e.id===read.id)!;return <button className="recent-row" key={read.id} onClick={()=>openDoc(read.id)}><span className={'small-icon '+groupFor(entry.group).color}><FileCode2 size={19}/></span><div><strong>{name(entry)}</strong><span>{entry.title} · C++</span></div><ArrowRight size={17}/></button>;})}
-                      {reads.length===0 && <div className="first-read"><span className="first-read-art"><BookOpen size={25}/></span><p>{t('第一段探索，从一个好问题开始。','Every great build starts with a question.')}<span>{t('打开一篇文档，这里会记住你的阅读足迹。','Open a document and your reading trail will appear here.')}</span></p><button className="round-button" onClick={()=>openDoc('Drivetrain/index')} aria-label={t('开始阅读','Start reading')}><ArrowRight size={20}/></button></div>}
-                    </section><section className="tip-card"><div className="tip-eyebrow"><Keyboard size={17}/>{t('给好奇心一条捷径','A SHORTCUT FOR YOUR CURIOSITY')}</div><h3>{t('想找什么？直接搜。','Looking for something? Just ask.')}</h3><p>{t('函数名、设备名或中文关键词，','Functions, devices, or a keyword —')}<br/>{t('下一条线索，往往只差一次搜索。','your next discovery is a search away.')}</p><button onClick={()=>setSearchOpen(true)} className="shortcut-button"><Search size={16}/>{t('试试“扭矩”或 spinFor','Try “torque” or spinFor')}<kbd>Ctrl K</kbd></button></section></div>
-                    <footer className="page-footer"><span>V5 ATLAS <i>✳</i> MADE FOR THE MOMENT OF DISCOVERY.</span><span>{t('基于 VEX 官方 C++ API · 独立离线阅读器','Based on the official VEX C++ API · Independent offline reader')}</span></footer>
+                      {reads.length===0 && <div className="first-read"><span className="first-read-art"><BookOpen size={25}/></span><p>{t('暂无阅读记录','No recent reading')}</p><button className="round-button" onClick={()=>openDoc('Drivetrain/index')} aria-label={t('开始阅读','Start reading')}><ArrowRight size={20}/></button></div>}
+                    </section><section className="tip-card"><div className="tip-eyebrow"><Keyboard size={17}/>{t('快捷搜索','Quick search')}</div><h3>{t('搜索函数或设备','Find a function or device')}</h3><button onClick={()=>setSearchOpen(true)} className="shortcut-button"><Search size={16}/>{t('扭矩、spinFor…','torque, spinFor…')}<kbd>Ctrl K</kbd></button></section></div>
+                    <footer className="page-footer"><span>V5 Atlas</span><span>{t('基于 VEX 官方 C++ API · 独立离线阅读器','Based on the official VEX C++ API · Independent offline reader')}</span></footer>
                   </>}
 
                   {page.kind==='updates'&&<><AutoUpdates state={autoUpdates} settings={settings} setSetting={changeSetting} t={t}/><DocumentationUpdates catalog={catalog} state={documentationUpdates} zh={zh} t={t} source={source}/></>}
                   {['library','favorites','history'].includes(page.kind) && <LibraryPage entries={entries} page={page} favorites={favorites} reads={reads} zh={zh} t={t} openDoc={openDoc} favorite={favorite} navigate={navigate} onClearHistory={()=>setReads([])} />}
                   {page.kind === 'doc' && <Reader key={catalog.snapshotId} entry={current} entries={entries} language={settings.language} zh={zh} t={t} favorites={favorites} favorite={favorite} openDoc={openDoc} anchor={page.anchor} navigate={navigate} notify={setToast} source={source} />}
                   {page.kind === 'settings' && <>
-                    <PageHeading label="MAKE IT YOURS" title={t('按你的方式，探索。','A space that feels like you.')} description={t('让阅读更舒适，让专注更自然。所有偏好仅保存在本机。','Make room for focus. All your preferences stay on this device.')}/>
+                    <PageHeading title={t('偏好设置','Preferences')}/>
                     <div className="settings-layout"><div>
-                      <SettingsCard icon={<Languages size={20}/>} title={t('阅读语言','Reading language')} description={t('随时切换中文、英文或中英对照。代码标识符保持原文。','Switch between Chinese, English, or both. Code identifiers remain unchanged.')}>
+                      <SettingsCard icon={<Languages size={20}/>} title={t('阅读语言','Reading language')} description={t('代码保持原文。','Code remains unchanged.')}>
                         <div className="option-group">{(['zh','en','dual'] as const).map((lang,i)=><button key={lang} aria-pressed={settings.language===lang} className={settings.language===lang?'selected':''} onClick={()=>changeSetting('language',lang)}>{[t('简体中文','简体中文'),'English',t('中英对照','Side by side')][i]}{settings.language===lang&&<Check size={16}/>}</button>)}</div>
                       </SettingsCard>
-                      <SettingsCard icon={<Sun size={20}/>} title={t('外观','Appearance')} description={t('柔和的浅色，或适合夜读的深色。','A softer light, or a quieter dark.')}><div className="theme-options">{(['light','dark','system'] as const).map((theme,i)=><button key={theme} aria-pressed={settings.theme===theme} className={'theme-option '+(settings.theme===theme?'selected':'')} onClick={()=>changeSetting('theme',theme)}><span className={'theme-swatch '+theme}><i/><i/><i/></span><span>{[t('浅色','Light'),t('深色','Dark'),t('跟随系统','System')][i]}{settings.theme===theme&&<Check size={15}/>}</span></button>)}</div><div className="accent-row"><span>{t('强调色','Accent color')}</span>{[['jade','#006b57'],['iris','#6952a2'],['clay','#9a542e']].map(([id,color])=><button key={id} style={{background:color}} className={'color-choice '+(settings.accent===id?'selected':'')} onClick={()=>changeSetting('accent',id)} aria-label={id} aria-pressed={settings.accent===id}>{settings.accent===id&&<Check size={16}/>}</button>)}</div></SettingsCard>
-                      <SettingsCard icon={<BookOpen size={20}/>} title={t('阅读字号','Reading size')} description={t('调整正文大小；表格和代码块可横向滚动。','Adjust body text. Tables and code can scroll horizontally.')}><div className="font-control"><button className="icon-button" aria-label={t('减小字号','Smaller text')} disabled={settings.fontSize<=13} onClick={()=>changeSetting('fontSize',settings.fontSize-1)}><Minus size={17}/></button><span>{settings.fontSize} px</span><button className="icon-button" aria-label={t('增大字号','Larger text')} disabled={settings.fontSize>=21} onClick={()=>changeSetting('fontSize',settings.fontSize+1)}><Plus size={17}/></button><span className="font-preview" style={{fontSize:settings.fontSize}}>{t('下一行，新的可能。','The next line. A new possibility.')}</span></div></SettingsCard>
-                      <SettingsCard icon={<Sparkles size={20}/>} title={t('灵动动画','Expressive motion')} description={t('弹簧过渡、形状变化和轻盈反馈。也会遵循系统的减少动态效果设置。','Spring transitions, shape changes, and gentle feedback. Respects your system’s reduced motion preference.')}><button className={'toggle '+(settings.motion?'on':'')} role="switch" aria-checked={settings.motion} aria-label={t('灵动动画','Expressive motion')} onClick={()=>changeSetting('motion',!settings.motion)}><span>{settings.motion&&<Check size={12}/>}</span></button></SettingsCard>
-                    </div><aside className="about-panel"><span className="about-symbol">✳</span><h2>V5 Atlas<span>.</span></h2><p>{t('让好奇心，随时有回应。','A companion for your curiosity.')}</p><div className="version-pill">DESKTOP EDITION · {appPackage.version}</div><dl><dt>{t('内容快照','Content snapshot')}</dt><dd>{catalog.snapshotDate}</dd><dt>{t('文档范围','Coverage')}</dt><dd>{entries.length} {t('篇 VEX V5 C++ 文档','VEX V5 C++ documents')}</dd><dt>{t('离线资源','Offline resources')}</dt><dd>{t('英文原文 · 中文译文 · 代码 · 配图','English · Chinese · Code · Images')}</dd></dl><div className="translation-note"><Languages size={18}/><p>{t('中文采用机器辅助翻译、术语统一与重点语义校订。英文原文随包保留，可随时对照；API 行为以官方英文说明为准。','Chinese uses machine-assisted translation, a controlled glossary, and targeted editorial corrections. English is always available for comparison and remains the source of truth.')}</p></div><button className="text-button" onClick={()=>source('https://api.vex.com/v5/home/cpp/index.html')}>{t('访问官方参考','Official reference')}<ExternalLink size={15}/></button><p className="independent-note">{t('独立制作的离线阅读器，非 VEX Robotics 官方产品。官方文档、代码及配图的权利归原权利人所有。','An independent reader, not an official VEX Robotics product. Documentation, examples, and illustrations belong to their respective owners.')}</p></aside></div>
+                      <SettingsCard icon={<Sun size={20}/>} title={t('外观','Appearance')}><div className="theme-options">{(['light','dark','system'] as const).map((theme,i)=><button key={theme} aria-pressed={settings.theme===theme} className={'theme-option '+(settings.theme===theme?'selected':'')} onClick={()=>changeSetting('theme',theme)}><span className={'theme-swatch '+theme}><i/><i/><i/></span><span>{[t('浅色','Light'),t('深色','Dark'),t('跟随系统','System')][i]}{settings.theme===theme&&<Check size={15}/>}</span></button>)}</div><AccentSettings settings={settings} preset={id=>changeSetting('accent',id)} custom={color=>setSettings(s=>({...s,accent:'custom',customColor:color}))} t={t}/></SettingsCard>
+                      <SettingsCard icon={<BookOpen size={20}/>} title={t('阅读字号','Reading size')} description={t('正文大小，13–21 px。','Body text, 13–21 px.')}><div className="font-control"><button className="icon-button" aria-label={t('减小字号','Smaller text')} disabled={settings.fontSize<=13} onClick={()=>changeSetting('fontSize',settings.fontSize-1)}><Minus size={17}/></button><span>{settings.fontSize} px</span><button className="icon-button" aria-label={t('增大字号','Larger text')} disabled={settings.fontSize>=21} onClick={()=>changeSetting('fontSize',settings.fontSize+1)}><Plus size={17}/></button><span className="font-preview" style={{fontSize:settings.fontSize}}>{t('正文预览','Reading preview')}</span></div></SettingsCard>
+                      <SettingsCard icon={<Sparkles size={20}/>} title={t('灵动动画','Expressive motion')} description={t('遵循系统的减少动态效果设置。','Respects the system’s reduced motion setting.')}><button className={'toggle '+(settings.motion?'on':'')} role="switch" aria-checked={settings.motion} aria-label={t('灵动动画','Expressive motion')} onClick={()=>changeSetting('motion',!settings.motion)}><span>{settings.motion&&<Check size={12}/>}</span></button></SettingsCard>
+                    </div><aside className="about-panel"><h2>V5 Atlas<span>.</span></h2><div className="version-pill">v{appPackage.version}</div><dl><dt>{t('内容快照','Content snapshot')}</dt><dd>{catalog.snapshotDate}</dd><dt>{t('文档范围','Coverage')}</dt><dd>{entries.length} {t('篇 VEX V5 C++ 文档','VEX V5 C++ documents')}</dd><dt>{t('离线资源','Offline resources')}</dt><dd>{t('英文原文 · 中文译文 · 代码 · 配图','English · Chinese · Code · Images')}</dd></dl><div className="translation-note"><Languages size={18}/><p>{t('中文为辅助译文，API 行为以官方英文为准。','Chinese is a supporting translation. Refer to the official English for API behavior.')}</p></div><button className="text-button" onClick={()=>source('https://api.vex.com/v5/home/cpp/index.html')}>{t('访问官方参考','Official reference')}<ExternalLink size={15}/></button><p className="independent-note">{t('独立制作的离线阅读器，非 VEX Robotics 官方产品。官方文档、代码及配图的权利归原权利人所有。','An independent reader, not an official VEX Robotics product. Documentation, examples, and illustrations belong to their respective owners.')}</p></aside></div>
                   </>}
-                  {page.kind==='glossary' && <><PageHeading label="WORDS, WITH PRECISION" title={t('理解，从准确的词开始。','The right words. A clearer picture.')} description={t('把机器人语境说清楚。保留英文标识符，避免关键概念在翻译中走样。','A shared vocabulary for robotics. Keep identifiers intact and meaning in focus.')}/><div className="glossary-intro"><Languages size={23}/><p>{t('这些词在日常英语和编程语境中可能有不同含义。中文译文始终结合设备、单位和函数行为理解。','Everyday words can mean something different in programming. Read translations in the context of the device, unit, and function behavior.')}</p><span>{TERMS.length} {t('组核心术语','core terms')}</span></div><div className="glossary-grid">{TERMS.map(([en,cn,cnText,enText],i)=><article className="term-card" key={en}><span className="term-index">{String(i+1).padStart(2,'0')}</span><code>{en}</code><h3>{cn}</h3><p>{zh?cnText:enText}</p></article>)}</div></>}
+                  {page.kind==='glossary' && <><PageHeading title={t('中英术语表','Bilingual glossary')}/><div className="glossary-intro"><Languages size={23}/><p>{t('这些词在日常英语和编程语境中可能有不同含义。中文译文始终结合设备、单位和函数行为理解。','Everyday words can mean something different in programming. Read translations in the context of the device, unit, and function behavior.')}</p><span>{TERMS.length} {t('组核心术语','core terms')}</span></div><div className="glossary-grid">{TERMS.map(([en,cn,cnText,enText],i)=><article className="term-card" key={en}><span className="term-index">{String(i+1).padStart(2,'0')}</span><code>{en}</code><h3>{cn}</h3><p>{zh?cnText:enText}</p></article>)}</div></>}
                 </motion.div>
               </AnimatePresence>}
           </main>
@@ -216,11 +221,11 @@ export default function App() {
   </MotionConfig>;
 }
 
-function PageHeading({label,title,description}:{label:string;title:string;description:string}) {
-  return <div className="page-heading"><div className="hero-kicker"><span className="eyebrow-line"/>{label}</div><h1>{title}</h1><p>{description}</p></div>;
+function PageHeading({title,description}:{title:string;description?:string}) {
+  return <div className="page-heading"><h1>{title}</h1>{description&&<p>{description}</p>}</div>;
 }
-function SettingsCard({icon,title,description,children}:{icon:ReactNode;title:string;description:string;children:ReactNode}) {
-  return <section className="settings-card"><div className="settings-title"><span className="settings-icon">{icon}</span><div><h2>{title}</h2><p>{description}</p></div></div>{children}</section>;
+function SettingsCard({icon,title,description,children}:{icon:ReactNode;title:string;description?:string;children:ReactNode}) {
+  return <section className="settings-card"><div className="settings-title"><span className="settings-icon">{icon}</span><div><h2>{title}</h2>{description&&<p>{description}</p>}</div></div>{children}</section>;
 }
 
 interface LibraryProps { entries:Entry[]; page:Page; favorites:string[]; reads:Read[]; zh:boolean; t:(a:string,b:string)=>string; openDoc:(id:string,anchor?:string)=>void; favorite:(id:string)=>void; navigate:(page:Page)=>void; onClearHistory:()=>void }
@@ -238,13 +243,13 @@ function LibraryPage({entries,page,favorites,reads,zh,t,openDoc,favorite,navigat
     return result;
   },[entries,page.kind,group,favorites,reads,query]);
   const activeGroup=group?groupFor(group):null;
-  const heading=page.kind==='favorites'?t('收藏，留住好思路。','Good references. Worth keeping.'):page.kind==='history'?t('每一步探索，都有迹可循。','Your trail of discovery.'):activeGroup?t(activeGroup.zh,activeGroup.en):t('每一个 API，都有答案。','A reference for every next step.');
+  const heading=page.kind==='favorites'?t('我的收藏','Bookmarks'):page.kind==='history'?t('最近阅读','Reading history'):activeGroup?t(activeGroup.zh,activeGroup.en):t('API 文档库','API library');
   return <>
-    <PageHeading label={page.kind==='favorites'?'YOUR PERSONAL COLLECTION':page.kind==='history'?'THE READING TRAIL':'THE COMPLETE C++ REFERENCE'} title={heading} description={page.kind==='favorites'?t('把常用的文档放在一起，需要时一触即达。','Your most useful references, always close at hand.'):page.kind==='history'?t('回到读过的文档，让探索接着发生。','Return to a familiar page. Keep your ideas moving.'):t('从底盘到传感器，从一行语法到完整实现。全部内容，离线可用。','From drivetrains to sensors, from syntax to a complete idea. Available entirely offline.')}/>
+    <PageHeading title={heading}/>
     {page.kind==='library' && <div className="filter-chips"><button onClick={()=>navigate({kind:'library'})} className={!group?'selected':''}>{!group&&<Check size={14}/>} {t('全部','All')}<span>{entries.length}</span></button>{GROUPS.filter(g=>g.id!=='Essentials').map(g=><button key={g.id} className={group===g.id?'selected':''} onClick={()=>navigate({kind:'library',group:g.id})}>{group===g.id&&<Check size={14}/>} {t(g.zh,g.en)}</button>)}</div>}
     <div className="library-toolbar"><div className="library-search"><Search size={18}/><input value={query} onChange={e=>setQuery(e.target.value)} aria-label={t('筛选文档','Filter documents')} placeholder={t('按设备、函数或关键词筛选…','Filter by device, function, or keyword…')}/>{query&&<button aria-label={t('清空筛选','Clear filter')} onClick={()=>setQuery('')}><X size={15}/></button>}</div><span className="results-count">{filtered.length} {t('篇文档','documents')}</span>{page.kind==='history'&&reads.length>0&&<button className="text-button small" onClick={onClearHistory}><Trash2 size={15}/>{t('清空记录','Clear history')}</button>}<div className="view-toggle"><button aria-label={t('网格视图','Grid view')} aria-pressed={view==='grid'} className={view==='grid'?'selected':''} onClick={()=>setView('grid')}><Grid2X2 size={17}/></button><button aria-label={t('列表视图','List view')} aria-pressed={view==='list'} className={view==='list'?'selected':''} onClick={()=>setView('list')}><List size={19}/></button></div></div>
     <div className={'document-grid '+view}>{filtered.map(entry=>{const g=groupFor(entry.group==='Essentials'?entry.id:entry.group);return <motion.article layout="position" transition={{duration:.2}} className="document-card" key={entry.id}><button className="document-open" onClick={()=>openDoc(entry.id)}><div className="document-top"><span className={'small-icon '+g.color}><g.icon size={21}/></span><span className="document-language">C++</span></div><h2>{zh?entry.zhTitle:entry.title}</h2><code>{entry.title}</code><p>{zh?entry.zhIntro:entry.intro}</p><div className="document-bottom"><span>{t(g.zh,g.en)}</span><ArrowUpRight size={17}/></div></button><button className={'bookmark-button '+(favorites.includes(entry.id)?'saved':'')} aria-label={favorites.includes(entry.id)?t('取消收藏','Remove bookmark'):t('收藏文档','Bookmark document')} aria-pressed={favorites.includes(entry.id)} onClick={()=>favorite(entry.id)}><Bookmark size={18} fill={favorites.includes(entry.id)?'currentColor':'none'}/></button></motion.article>;})}</div>
-    {filtered.length===0&&<div className="empty-state"><span className="empty-art">{query?<Search size={35}/>:page.kind==='favorites'?<Bookmark size={35}/>:<Clock3 size={35}/>}</span><h2>{query?t('暂时没有找到','No matches yet'):page.kind==='favorites'?t('留一个位置，给有用的知识。','Make room for a useful reference.'):t('新的探索，正要开始。','A fresh trail starts here.')}</h2><p>{query?t('试试更短的关键词，或直接搜索英文函数名。','Try a shorter keyword or an English function name.'):t('阅读文档时点击收藏图标，或从文档库开启一次探索。','Bookmark a page as you read, or explore the library.')}</p><button className="primary-button" onClick={()=>query?setQuery(''):navigate({kind:'library'})}>{query?t('清除筛选','Clear filter'):t('探索文档库','Explore the library')}<ArrowRight size={16}/></button></div>}
+    {filtered.length===0&&<div className="empty-state"><span className="empty-art">{query?<Search size={35}/>:page.kind==='favorites'?<Bookmark size={35}/>:<Clock3 size={35}/>}</span><h2>{query?t('暂时没有找到','No matches yet'):page.kind==='favorites'?t('暂无收藏','No bookmarks'):t('暂无阅读记录','No recent reading')}</h2><p>{query?t('试试更短的关键词，或直接搜索英文函数名。','Try a shorter keyword or an English function name.'):t('阅读文档时点击收藏图标，或从文档库开启一次探索。','Bookmark a page as you read, or explore the library.')}</p><button className="primary-button" onClick={()=>query?setQuery(''):navigate({kind:'library'})}>{query?t('清除筛选','Clear filter'):t('探索文档库','Explore the library')}<ArrowRight size={16}/></button></div>}
   </>;
 }
 

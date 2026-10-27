@@ -79,7 +79,7 @@ test('narrow layout, reduced motion, and English overview have no horizontal ove
   await expect(page.locator('.term-card')).toHaveCount(21);
   await page.getByRole('button',{name:'EN',exact:true}).click();
   await page.goto('/#home');
-  await expect(page.locator('.hero h1')).toContainText('Ideas, meet motion.');
+  await expect(page.locator('.hero h1')).toContainText('Offline reference');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
   await page.screenshot({path:'screenshots/overview-english-narrow.png'});
 });

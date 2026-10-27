@@ -8,7 +8,7 @@ export interface Entry {
 }
 export interface Catalog { snapshotDate: string;snapshotId?:string; documents: Entry[]; translation: string }
 export interface Doc { id: string; en: string; zh: string; headings: Heading[] }
-export interface Settings { language: Language; theme: Theme; motion: boolean; fontSize: number; accent: string;autoDocuments?:boolean;autoApplication?:boolean }
+export interface Settings { language: Language; theme: Theme; motion: boolean; fontSize: number; accent: string; customColor?: string;autoDocuments?:boolean;autoApplication?:boolean }
 export interface AutoUpdatePart {status:'skipped'|'current'|'updated'|'ready'|'error'|'cancelled';version?:string;error?:string}
 export interface AutoUpdateResult {documents:AutoUpdatePart;application:AutoUpdatePart;checkedAt:string}
 export interface Read { id: string; time: number }

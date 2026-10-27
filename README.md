@@ -10,11 +10,13 @@ A bilingual, offline Windows desktop reference for the VEX V5 C++ API, with a Ma
 
 ## 使用
 
-在 [Releases](https://github.com/4c304af/offline-vexv5cpp-api/releases) 下载 `V5-Atlas-1.1.0-Windows-x64.exe`。关闭正在运行的旧版后，将新版放在可写入的文件夹中双击运行。首次启动会在程序旁创建 `.v5-atlas`，其中保存文档资源、收藏和偏好设置。
+在 [Releases](https://github.com/4c304af/offline-vexv5cpp-api/releases) 下载 `V5-Atlas-1.1.0-Windows-x64.exe`。关闭正在运行的旧版后，双击新版运行。首次启动不会在程序所在目录生成附带文件；文档资源、WebView2 缓存、收藏、偏好与错误日志统一保存在 `%LOCALAPPDATA%\V5 Atlas`。检测到程序旁的旧版 `.v5-atlas` 时，会复制其中的阅读配置与已下载文档；旧数据保留，新位置已有的数据不会被覆盖。程序自更新时，仍需对可执行文件所在目录有写入权限。
 
 运行平台为 Windows 10/11 x64，使用系统的 Microsoft Edge WebView2 Runtime。文档、搜索、示例、图片、字体和动画在本地运行；“文档更新”支持自动同步，也可手动核对，点击官方来源链接会打开系统浏览器。
 
 快捷键 `Ctrl+K` 打开全文搜索。顶部可切换中文、English 和中英对照。中文为机器辅助翻译，并进行了术语统一和重点语义校订；英文原文随包保留。
+
+在“偏好设置 → 外观”中可选择预设强调色，或用取色器、十六进制颜色值自由调色，实时预览并自动保存。强调色会随深浅主题调整文字与按钮对比度；可点击“恢复默认”还原。界面已精简宣传语和重复说明，并修复深色模式下标题、辅助文字与代码高亮的可读性。
 
 ## 自动更新（1.1.0）
 
@@ -44,7 +46,7 @@ English: The repository checks official C++ documentation hourly and builds veri
 ## 1.0.1 修复
 
 - 修复内置 WebView2 托管组件被 .NET 当作远程程序集而拒绝加载的问题。
-- 区分组件加载失败与运行时缺失，错误详情写入程序旁的 `V5Atlas-startup.log`。
+- 区分组件加载失败与运行时缺失，错误详情现在写入 `%LOCALAPPDATA%\V5 Atlas\V5Atlas-startup.log`。
 - 将 Windows 打包命令切换到实际交付的原生启动器。
 - 增加成品启动、断网阅读、搜索、代码复制、双语代码一致性和收藏重启持久化测试。
 
@@ -67,6 +69,7 @@ npm run dev
 npm run verify:docs
 npm run test:desktop
 npm run test:updates
+npm run test:storage
 npm run test:auto-updates
 npm run test:desktop-sync
 npm test
