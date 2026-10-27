@@ -37,18 +37,20 @@ internal static class UpdateFiles {
 
 // Only release metadata and assets from this public repository are accepted.
 internal sealed class ReleaseTransport : IDisposable {
-    internal const string Repository="4c304af/offline-vexv5cpp-api";
+    internal const string Repository="4c304af/v5-astra";
+    internal const string LegacyRepository="4c304af/offline-vexv5cpp-api";
     private readonly HttpClient client;
     internal ReleaseTransport() {
         System.Net.ServicePointManager.SecurityProtocol|=System.Net.SecurityProtocolType.Tls12;
         client=new HttpClient(new HttpClientHandler {AllowAutoRedirect=false,UseProxy=true});
-        client.Timeout=TimeSpan.FromMinutes(3);client.DefaultRequestHeaders.UserAgent.ParseAdd("V5Atlas/1.1.0");
+        client.Timeout=TimeSpan.FromMinutes(3);client.DefaultRequestHeaders.UserAgent.ParseAdd("V5Astra/1.1.0");
         client.DefaultRequestHeaders.TryAddWithoutValidation("Accept","application/vnd.github+json");
     }
     internal static bool Allowed(Uri uri,bool redirected) {
         if(uri.Scheme!="https"||!uri.IsDefaultPort||!string.IsNullOrEmpty(uri.UserInfo))return false;
-        if(uri.Host=="api.github.com")return !redirected&&uri.AbsolutePath.StartsWith("/repos/"+Repository+"/releases/",StringComparison.Ordinal);
-        if(uri.Host=="github.com")return uri.AbsolutePath.StartsWith("/"+Repository+"/releases/download/",StringComparison.Ordinal);
+        if(uri.Host=="api.github.com")return uri.AbsolutePath.StartsWith("/repos/"+Repository+"/releases/",StringComparison.Ordinal)
+            || !redirected&&uri.AbsolutePath.StartsWith("/repos/"+LegacyRepository+"/releases/",StringComparison.Ordinal);
+        if(uri.Host=="github.com")return new[]{Repository,LegacyRepository}.Any(repo=>uri.AbsolutePath.StartsWith("/"+repo+"/releases/download/",StringComparison.Ordinal));
         return redirected&&(uri.Host=="release-assets.githubusercontent.com"||uri.Host=="objects.githubusercontent.com");
     }
     internal async Task<byte[]> GetAsync(string url,long limit,CancellationToken token) {
@@ -70,7 +72,11 @@ internal sealed class ReleaseTransport : IDisposable {
         throw new IOException("redirect-limit");
     }
     internal async Task<ReleaseInfo> ReleaseAsync(string endpoint,CancellationToken token) {
-        var release=UpdateFiles.Json.Deserialize<ReleaseInfo>(System.Text.Encoding.UTF8.GetString(await GetAsync("https://api.github.com/repos/"+Repository+"/releases/"+endpoint,2*1024*1024,token)));
+        byte[] bytes=null;
+        try {bytes=await GetAsync("https://api.github.com/repos/"+Repository+"/releases/"+endpoint,2*1024*1024,token);}
+        catch(HttpRequestException) { }
+        if(bytes==null)bytes=await GetAsync("https://api.github.com/repos/"+LegacyRepository+"/releases/"+endpoint,2*1024*1024,token);
+        var release=UpdateFiles.Json.Deserialize<ReleaseInfo>(System.Text.Encoding.UTF8.GetString(bytes));
         if(release==null||release.draft||release.assets==null)throw new InvalidDataException("invalid-release");return release;
     }
     internal async Task<byte[]> AssetAsync(ReleaseAsset asset,long limit,CancellationToken token) {
@@ -169,7 +175,7 @@ internal sealed class AutomaticUpdater {
             if(documents)try {
                 progress.Report("documents:check");var release=await transport.ReleaseAsync("tags/documentation-latest",token);
                 if(release.tag_name!="documentation-latest")throw new InvalidDataException("invalid-feed");
-                var asset=release.assets.SingleOrDefault(a=>a.name=="V5-Atlas-documents.zip");
+                var asset=release.assets.SingleOrDefault(a=>a.name=="V5-Astra-documents.zip")??release.assets.SingleOrDefault(a=>a.name=="V5-Atlas-documents.zip");
                 // Asset digest lets unchanged feeds be skipped without downloading the package.
                 string receipt=Path.Combine(root,"documents","receipt.json");
                 string fingerprint=asset==null?null:asset.digest+":"+Store.Snapshot(Store.ActiveRoot);
@@ -189,7 +195,7 @@ internal sealed class AutomaticUpdater {
                 else {
                     string next=latest.ToString(3);result.application.version=next;
                     if(ready!=next) {
-                        var asset=release.assets.SingleOrDefault(a=>a.name=="V5-Atlas-"+next+"-Windows-x64.exe");progress.Report("application:download");
+                        var asset=release.assets.SingleOrDefault(a=>a.name=="V5-Astra-"+next+"-Windows-x64.exe")??release.assets.SingleOrDefault(a=>a.name=="V5-Atlas-"+next+"-Windows-x64.exe");progress.Report("application:download");
                         byte[] bytes=await transport.AssetAsync(asset,64*1024*1024,token);
                         if(bytes.Length<2||bytes[0]!='M'||bytes[1]!='Z')throw new InvalidDataException("invalid-executable");
                         string folder=Path.Combine(root,"updates",next);Directory.CreateDirectory(folder);

@@ -20,7 +20,7 @@ def main():
         last_error=None
         for attempt in range(4):
             try:
-                request=urllib.request.Request(urls[attempt%len(urls)],headers={'User-Agent':'V5Atlas-build/1.0.2'})
+                request=urllib.request.Request(urls[attempt%len(urls)],headers={'User-Agent':'V5Astra-build/1.0.2'})
                 with urllib.request.urlopen(request,timeout=60) as response:data=response.read(20*1024*1024)
                 if hashlib.sha256(data).hexdigest()!=SHA256:raise ValueError('WebView2 SDK checksum mismatch')
                 ARCHIVE.parent.mkdir(parents=True,exist_ok=True);ARCHIVE.write_bytes(data)

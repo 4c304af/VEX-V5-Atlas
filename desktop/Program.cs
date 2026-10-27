@@ -20,7 +20,7 @@ internal static class Program {
     internal static bool Testing;
     internal static string Profile;
     internal static string DataRoot = StoragePaths.DefaultRoot;
-    internal static string LogPath { get { return Path.Combine(DataRoot, "V5Atlas-startup.log"); } }
+    internal static string LogPath { get { return Path.Combine(DataRoot, "V5Astra-startup.log"); } }
     internal static string DocumentsRoot;
     internal static AutomaticUpdater Updater;
     private static Mutex instance;
@@ -59,10 +59,10 @@ internal static class Program {
             };
             StartHost();
         } catch (Exception error) {
-            string message = "V5 Atlas 无法启动 / Could not start V5 Atlas.\n\n" + error.Message;
+            string message = "V5 Astra 无法启动 / Could not start V5 Astra.\n\n" + error.Message;
             if (error.ToString().Contains("WebView2")) message += "\n\n请确认系统已安装 Microsoft Edge WebView2 运行时。\nPlease make sure Microsoft Edge WebView2 Runtime is installed.";
             Fail("bootstrap",error);
-            if (!Testing) MessageBox.Show(message, "V5 Atlas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (!Testing) MessageBox.Show(message, "V5 Astra", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
@@ -104,7 +104,7 @@ internal sealed class AtlasForm : Form {
     private CancellationTokenSource updateCancellation;
 
     internal AtlasForm() {
-        Text = "V5 Atlas · VEX V5 C++ API";
+        Text = "V5 Astra · VEX V5 C++ API";
         ClientSize = new Size(1440, 920);
         MinimumSize = new Size(920, 680);
         StartPosition = FormStartPosition.CenterScreen;
@@ -192,7 +192,7 @@ internal sealed class AtlasForm : Form {
             core.Navigate(Origin + "/index.html");
         } catch (Exception error) {
             Program.Fail("webview",error);
-            if (!Program.Testing) MessageBox.Show("无法打开离线文档 / Unable to open offline documents.\n\n" + error.Message + "\n\n日志 / Log: " + Program.LogPath, "V5 Atlas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (!Program.Testing) MessageBox.Show("无法打开离线文档 / Unable to open offline documents.\n\n" + error.Message + "\n\n日志 / Log: " + Program.LogPath, "V5 Astra", MessageBoxButtons.OK, MessageBoxIcon.Error);
             Close();
         }
     }

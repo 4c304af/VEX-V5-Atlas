@@ -1,9 +1,9 @@
 {
-  "name": "offline-vexv5cpp-api",
-  "productName": "V5 Atlas",
+  "name": "v5-astra",
+  "productName": "V5 Astra",
   "version": "1.1.0",
   "description": "VEX V5 C++ bilingual offline reference",
-  "author": "V5 Atlas Contributors",
+  "author": "4c304af",
   "private": true,
   "type": "module",
   "scripts": {
@@ -41,6 +41,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/4c304af/offline-vexv5cpp-api.git"
+    "url": "https://github.com/4c304af/v5-astra.git"
   }
 }

@@ -6,7 +6,7 @@ import {chromium} from 'playwright';
 const root=path.resolve(import.meta.dirname,'..');
 const version=JSON.parse(readFileSync(path.join(root,'package.json'),'utf8')).version;
 const profile=path.join(root,'build','live-auto-updates-'+Date.now());
-const child=spawn(path.join(root,'release',`V5-Atlas-${version}-Windows-x64.exe`),['--test','--profile='+profile],{windowsHide:true,stdio:'ignore'});
+const child=spawn(path.join(root,'release',`V5-Astra-${version}-Windows-x64.exe`),['--test','--profile='+profile],{windowsHide:true,stdio:'ignore'});
 const delay=ms=>new Promise(r=>setTimeout(r,ms));let browser;
 try{
   for(let i=0;i<50;i++){try{browser=await chromium.connectOverCDP('http://127.0.0.1:9336');break;}catch{assert.equal(child.exitCode,null);await delay(300);}}

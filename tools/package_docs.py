@@ -15,7 +15,7 @@ files=[{'name':name,'size':(docs/name).stat().st_size,'sha256':hashlib.sha256((d
 manifest={'format':1,'minimumAppVersion':'1.1.0','snapshotId':baseline['snapshotId'],
           'snapshotDate':baseline['snapshotDate'],'documentCount':len(catalog['documents']),'files':files}
 release=ROOT/'release';release.mkdir(exist_ok=True)
-target=release/'V5-Atlas-documents.zip'
+target=release/'V5-Astra-documents.zip'
 with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as archive:
     def put(name,data):
         info=zipfile.ZipInfo(name,date_time=(2020,1,1,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED

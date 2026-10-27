@@ -29,9 +29,9 @@ jobs:
       - run: npm run test:auto-updates
       - uses: actions/upload-artifact@v4
         with:
-          name: V5-Atlas-Windows-x64
+          name: V5-Astra-Windows-x64
           path: |
-            release/V5-Atlas-*-Windows-x64.exe
+            release/V5-Astra-*-Windows-x64.exe
             release/SHA256SUMS.txt
-            release/V5-Atlas-documents.zip
+            release/V5-Astra-documents.zip
             release/documents-SHA256SUMS.txt

@@ -8,12 +8,12 @@ base='https://api.github.com/repos/'+repo
 r=s.get(base+'/releases/tags/documentation-latest',timeout=40)
 if r.status_code==404:
     r=s.post(base+'/releases',json={'tag_name':'documentation-latest','target_commitish':'main',
-        'name':'Automatic bilingual documentation','body':'Automatically compiled VEX V5 C++ documentation. Data only; downloaded by V5 Atlas 1.1.0 or newer.',
+        'name':'Automatic bilingual documentation','body':'Automatically compiled VEX V5 C++ documentation. Data only; downloaded by V5 Astra 1.1.0 or newer.',
         'prerelease':True,'draft':False,'make_latest':'false'},timeout=40)
 r.raise_for_status();release=r.json()
 upload=release['upload_url'].split('{')[0]
 assert upload.startswith('https://uploads.github.com/repos/'+repo+'/releases/')
-for name in ['V5-Atlas-documents.zip','documents-SHA256SUMS.txt']:
+for name in ['V5-Astra-documents.zip','documents-SHA256SUMS.txt']:
     digest='sha256:'+hashlib.sha256((ROOT/'release'/name).read_bytes()).hexdigest()
     asset=next((a for a in release['assets'] if a['name']==name),None)
     if asset and asset.get('digest')==digest:

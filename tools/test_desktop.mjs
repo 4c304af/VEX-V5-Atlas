@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 
 const root=path.resolve(import.meta.dirname,'..');
 const version=JSON.parse(readFileSync(path.join(root,'package.json'),'utf8')).version;
-const exe=path.join(root,'release',`V5-Atlas-${version}-Windows-x64.exe`);
+const exe=path.join(root,'release',`V5-Astra-${version}-Windows-x64.exe`);
 const profile=path.join(root,'build','desktop-test-'+Date.now());
 const applicationDirectory=profile+'-app';mkdirSync(applicationDirectory,{recursive:true});
 const isolatedExe=path.join(applicationDirectory,path.basename(exe));copyFileSync(exe,isolatedExe);
