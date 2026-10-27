@@ -1,18 +1,18 @@
-# v5-astra
+# v5atlas
 
-**V5 Astra** 是 VEX V5 C++ 中英双语离线桌面阅读器，采用 Material 3 Expressive 风格界面，包含 66 篇文档、示例代码和 56 张本地配图。
+**V5 Atlas** 是 VEX V5 C++ 中英双语离线桌面阅读器，采用 Material 3 Expressive 风格界面，包含 66 篇文档、示例代码和 56 张本地配图。
 
-发布者：**4c304af**。为兼容已有收藏、设置及更新数据，本机存储目录仍沿用 `%LOCALAPPDATA%\V5 Atlas`。
+发布者：**4c304af**。
 
 A bilingual, offline Windows desktop reference for the VEX V5 C++ API, with a Material 3 Expressive interface, automatic documentation synchronization, and application updates.
 
-[下载 Windows 版本](https://github.com/4c304af/v5-astra/releases/latest) · [官方 C++ API](https://api.vex.com/v5/home/cpp/index.html) · [第三方内容说明](THIRD_PARTY_NOTICES.md)
+[下载 Windows 版本](https://github.com/4c304af/v5atlas/releases/latest) · [官方 C++ API](https://api.vex.com/v5/home/cpp/index.html) · [第三方内容说明](THIRD_PARTY_NOTICES.md)
 
-![V5 Astra 概览](docs/images/overview.png)
+![V5 Atlas 概览](docs/images/overview.png)
 
 ## 使用
 
-在 [Releases](https://github.com/4c304af/v5-astra/releases) 下载 `V5-Astra-1.1.0-Windows-x64.exe`。关闭正在运行的旧版后，双击新版运行。首次启动不会在程序所在目录生成附带文件；文档资源、WebView2 缓存、收藏、偏好与错误日志统一保存在 `%LOCALAPPDATA%\V5 Atlas`。检测到程序旁的旧版 `.v5-atlas` 时，会复制其中的阅读配置与已下载文档；旧数据保留，新位置已有的数据不会被覆盖。程序自更新时，仍需对可执行文件所在目录有写入权限。
+在 [Releases](https://github.com/4c304af/v5atlas/releases) 下载 `V5-Atlas-1.1.0-Windows-x64.exe`。关闭正在运行的旧版后，双击新版运行。首次启动不会在程序所在目录生成附带文件；文档资源、WebView2 缓存、收藏、偏好与错误日志统一保存在 `%LOCALAPPDATA%\V5 Atlas`。检测到程序旁的旧版 `.v5-atlas` 时，会复制其中的阅读配置与已下载文档；旧数据保留，新位置已有的数据不会被覆盖。程序自更新时，仍需对可执行文件所在目录有写入权限。
 
 运行平台为 Windows 10/11 x64，使用系统的 Microsoft Edge WebView2 Runtime。文档、搜索、示例、图片、字体和动画在本地运行；“文档更新”支持自动同步，也可手动核对，点击官方来源链接会打开系统浏览器。
 
@@ -48,7 +48,7 @@ English: The repository checks official C++ documentation hourly and builds veri
 ## 1.0.1 修复
 
 - 修复内置 WebView2 托管组件被 .NET 当作远程程序集而拒绝加载的问题。
-- 区分组件加载失败与运行时缺失，错误详情现在写入 `%LOCALAPPDATA%\V5 Atlas\V5Astra-startup.log`。
+- 区分组件加载失败与运行时缺失，错误详情现在写入 `%LOCALAPPDATA%\V5 Atlas\V5Atlas-startup.log`。
 - 将 Windows 打包命令切换到实际交付的原生启动器。
 - 增加成品启动、断网阅读、搜索、代码复制、双语代码一致性和收藏重启持久化测试。
 
@@ -57,14 +57,14 @@ English: The repository checks official C++ documentation hourly and builds veri
 前端使用 React、TypeScript、Vite、Motion 和 Prism。Windows 启动器使用 .NET Framework 与 Microsoft WebView2 WinForms SDK 1.0.2903.40。构建需要 Windows x64、Node.js 24、Python 3.10 或更高版本，以及 .NET Framework 4.8 的 C# 编译器。
 
 ```powershell
-git clone https://github.com/4c304af/v5-astra.git
-cd v5-astra
+git clone https://github.com/4c304af/v5atlas.git
+cd v5atlas
 npm ci
 npm run setup:windows
 npm run package
 ```
 
-`setup:windows` 从 Microsoft NuGet 下载固定版本的构建 SDK，校验 SHA-256 后解压到 `build/webview2/sdk`，不会安装系统软件。`package` 生成 `release/V5-Astra-1.1.0-Windows-x64.exe` 、`release/SHA256SUMS.txt` 和独立文档包 `release/V5-Astra-documents.zip`。
+`setup:windows` 从 Microsoft NuGet 下载固定版本的构建 SDK，校验 SHA-256 后解压到 `build/webview2/sdk`，不会安装系统软件。`package` 生成 `release/V5-Atlas-1.1.0-Windows-x64.exe` 、`release/SHA256SUMS.txt` 和独立文档包 `release/V5-Atlas-documents.zip`。
 
 ```powershell
 npm run dev

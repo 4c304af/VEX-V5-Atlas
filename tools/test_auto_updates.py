@@ -7,7 +7,7 @@ BUILD=ROOT/'build'/('auto-update-test-'+uuid.uuid4().hex);BUILD.mkdir(parents=Tr
 fixtures=BUILD/'fixtures';fixtures.mkdir()
 
 def make_fixture(kind):
-    with zipfile.ZipFile(ROOT/'release/V5-Astra-documents.zip') as z:files={n:z.read(n) for n in z.namelist() if n!='package-manifest.json'}
+    with zipfile.ZipFile(ROOT/'release/V5-Atlas-documents.zip') as z:files={n:z.read(n) for n in z.namelist() if n!='package-manifest.json'}
     catalog=json.loads(files['catalog.json']);baseline=json.loads(files['update-manifest.json'])
     entry=copy.deepcopy(catalog['documents'][0]);entry.update(id='Smart_Port_Devices/Atlas_Test_Sensor',key='Smart_Port_Devices--Atlas_Test_Sensor',title='Atlas Test Sensor',zhTitle='更新测试传感器',group='Smart_Port_Devices',intro='New documentation from a data-only update.',zhIntro='通过独立文档更新包加入的新文档。',headings=[],text='Atlas Test Sensor uniqueSyncToken',zhText='更新测试传感器 uniqueSyncToken')
     entry['source']='https://api.vex.com/v5/home/cpp/'+entry['id']+'.html'

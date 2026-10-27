@@ -20,7 +20,7 @@ bundle_id=hashlib.sha256(bundle.read_bytes()).hexdigest()[:20]
 (build/'bundle-id.txt').write_text(bundle_id,encoding='utf-8')
 package=json.loads((ROOT/'package.json').read_text(encoding='utf-8'))
 version=package['version']
-exe=release/f'V5-Astra-{version}-Windows-x64.exe'
+exe=release/f'V5-Atlas-{version}-Windows-x64.exe'
 (build/'AssemblyInfo.cs').write_text(
     'using System.Reflection;\n'
     f'[assembly: AssemblyTitle({json.dumps(package["productName"])})]\n'

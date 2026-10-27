@@ -6,8 +6,8 @@ test('offline library, Chinese search, function jump, and unchanged C++ clipboar
   page.on('request',r=>{if(!r.url().startsWith('http://127.0.0.1:5185')&&!r.url().startsWith('data:'))remote.push(r.url());});
   await context.grantPermissions(['clipboard-read','clipboard-write']);
   await page.goto('/');
-  await expect(page).toHaveTitle('V5 Astra · VEX V5 C++ API');
-  await expect(page.locator('.brand')).toContainText('V5 Astra');
+  await expect(page).toHaveTitle('V5 Atlas · VEX V5 C++ API');
+  await expect(page.locator('.brand')).toContainText('V5 Atlas');
   await expect(page.locator('.stats-strip')).toContainText('66');
   await page.keyboard.press('Control+k');
   await expect(page.getByRole('dialog')).toBeVisible();

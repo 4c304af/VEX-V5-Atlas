@@ -10,7 +10,7 @@ const profile=path.join(root,'build','native-sync-'+Date.now());
 execFileSync(fixture.installer,[path.join(profile,'atlas-data'),path.join(root,'public/docs'),fixture.package],{windowsHide:true});
 const delay=ms=>new Promise(r=>setTimeout(r,ms));let child,browser;
 async function launch(){
-  child=spawn(path.join(root,'release',`V5-Astra-${version}-Windows-x64.exe`),['--test','--profile='+profile],{windowsHide:true,stdio:'ignore'});
+  child=spawn(path.join(root,'release',`V5-Atlas-${version}-Windows-x64.exe`),['--test','--profile='+profile],{windowsHide:true,stdio:'ignore'});
   for(let i=0;i<50;i++){try{browser=await chromium.connectOverCDP('http://127.0.0.1:9336');break;}catch{assert.equal(child.exitCode,null,'Native application exited');await delay(300);}}
   assert(browser,'Could not connect to native app');
   const page=browser.contexts()[0].pages()[0];await page.locator('.hero h1').waitFor({timeout:20000});return page;

@@ -37,13 +37,13 @@ internal static class UpdateFiles {
 
 // Only release metadata and assets from this public repository are accepted.
 internal sealed class ReleaseTransport : IDisposable {
-    internal const string Repository="4c304af/v5-astra";
+    internal const string Repository="4c304af/v5atlas";
     internal const string LegacyRepository="4c304af/offline-vexv5cpp-api";
     private readonly HttpClient client;
     internal ReleaseTransport() {
         System.Net.ServicePointManager.SecurityProtocol|=System.Net.SecurityProtocolType.Tls12;
         client=new HttpClient(new HttpClientHandler {AllowAutoRedirect=false,UseProxy=true});
-        client.Timeout=TimeSpan.FromMinutes(3);client.DefaultRequestHeaders.UserAgent.ParseAdd("V5Astra/1.1.0");
+        client.Timeout=TimeSpan.FromMinutes(3);client.DefaultRequestHeaders.UserAgent.ParseAdd("V5Atlas/1.1.0");
         client.DefaultRequestHeaders.TryAddWithoutValidation("Accept","application/vnd.github+json");
     }
     internal static bool Allowed(Uri uri,bool redirected) {
@@ -175,7 +175,7 @@ internal sealed class AutomaticUpdater {
             if(documents)try {
                 progress.Report("documents:check");var release=await transport.ReleaseAsync("tags/documentation-latest",token);
                 if(release.tag_name!="documentation-latest")throw new InvalidDataException("invalid-feed");
-                var asset=release.assets.SingleOrDefault(a=>a.name=="V5-Astra-documents.zip")??release.assets.SingleOrDefault(a=>a.name=="V5-Atlas-documents.zip");
+                var asset=release.assets.SingleOrDefault(a=>a.name=="V5-Atlas-documents.zip");
                 // Asset digest lets unchanged feeds be skipped without downloading the package.
                 string receipt=Path.Combine(root,"documents","receipt.json");
                 string fingerprint=asset==null?null:asset.digest+":"+Store.Snapshot(Store.ActiveRoot);
@@ -195,7 +195,7 @@ internal sealed class AutomaticUpdater {
                 else {
                     string next=latest.ToString(3);result.application.version=next;
                     if(ready!=next) {
-                        var asset=release.assets.SingleOrDefault(a=>a.name=="V5-Astra-"+next+"-Windows-x64.exe")??release.assets.SingleOrDefault(a=>a.name=="V5-Atlas-"+next+"-Windows-x64.exe");progress.Report("application:download");
+                        var asset=release.assets.SingleOrDefault(a=>a.name=="V5-Atlas-"+next+"-Windows-x64.exe");progress.Report("application:download");
                         byte[] bytes=await transport.AssetAsync(asset,64*1024*1024,token);
                         if(bytes.Length<2||bytes[0]!='M'||bytes[1]!='Z')throw new InvalidDataException("invalid-executable");
                         string folder=Path.Combine(root,"updates",next);Directory.CreateDirectory(folder);

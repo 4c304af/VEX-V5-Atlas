@@ -77,7 +77,7 @@ internal sealed class OfficialDocumentationFetcher : IDocumentationFetcher,IDisp
             UseProxy=true,Proxy=WebRequest.GetSystemWebProxy()
         };
         client=new HttpClient(handler) { Timeout=Timeout.InfiniteTimeSpan };
-        client.DefaultRequestHeaders.UserAgent.ParseAdd("V5Astra/1.0.2 (manual-documentation-check)");
+        client.DefaultRequestHeaders.UserAgent.ParseAdd("V5Atlas/1.0.2 (manual-documentation-check)");
         client.DefaultRequestHeaders.CacheControl=new System.Net.Http.Headers.CacheControlHeaderValue { NoCache=true };
     }
     private static bool Allowed(Uri uri) {

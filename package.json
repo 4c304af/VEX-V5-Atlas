@@ -1,6 +1,6 @@
 {
-  "name": "v5-astra",
-  "productName": "V5 Astra",
+  "name": "v5atlas",
+  "productName": "V5 Atlas",
   "version": "1.1.0",
   "description": "VEX V5 C++ bilingual offline reference",
   "author": "4c304af",
@@ -41,6 +41,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/4c304af/v5-astra.git"
+    "url": "https://github.com/4c304af/v5atlas.git"
   }
 }
