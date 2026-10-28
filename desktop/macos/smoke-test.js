@@ -21,7 +21,7 @@ void (async () => {
       setter.call(input, 'spinFor'); input.dispatchEvent(new Event('input', { bubbles: true }));
       await until(() => [...document.querySelectorAll('.search-result')].find(el => el.textContent.includes('电机与电机组')));
       [...document.querySelectorAll('.search-result')].find(el => el.textContent.includes('电机与电机组')).click();
-      await until(() => document.querySelector('.doc-content pre code'));
+      await until(() => document.querySelector('.doc-content pre code') && document.querySelector('.copy-code'));
       const code = document.querySelector('.doc-content pre code').textContent;
       document.querySelector('.copy-code').click();
       await until(() => document.querySelector('[role=status]')?.textContent.includes('代码已复制'));
@@ -44,6 +44,10 @@ void (async () => {
       assert(document.querySelectorAll('.document-card').length === 1, 'Bookmark was lost after process restart');
       assert(document.querySelector('.document-card h2').textContent.includes('电机与电机组'), 'Wrong bookmark');
     }
+    await until(() => getComputedStyle(document.querySelector('.page')).opacity === '1');
+    assert(getComputedStyle(document.documentElement).backgroundColor === 'rgb(20, 29, 24)', 'Dark mode did not render');
+    if ('__TEST_PHASE__' === 'first') document.querySelectorAll('.settings-card')[1].scrollIntoView({ behavior: 'instant', block: 'start' });
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
     await call('test:complete', { result: { ok: true, phase: '__TEST_PHASE__', documents: catalog.documents.length } });
   } catch (error) {
     await call('test:complete', { result: { ok: false, error: String(error), stack: error.stack } });

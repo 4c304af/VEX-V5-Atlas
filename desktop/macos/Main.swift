@@ -34,7 +34,7 @@ final class AtlasApp: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKU
     var testOutput: URL?
     var testPhase = "first"
     var testStarted = false
-    let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.1.0"
+    let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.1.1"
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         do {

@@ -12,7 +12,7 @@ A bilingual, offline Windows and macOS desktop reference for the VEX V5 C++ API,
 
 ## 使用
 
-在 [Releases](https://github.com/4c304af/VEX-V5-Atlas/releases) 下载 `V5-Atlas-1.1.0-Windows-x64.exe`。关闭正在运行的旧版后，双击新版运行。首次启动不会在程序所在目录生成附带文件；文档资源、WebView2 缓存、收藏、偏好与错误日志统一保存在 `%LOCALAPPDATA%\V5 Atlas`。检测到程序旁的旧版 `.v5-atlas` 时，会复制其中的阅读配置与已下载文档；旧数据保留，新位置已有的数据不会被覆盖。程序自更新时，仍需对可执行文件所在目录有写入权限。
+在 [Releases](https://github.com/4c304af/VEX-V5-Atlas/releases) 下载 `V5-Atlas-1.1.1-Windows-x64.exe`。关闭正在运行的旧版后，双击新版运行。首次启动不会在程序所在目录生成附带文件；文档资源、WebView2 缓存、收藏、偏好与错误日志统一保存在 `%LOCALAPPDATA%\V5 Atlas`。检测到程序旁的旧版 `.v5-atlas` 时，会复制其中的阅读配置与已下载文档；旧数据保留，新位置已有的数据不会被覆盖。程序自更新时，仍需对可执行文件所在目录有写入权限。
 
 运行平台为 Windows 10/11 x64，使用系统的 Microsoft Edge WebView2 Runtime。文档、搜索、示例、图片、字体和动画在本地运行；“文档更新”支持自动同步，也可手动核对，点击官方来源链接会打开系统浏览器。
 
@@ -24,7 +24,7 @@ A bilingual, offline Windows and macOS desktop reference for the VEX V5 C++ API,
 
 Mac 版使用原生 AppKit 窗口与系统 WKWebView，通用程序同时包含 Apple Silicon（arm64）与 Intel（x86_64），最低 macOS 12。无需安装 Node.js、Python 或额外浏览器。
 
-在 [macOS build](https://github.com/4c304af/VEX-V5-Atlas/actions/workflows/macos.yml) 中打开成功的构建，下载 `V5-Atlas-macOS-universal` 附件并解压，打开其中的 `.dmg`，将 `V5 Atlas.app` 拖入“应用程序”。也可使用同一附件中的应用 ZIP。正式发布后，可从 Releases 下载 `V5-Atlas-1.1.0-macOS-universal.dmg`。
+在 [macOS build](https://github.com/4c304af/VEX-V5-Atlas/actions/workflows/macos.yml) 中打开成功的构建，下载 `V5-Atlas-macOS-universal` 附件并解压，打开其中的 `.dmg`，将 `V5 Atlas.app` 拖入“应用程序”。也可使用同一附件中的应用 ZIP。正式发布后，可从 Releases 下载 `V5-Atlas-1.1.1-macOS-universal.dmg`。
 
 当前构建采用临时签名，尚未使用 Apple Developer ID 签名和公证。若 macOS 拦截打开，请在“系统设置 → 隐私与安全性”中允许此次打开；无需关闭系统安全保护。
 
@@ -76,7 +76,7 @@ npm run setup:windows
 npm run package
 ```
 
-`setup:windows` 从 Microsoft NuGet 下载固定版本的构建 SDK，校验 SHA-256 后解压到 `build/webview2/sdk`，不会安装系统软件。`package` 生成 `release/V5-Atlas-1.1.0-Windows-x64.exe` 、`release/SHA256SUMS.txt` 和独立文档包 `release/V5-Atlas-documents.zip`。
+`setup:windows` 从 Microsoft NuGet 下载固定版本的构建 SDK，校验 SHA-256 后解压到 `build/webview2/sdk`，不会安装系统软件。`package` 生成 `release/V5-Atlas-1.1.1-Windows-x64.exe` 、`release/SHA256SUMS.txt` 和独立文档包 `release/V5-Atlas-documents.zip`。
 
 ```powershell
 npm run dev
@@ -96,6 +96,8 @@ npm run test:desktop-updates
 
 ### 构建 macOS 版本
 
+没有 Mac 时，可在 Windows 上运行 `npm run preview:mac`，访问 `http://127.0.0.1:5186` 交互预览 Mac 布局、离线阅读、搜索、深色模式和调色。页面标题标记为“Mac 界面预览”；此模式运行在本机浏览器中，不能验证 AppKit、系统 WebKit、原生菜单或安装包。
+
 需要 macOS 12 或更高版本、Xcode Command Line Tools、Node.js 24 和 Python 3.10+。可在 Mac 上执行：
 
 ```sh
@@ -105,7 +107,7 @@ npm run test:mac-core
 npm run test:mac
 ```
 
-生成 `build/macos/V5 Atlas.app`、`release/V5-Atlas-1.1.0-macOS-universal.dmg`、同名 ZIP 和 `release/macOS-SHA256SUMS.txt`。脚本分别编译两种架构、合并为通用程序并验证签名。Windows 无法本地编译 AppKit；仓库 `.github/workflows/macos.yml` 使用 macOS 运行器构建，并在 Apple Silicon 和 Intel 上对同一个 WKWebView 成品执行启动、离线搜索、剪贴板、双语代码、调色、收藏及完整进程重启测试，同时检查应用目录没有被改写。工作流还上传实际运行截图，便于在 Windows 上查看。
+生成 `build/macos/V5 Atlas.app`、`release/V5-Atlas-1.1.1-macOS-universal.dmg`、同名 ZIP 和 `release/macOS-SHA256SUMS.txt`。脚本分别编译两种架构、合并为通用程序并验证签名。Windows 无法本地编译 AppKit；仓库 `.github/workflows/macos.yml` 使用 macOS 运行器构建，并在 Apple Silicon 和 Intel 上对同一个 WKWebView 成品执行启动、离线搜索、剪贴板、双语代码、调色、收藏及完整进程重启测试，同时检查应用目录没有被改写。工作流还上传实际运行截图，便于在 Windows 上查看。
 
 ## 文档数据
 

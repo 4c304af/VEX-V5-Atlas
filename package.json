@@ -1,13 +1,14 @@
 {
   "name": "v5atlas",
   "productName": "V5 Atlas",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "VEX V5 C++ bilingual offline reference",
   "author": "4c304af",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
+    "preview:mac": "vite --host 127.0.0.1 --port 5186 --mode mac-preview",
     "build": "python tools/prepare_update_manifest.py && tsc -b && vite build",
     "desktop": "npm run package && python tools/launch_windows.py",
     "package": "npm run build && python tools/package_windows.py && python tools/package_docs.py",
