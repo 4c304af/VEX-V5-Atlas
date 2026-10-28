@@ -74,7 +74,7 @@ def package():
     # signing/notarization can be added when the publisher supplies Apple credentials.
     run('codesign', '--force', '--deep', '--sign', '-', app)
     run('codesign', '--verify', '--deep', '--strict', app)
-    run('lipo', '-verify_arch', 'arm64', 'x86_64', executable)
+    run('lipo', executable, '-verify_arch', 'arm64', 'x86_64')
     stem = f'V5-Atlas-{version}-macOS-universal'
     archive, dmg = release / (stem + '.zip'), release / (stem + '.dmg')
     if archive.exists():

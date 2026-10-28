@@ -119,7 +119,7 @@ final class AtlasApp: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKU
     }
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) { fail(error) }
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) { webView.reload() }
-    func progress(_ request: String, _ value: Any) {
+    nonisolated func progress(_ request: String, _ value: Any) {
         DispatchQueue.main.async {
             guard let bytes = try? JSONSerialization.data(withJSONObject: ["requestId": request, "progress": value]),
                   let encoded = String(data: bytes, encoding: .utf8) else { return }
@@ -160,7 +160,14 @@ final class AtlasApp: NSObject, NSApplicationDelegate, WKNavigationDelegate, WKU
             }
         case "test:clipboard" where testOutput != nil: reply(NSPasteboard.general.string(forType: .string) ?? "", nil)
         case "test:complete" where testOutput != nil:
-            reply(true, nil); finishTest(body["result"] as? [String: Any] ?? ["ok": false])
+            reply(true, nil)
+            let result = body["result"] as? [String: Any] ?? ["ok": false]
+            let output = testOutput!.deletingPathExtension().appendingPathExtension("png")
+            webView.takeSnapshot(with: nil) { image, _ in
+                if let tiff = image?.tiffRepresentation, let bitmap = NSBitmapImageRep(data: tiff),
+                   let png = bitmap.representation(using: .png, properties: [:]) { try? png.write(to: output) }
+                self.finishTest(result)
+            }
         default: reply(nil, "Unsupported bridge action")
         }
     }

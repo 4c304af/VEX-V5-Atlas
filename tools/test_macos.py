@@ -3,6 +3,7 @@ from pathlib import Path
 import hashlib
 import json
 import platform
+import shutil
 import subprocess
 import tempfile
 
@@ -27,6 +28,10 @@ def main():
             subprocess.run([str(executable), '--smoke-test', str(output), '--test-phase', phase,
                             '--profile=' + str(folder / 'user-data')], check=True, timeout=110)
             result = json.loads(output.read_text(encoding='utf-8'))
+            if output.with_suffix('.png').exists():
+                screenshots = ROOT / 'screenshots'
+                screenshots.mkdir(exist_ok=True)
+                shutil.copy2(output.with_suffix('.png'), screenshots / ('macos-' + phase + '.png'))
             assert result.get('ok'), result
             print('PASS native WKWebView:', phase, result)
     assert before == fingerprints(app.parent), 'Startup wrote into or beside the application bundle'
