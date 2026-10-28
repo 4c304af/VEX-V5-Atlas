@@ -20,12 +20,15 @@ def main():
         raise SystemExit('The native macOS smoke test must run on a Mac.')
     app = ROOT / 'build/macos/V5 Atlas.app'
     executable = app / 'Contents/MacOS/V5Atlas'
+    assert executable.is_file(), 'Build the macOS application before testing'
     before = fingerprints(app.parent)
     with tempfile.TemporaryDirectory(prefix='v5atlas-macos-test-') as temporary:
         folder = Path(temporary)
         for phase in ('first', 'restart'):
             output = folder / (phase + '.json')
-            subprocess.run([str(executable), '--smoke-test', str(output), '--test-phase', phase,
+            # Launch Services gives WKWebView a foreground application and display
+            # clock, matching a Finder launch rather than running the Mach-O as a CLI.
+            subprocess.run(['open', '-n', '-W', str(app), '--args', '--smoke-test', str(output), '--test-phase', phase,
                             '--profile=' + str(folder / 'user-data')], check=True, timeout=110)
             result = json.loads(output.read_text(encoding='utf-8'))
             if output.with_suffix('.png').exists():
