@@ -12,7 +12,10 @@ void (async () => {
     return { theme: document.documentElement.dataset.theme, rootColor: root.color, rootBackground: root.backgroundColor,
       ink: root.getPropertyValue('--ink').trim(), surface: root.getPropertyValue('--surface').trim(), shellColor: shell.color,
       shellBackground: shell.backgroundColor, titleColor: getComputedStyle(document.querySelector('.brand strong')).color,
-      pageOpacity: getComputedStyle(document.querySelector('.page')).opacity };
+      pageOpacity: getComputedStyle(document.querySelector('.page')).opacity,
+      headingColor: getComputedStyle(document.querySelector('.settings-title h2, .document-card h2')).color,
+      titleAncestors: [...function* () { for (let node = document.querySelector('.brand strong'); node; node = node.parentElement) yield node; }()]
+        .map(node => ({ tag: node.tagName, classes: node.className, color: getComputedStyle(node).color })) };
   };
   try {
     await until(() => document.querySelector('.hero h1'));
@@ -52,7 +55,7 @@ void (async () => {
       assert(document.querySelectorAll('.document-card').length === 1, 'Bookmark was lost after process restart');
       assert(document.querySelector('.document-card h2').textContent.includes('电机与电机组'), 'Wrong bookmark');
     }
-    await until(() => Number(appearance().pageOpacity) >= .99 && appearance().titleColor === 'rgb(224, 232, 217)');
+    await until(() => Number(appearance().pageOpacity) >= .99 && appearance().titleColor === 'rgb(224, 232, 217)' && appearance().headingColor === 'rgb(224, 232, 217)');
     await until(() => appearance().rootBackground === 'rgb(20, 29, 24)' && appearance().shellColor === 'rgb(224, 232, 217)');
     if ('__TEST_PHASE__' === 'first') document.querySelectorAll('.settings-card')[1].scrollIntoView({ behavior: 'instant', block: 'start' });
     await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
