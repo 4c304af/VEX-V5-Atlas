@@ -6,6 +6,13 @@ void (async () => {
     throw new Error('Timed out: ' + test.toString());
   };
   const button = text => [...document.querySelectorAll('button')].find(el => el.textContent.trim() === text);
+  const appearance = () => {
+    const root = getComputedStyle(document.documentElement);
+    const shell = getComputedStyle(document.querySelector('.app-shell'));
+    return { theme: document.documentElement.dataset.theme, rootColor: root.color, rootBackground: root.backgroundColor,
+      ink: root.getPropertyValue('--ink').trim(), surface: root.getPropertyValue('--surface').trim(), shellColor: shell.color,
+      shellBackground: shell.backgroundColor, titleColor: getComputedStyle(document.querySelector('.brand strong')).color };
+  };
   try {
     await until(() => document.querySelector('.hero h1'));
     assert(window.atlasDesktop.platform === 'macos', 'Missing native macOS bridge');
@@ -45,11 +52,11 @@ void (async () => {
       assert(document.querySelector('.document-card h2').textContent.includes('电机与电机组'), 'Wrong bookmark');
     }
     await until(() => getComputedStyle(document.querySelector('.page')).opacity === '1');
-    assert(getComputedStyle(document.documentElement).backgroundColor === 'rgb(20, 29, 24)', 'Dark mode did not render');
+    await until(() => appearance().rootBackground === 'rgb(20, 29, 24)' && appearance().shellColor === 'rgb(224, 232, 217)');
     if ('__TEST_PHASE__' === 'first') document.querySelectorAll('.settings-card')[1].scrollIntoView({ behavior: 'instant', block: 'start' });
     await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-    await call('test:complete', { result: { ok: true, phase: '__TEST_PHASE__', documents: catalog.documents.length } });
+    await call('test:complete', { result: { ok: true, phase: '__TEST_PHASE__', documents: catalog.documents.length, appearance: appearance() } });
   } catch (error) {
-    await call('test:complete', { result: { ok: false, error: String(error), stack: error.stack } });
+    await call('test:complete', { result: { ok: false, error: String(error), stack: error.stack, appearance: appearance() } });
   }
 })();
