@@ -11,6 +11,7 @@ VEX and VEXcode are marks of their respective owners.
 ## Runtime and dependencies
 
 - Microsoft WebView2 SDK: Microsoft NuGet package `Microsoft.Web.WebView2`, version `1.0.2903.40`. The build preparation script downloads the official package and verifies its SHA-256. The SDK and system WebView2 Runtime retain Microsoft's applicable license terms.
+- The macOS host uses Apple's system AppKit, WebKit, Foundation, and CryptoKit frameworks. These frameworks are provided by macOS; the application does not redistribute a browser engine.
 - Manrope: Copyright 2019 The Manrope Project Authors; SIL Open Font License 1.1. The license is included in `public/licenses/Manrope-OFL.txt` and in packaged application resources.
 - React, Motion, and Prism: MIT-licensed packages; see their upstream licenses and package metadata.
 - Lucide: ISC-licensed icons; see the upstream Lucide license.

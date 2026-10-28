@@ -4,9 +4,9 @@
 
 发布者：**4c304af**。
 
-A bilingual, offline Windows desktop reference for the VEX V5 C++ API, with a Material 3 Expressive interface, automatic documentation synchronization, and application updates.
+A bilingual, offline Windows and macOS desktop reference for the VEX V5 C++ API, with a Material 3 Expressive interface and automatic documentation synchronization.
 
-[下载 Windows 版本](https://github.com/4c304af/VEX-V5-Atlas/releases/latest) · [官方 C++ API](https://api.vex.com/v5/home/cpp/index.html) · [第三方内容说明](THIRD_PARTY_NOTICES.md)
+[下载 Windows 版本](https://github.com/4c304af/VEX-V5-Atlas/releases/latest) · [macOS 构建与下载](https://github.com/4c304af/VEX-V5-Atlas/actions/workflows/macos.yml) · [官方 C++ API](https://api.vex.com/v5/home/cpp/index.html) · [第三方内容说明](THIRD_PARTY_NOTICES.md)
 
 ![V5 Atlas 概览](docs/images/overview.png)
 
@@ -19,6 +19,18 @@ A bilingual, offline Windows desktop reference for the VEX V5 C++ API, with a Ma
 快捷键 `Ctrl+K` 打开全文搜索。顶部可切换中文、English 和中英对照。中文为机器辅助翻译，并进行了术语统一和重点语义校订；英文原文随包保留。
 
 在“偏好设置 → 外观”中可选择预设强调色，或用取色器、十六进制颜色值自由调色，实时预览并自动保存。强调色会随深浅主题调整文字与按钮对比度；可点击“恢复默认”还原。界面已精简宣传语和重复说明，并修复深色模式下标题、辅助文字与代码高亮的可读性。
+
+### macOS
+
+Mac 版使用原生 AppKit 窗口与系统 WKWebView，通用程序同时包含 Apple Silicon（arm64）与 Intel（x86_64），最低 macOS 12。无需安装 Node.js、Python 或额外浏览器。
+
+在 [macOS build](https://github.com/4c304af/VEX-V5-Atlas/actions/workflows/macos.yml) 中打开成功的构建，下载 `V5-Atlas-macOS-universal` 附件并解压，打开其中的 `.dmg`，将 `V5 Atlas.app` 拖入“应用程序”。也可使用同一附件中的应用 ZIP。正式发布后，可从 Releases 下载 `V5-Atlas-1.1.0-macOS-universal.dmg`。
+
+当前构建采用临时签名，尚未使用 Apple Developer ID 签名和公证。若 macOS 拦截打开，请在“系统设置 → 隐私与安全性”中允许此次打开；无需关闭系统安全保护。
+
+`⌘K` 搜索，`⌘,` 打开设置，`⌘C / ⌘V / ⌘A` 使用系统编辑菜单。离线文档、中英对照、代码复制、收藏、历史、深色模式与调色均共用现有界面。应用和其所在目录保持只读；文档更新存储于 `~/Library/Application Support/V5 Atlas`，阅读偏好与缓存由 WebKit 保存在当前用户的 Library 中。
+
+Mac 版支持经过哈希校验的双语文档包自动同步，以及官方原文变化核对。程序新版会显示“下载 Mac 新版”，由用户从项目发布页下载后替换应用；Windows 的可执行文件替换器不会在 Mac 上运行。
 
 ## 自动更新（1.1.0）
 
@@ -82,6 +94,19 @@ npm run test:desktop-updates
 
 `npm run build` 会根据原始源文件生成规范化的更新核对基线；随后可用 `python tools/package_windows.py` 单独重新打包已构建的前端。
 
+### 构建 macOS 版本
+
+需要 macOS 12 或更高版本、Xcode Command Line Tools、Node.js 24 和 Python 3.10+。可在 Mac 上执行：
+
+```sh
+npm ci
+npm run package:mac
+npm run test:mac-core
+npm run test:mac
+```
+
+生成 `build/macos/V5 Atlas.app`、`release/V5-Atlas-1.1.0-macOS-universal.dmg`、同名 ZIP 和 `release/macOS-SHA256SUMS.txt`。脚本分别编译两种架构、合并为通用程序并验证签名。Windows 无法本地编译 AppKit；仓库 `.github/workflows/macos.yml` 使用 macOS 运行器构建，并对实际 WKWebView 成品执行启动、离线搜索、剪贴板、双语代码、调色、收藏及完整进程重启测试，同时检查应用目录没有被改写。
+
 ## 文档数据
 
 - `sources/en/`：官方原始 Markdown，保留原始文件字节。
@@ -90,6 +115,7 @@ npm run test:desktop-updates
 - `sources/translation-cache.json`：构建阶段使用的翻译缓存。
 - `public/docs/`：应用使用的离线双语文档和图片。
 - `desktop/`：Windows 启动器和原生更新检测。
+- `desktop/macos/`：macOS 原生启动器、受限离线资源协议、剪贴板桥接和文档更新。
 
 普通前端构建直接使用已提交的离线内容。重新生成文档时，先安装 `tools/requirements-docs.txt`，再依次执行 `tools/import_docs.py --refresh`、`tools/build_docs.py`、`tools/prepare_update_manifest.py`、`tools/verify_docs.py` 和 `tools/package_docs.py`。翻译请求仅发生在构建阶段。`.github/workflows/documentation.yml` 自动运行此流程、提交新内容并发布数据包；应用下载校验后的成品。
 

@@ -9,6 +9,7 @@ import '@fontsource-variable/manrope';
 import RobotArt from './RobotArt';
 import AccentSettings from './AccentSettings';
 import { accentPalette } from './theme';
+import { copyText, searchShortcut } from './platform';
 import DocumentationUpdates, { useDocumentationUpdates } from './DocumentationUpdates';
 import AutoUpdates, {useAutoUpdates} from './AutoUpdates';
 import appPackage from '../package.json';
@@ -129,7 +130,7 @@ export default function App() {
           <button className="brand" onClick={() => navigate({kind:'home'})} aria-label="V5 Atlas Home">
             <img src="./icon.svg" alt=""/><div><strong>V5 Atlas<span className="brand-dot">.</span></strong></div>
           </button>
-          <button className="sidebar-search" onClick={() => setSearchOpen(true)}><Search size={17}/><span>{t('搜索文档','Search anything')}</span><kbd>⌃ K</kbd></button>
+          <button className="sidebar-search" onClick={() => setSearchOpen(true)}><Search size={17}/><span>{t('搜索文档','Search anything')}</span><kbd>{searchShortcut}</kbd></button>
           <nav aria-label={t('主导航','Main navigation')} className="main-nav">
             {[
               {kind:'home',zh:'概览',en:'Overview',icon:House},
@@ -152,7 +153,7 @@ export default function App() {
             })}
           </nav>
           <div className="sidebar-bottom">
-            <button className={'subtle-link '+(page.kind==='updates'?'selected':'')} onClick={() => navigate({kind:'updates'})}><RefreshCw size={17} className={documentationUpdates.busy||autoUpdates.busy?'update-spinning':''}/>{t('文档更新','Documentation updates')}{autoUpdates.result?.application.status==='ready'&&<small className="update-ready-badge">{t('新版','NEW')}</small>}</button>
+            <button className={'subtle-link '+(page.kind==='updates'?'selected':'')} onClick={() => navigate({kind:'updates'})}><RefreshCw size={17} className={documentationUpdates.busy||autoUpdates.busy?'update-spinning':''}/>{t('文档更新','Documentation updates')}{['ready','available'].includes(autoUpdates.result?.application.status??'')&&<small className="update-ready-badge">{t('新版','NEW')}</small>}</button>
             <button className={'subtle-link '+(page.kind==='glossary'?'selected':'')} onClick={() => navigate({kind:'glossary'})}><Languages size={17}/>{t('中英术语表','Bilingual glossary')}<ArrowUpRight size={14}/></button>
             <button className={'subtle-link '+(page.kind==='settings'?'selected':'')} onClick={() => navigate({kind:'settings'})}><Settings2 size={17}/>{t('偏好设置','Preferences')}</button>
           </div>
@@ -191,7 +192,7 @@ export default function App() {
                     <div className="home-bottom-grid"><section className="continue-panel"><div className="section-heading"><div><span className="section-index">02</span><h2>{t('最近阅读','Recent reading')}</h2></div><Clock3 size={17}/></div>
                       {reads.filter(r=>entries.some(e=>e.id===r.id)).slice(0,3).map(read=>{const entry=entries.find(e=>e.id===read.id)!;return <button className="recent-row" key={read.id} onClick={()=>openDoc(read.id)}><span className={'small-icon '+groupFor(entry.group).color}><FileCode2 size={19}/></span><div><strong>{name(entry)}</strong><span>{entry.title} · C++</span></div><ArrowRight size={17}/></button>;})}
                       {reads.length===0 && <div className="first-read"><span className="first-read-art"><BookOpen size={25}/></span><p>{t('暂无阅读记录','No recent reading')}</p><button className="round-button" onClick={()=>openDoc('Drivetrain/index')} aria-label={t('开始阅读','Start reading')}><ArrowRight size={20}/></button></div>}
-                    </section><section className="tip-card"><div className="tip-eyebrow"><Keyboard size={17}/>{t('快捷搜索','Quick search')}</div><h3>{t('搜索函数或设备','Find a function or device')}</h3><button onClick={()=>setSearchOpen(true)} className="shortcut-button"><Search size={16}/>{t('扭矩、spinFor…','torque, spinFor…')}<kbd>Ctrl K</kbd></button></section></div>
+                    </section><section className="tip-card"><div className="tip-eyebrow"><Keyboard size={17}/>{t('快捷搜索','Quick search')}</div><h3>{t('搜索函数或设备','Find a function or device')}</h3><button onClick={()=>setSearchOpen(true)} className="shortcut-button"><Search size={16}/>{t('扭矩、spinFor…','torque, spinFor…')}<kbd>{searchShortcut}</kbd></button></section></div>
                     <footer className="page-footer"><span>V5 Atlas</span><span>{t('基于 VEX 官方 C++ API · 独立离线阅读器','Based on the official VEX C++ API · Independent offline reader')}</span></footer>
                   </>}
 
@@ -277,7 +278,7 @@ function Reader({entry,entries,language,zh,t,favorites,favorite,openDoc,anchor,n
       if(code&&!code.classList.contains('highlighted')) {code.innerHTML=Prism.highlight(code.textContent??'',Prism.languages.cpp,'cpp');code.classList.add('highlighted');}
       if(!pre.querySelector('.copy-code')){
         const button=document.createElement('button');button.className='copy-code';button.setAttribute('aria-label',t('复制代码','Copy code'));button.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><span>'+t('复制','Copy')+'</span>';
-        button.onclick=async()=>{try{await navigator.clipboard.writeText(code?.textContent??'');notify(t('代码已复制','Code copied to clipboard'));}catch{notify(t('无法复制，请选中代码手动复制','Could not copy. Select the code and copy manually.'));}};
+        button.onclick=async()=>{try{await copyText(code?.textContent??'');notify(t('代码已复制','Code copied to clipboard'));}catch{notify(t('无法复制，请选中代码手动复制','Could not copy. Select the code and copy manually.'));}};
         pre.appendChild(button);
       }
     });
