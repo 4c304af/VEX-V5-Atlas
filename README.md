@@ -105,7 +105,7 @@ npm run test:mac-core
 npm run test:mac
 ```
 
-生成 `build/macos/V5 Atlas.app`、`release/V5-Atlas-1.1.0-macOS-universal.dmg`、同名 ZIP 和 `release/macOS-SHA256SUMS.txt`。脚本分别编译两种架构、合并为通用程序并验证签名。Windows 无法本地编译 AppKit；仓库 `.github/workflows/macos.yml` 使用 macOS 运行器构建，并对实际 WKWebView 成品执行启动、离线搜索、剪贴板、双语代码、调色、收藏及完整进程重启测试，同时检查应用目录没有被改写。
+生成 `build/macos/V5 Atlas.app`、`release/V5-Atlas-1.1.0-macOS-universal.dmg`、同名 ZIP 和 `release/macOS-SHA256SUMS.txt`。脚本分别编译两种架构、合并为通用程序并验证签名。Windows 无法本地编译 AppKit；仓库 `.github/workflows/macos.yml` 使用 macOS 运行器构建，并在 Apple Silicon 和 Intel 上对同一个 WKWebView 成品执行启动、离线搜索、剪贴板、双语代码、调色、收藏及完整进程重启测试，同时检查应用目录没有被改写。工作流还上传实际运行截图，便于在 Windows 上查看。
 
 ## 文档数据
 

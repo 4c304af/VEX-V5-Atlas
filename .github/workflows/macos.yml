@@ -39,3 +39,31 @@ jobs:
             release/V5-Atlas-*-macOS-universal.dmg
             release/V5-Atlas-*-macOS-universal.zip
             release/macOS-SHA256SUMS.txt
+
+  test-intel:
+    needs: build
+    runs-on: macos-15-intel
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: V5-Atlas-macOS-universal
+          path: release
+      - name: Open the same universal application on Intel
+        run: |
+          mkdir -p build/macos
+          python - <<'PY'
+          import json, pathlib, subprocess
+          version = json.loads(pathlib.Path('package.json').read_text())['version']
+          subprocess.run(['ditto', '-x', '-k', f'release/V5-Atlas-{version}-macOS-universal.zip', 'build/macos'], check=True)
+          PY
+      - run: python tools/test_macos.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: V5-Atlas-macOS-preview-Intel
+          path: screenshots/macos-*.png
+          if-no-files-found: ignore
