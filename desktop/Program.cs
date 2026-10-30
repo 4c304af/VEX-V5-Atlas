@@ -186,7 +186,7 @@ internal sealed class AtlasForm : Form {
                     window.chrome.webview.postMessage(JSON.stringify({action:'auto:run',requestId,documents:options.documents,application:options.application}));
                   }),
                   restartToUpdate:()=>send('auto:restart'),
-                  openSource:url=>{let ok=false;try{const u=new URL(url);ok=u.protocol==='https:'&&u.hostname==='api.vex.com'&&u.pathname.startsWith('/v5/');}catch{}if(ok)send('source',url);return Promise.resolve(ok);}
+                  openSource:url=>{let ok=false;try{const u=new URL(url);ok=u.protocol==='https:'&&((u.hostname==='api.vex.com'&&u.pathname.startsWith('/v5/'))||(u.hostname==='content.vexrobotics.com'&&u.pathname==='/docs/2026-2027/override/files/Override-2.1.pdf'));}catch{}if(ok)send('source',url);return Promise.resolve(ok);}
                 });
             ".Replace("__AUTO_ENABLED__",Program.Testing?"false":"true"));
             core.Navigate(Origin + "/index.html");
@@ -220,7 +220,7 @@ internal sealed class AtlasForm : Form {
                 case "source":
                     string url = message.ContainsKey("url") ? message["url"] as string : null;
                     Uri target;
-                    if (url != null && Uri.TryCreate(url, UriKind.Absolute, out target) && target.Scheme == "https" && target.Host == "api.vex.com" && target.AbsolutePath.StartsWith("/v5/")) Process.Start(new ProcessStartInfo(target.ToString()) { UseShellExecute = true });
+                    if (url != null && Uri.TryCreate(url, UriKind.Absolute, out target) && target.Scheme == "https" && ((target.Host == "api.vex.com" && target.AbsolutePath.StartsWith("/v5/")) || (target.Host == "content.vexrobotics.com" && target.AbsolutePath == "/docs/2026-2027/override/files/Override-2.1.pdf"))) Process.Start(new ProcessStartInfo(target.ToString()) { UseShellExecute = true });
                     break;
             }
         } catch (Exception error) { Debug.WriteLine(error); }

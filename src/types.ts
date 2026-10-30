@@ -12,7 +12,7 @@ export interface Settings { language: Language; theme: Theme; motion: boolean; f
 export interface AutoUpdatePart {status:'skipped'|'current'|'updated'|'ready'|'available'|'error'|'cancelled';version?:string;error?:string}
 export interface AutoUpdateResult {documents:AutoUpdatePart;application:AutoUpdatePart;checkedAt:string}
 export interface Read { id: string; time: number }
-export type Page = { kind: 'home' | 'library' | 'favorites' | 'history' | 'settings' | 'glossary' | 'updates'; group?: string } | { kind: 'doc'; id: string; anchor?: string };
+export type Page = { kind: 'home' | 'library' | 'favorites' | 'history' | 'settings' | 'glossary' | 'updates' | 'rules'; group?: string } | { kind: 'doc'; id: string; anchor?: string };
 export interface DocumentationChange { id:string;title:string;zhTitle?:string;kind:'added'|'modified'|'removed';source:string }
 export interface DocumentationProgress {phase:'index'|'documents';completed:number;total:number}
 export interface DocumentationUpdateResult {

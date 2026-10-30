@@ -7,6 +7,7 @@ import 'prismjs/components/prism-c';
 import 'prismjs/components/prism-cpp';
 import '@fontsource-variable/manrope';
 import RobotArt from './RobotArt';
+import CompetitionRules from './CompetitionRules';
 import AccentSettings from './AccentSettings';
 import { accentPalette } from './theme';
 import { copyText, searchShortcut } from './platform';
@@ -28,7 +29,7 @@ function pageFromHash(): Page {
   const hash = decodeURIComponent(location.hash.slice(1));
   if (hash.startsWith('doc/')) { const [id, anchor] = hash.slice(4).split('#'); return { kind: 'doc', id, anchor }; }
   const [kind, group] = hash.split('/');
-  if (['home','library','favorites','history','settings','glossary','updates'].includes(kind)) return { kind: kind as Exclude<Page['kind'],'doc'>, group };
+  if (['home','library','favorites','history','settings','glossary','updates','rules'].includes(kind)) return { kind: kind as Exclude<Page['kind'],'doc'>, group };
   return { kind: 'home' };
 }
 function pageHash(page: Page) {
@@ -107,7 +108,7 @@ export default function App() {
   }, [setFavorites]);
   const changeSetting = <K extends keyof Settings>(key: K, value: Settings[K]) => setSettings(s => ({...s,[key]:value}));
   const name = (e: Entry) => zh ? e.zhTitle : e.title;
-  const title = current ? name(current) : ({ home:t('概览','Overview'), library:t('API 文档库','API library'), favorites:t('我的收藏','Bookmarks'), history:t('最近阅读','Reading history'), settings:t('偏好设置','Preferences'), glossary:t('中英术语表','Bilingual glossary'),updates:t('文档更新','Documentation updates'), doc:'' })[page.kind];
+  const title = current ? name(current) : ({ home:t('概览','Overview'), library:t('API 文档库','API library'), favorites:t('我的收藏','Bookmarks'), history:t('最近阅读','Reading history'), settings:t('偏好设置','Preferences'), glossary:t('中英术语表','Bilingual glossary'),updates:t('文档更新','Documentation updates'),rules:t('赛事规则','Competition rules'), doc:'' })[page.kind];
   const source = useCallback(async (url: string) => {
     if (window.atlasDesktop) {
       if (!(await window.atlasDesktop.openSource(url))) setToast(t('此链接未包含在离线包中','This link is not included in the offline bundle'));
@@ -153,6 +154,7 @@ export default function App() {
             })}
           </nav>
           <div className="sidebar-bottom">
+            <button className={'subtle-link '+(page.kind==='rules'?'selected':'')} onClick={()=>navigate({kind:'rules'})}><BookOpen size={17}/>{t('赛事规则','Competition rules')}</button>
             <button className={'subtle-link '+(page.kind==='updates'?'selected':'')} onClick={() => navigate({kind:'updates'})}><RefreshCw size={17} className={documentationUpdates.busy||autoUpdates.busy?'update-spinning':''}/>{t('文档更新','Documentation updates')}{['ready','available'].includes(autoUpdates.result?.application.status??'')&&<small className="update-ready-badge">{t('新版','NEW')}</small>}</button>
             <button className={'subtle-link '+(page.kind==='glossary'?'selected':'')} onClick={() => navigate({kind:'glossary'})}><Languages size={17}/>{t('中英术语表','Bilingual glossary')}<ArrowUpRight size={14}/></button>
             <button className={'subtle-link '+(page.kind==='settings'?'selected':'')} onClick={() => navigate({kind:'settings'})}><Settings2 size={17}/>{t('偏好设置','Preferences')}</button>
@@ -196,6 +198,7 @@ export default function App() {
                     <footer className="page-footer"><span>V5 Atlas</span><span>{t('基于 VEX 官方 C++ API · 独立离线阅读器','Based on the official VEX C++ API · Independent offline reader')}</span></footer>
                   </>}
 
+                  {page.kind==='rules'&&<CompetitionRules language={settings.language} id={page.group} select={id=>navigate({kind:'rules',group:id})} source={source}/>}
                   {page.kind==='updates'&&<><AutoUpdates state={autoUpdates} settings={settings} setSetting={changeSetting} t={t}/><DocumentationUpdates catalog={catalog} state={documentationUpdates} zh={zh} t={t} source={source}/></>}
                   {['library','favorites','history'].includes(page.kind) && <LibraryPage entries={entries} page={page} favorites={favorites} reads={reads} zh={zh} t={t} openDoc={openDoc} favorite={favorite} navigate={navigate} onClearHistory={()=>setReads([])} />}
                   {page.kind === 'doc' && <Reader key={catalog.snapshotId} entry={current} entries={entries} language={settings.language} zh={zh} t={t} favorites={favorites} favorite={favorite} openDoc={openDoc} anchor={page.anchor} navigate={navigate} notify={setToast} source={source} />}

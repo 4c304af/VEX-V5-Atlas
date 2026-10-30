@@ -1,0 +1,28 @@
+import {test,expect} from '@playwright/test';
+test('rules sections, numbered search, bilingual reader, original figures and bookmarks work offline',async({page})=>{
+  const remote:string[]=[];page.on('request',r=>{if(!r.url().startsWith('http://127.0.0.1:5185')&&!r.url().startsWith('data:'))remote.push(r.url());});
+  await page.goto('/#rules');
+  await expect(page.locator('.rule-card')).toHaveCount(167);
+  await page.getByRole('button',{name:'机器人与检录',exact:true}).click();
+  await expect(page.locator('.rule-card')).toHaveCount(29);
+  await page.getByRole('button',{name:'全部章节',exact:true}).click();
+  await page.getByRole('textbox',{name:'搜索赛事规则'}).fill('SG1');
+  await page.locator('.rule-card').filter({hasText:'开赛摆放条件'}).click();
+  await expect(page.locator('.rule-text')).toContainText('457.2');
+  await page.getByRole('button',{name:'对照',exact:true}).click();
+  await expect(page.locator('.rule-columns.dual article')).toHaveCount(2);
+  await expect(page.locator('.rule-text[lang=en]')).toContainText('Starting a Match');
+  await page.getByRole('button',{name:'收藏规则',exact:true}).click();
+  await page.reload();
+  await expect(page.getByRole('button',{name:'收藏规则',exact:true})).toHaveAttribute('aria-pressed','true');
+  await page.getByRole('button',{name:'查看官方原页与配图'}).click();
+  await expect(page.locator('.rule-original-pages img').first()).toBeVisible();
+  expect(await page.locator('.rule-original-pages img').first().evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>0)).toBeTruthy();
+  await page.screenshot({path:'screenshots/rules-bilingual.png'});
+  await page.getByRole('button',{name:'EN',exact:true}).click();
+  await expect(page.locator('.rule-text[lang=en]')).toContainText('Starting a Match');
+  await page.goto('/#rules');
+  await page.locator('.rule-groups').getByRole('button',{name:'Bookmarks',exact:true}).click();
+  await expect(page.locator('.rule-card')).toHaveCount(1);
+  expect(remote).toEqual([]);
+});

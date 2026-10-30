@@ -23,6 +23,7 @@ jobs:
           python-version: '3.12'
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: npm run verify:docs
+      - run: npm run verify:rules
       - run: npm run package:mac
       - run: npm run test:mac-core
       - run: npm run test:mac

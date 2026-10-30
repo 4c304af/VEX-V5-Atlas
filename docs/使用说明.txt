@@ -1,6 +1,6 @@
-V5 Atlas 1.1.0 · VEX V5 C++ 双语离线参考
+V5 Atlas 1.2.0 · VEX V5 C++ 双语离线参考
 
-关闭旧版，将 V5-Atlas-1.1.0-Windows-x64.exe 放到原来的可写入文件夹中双击运行。
+关闭旧版，将 V5-Atlas-1.2.0-Windows-x64.exe 放到原来的可写入文件夹中双击运行。
 请保留程序旁的 .v5-atlas 文件夹，其中保存收藏、偏好和文档更新。
 
 Ctrl+K：本地全文搜索。
@@ -24,3 +24,5 @@ GitHub 工作流每小时检查官方英文内容，完成翻译和校验后发�
 运行平台：Windows 10/11 x64，系统需有 Microsoft Edge WebView2 Runtime。
 启动错误详情保存在程序旁的 V5Atlas-startup.log。
 项目：https://github.com/4c304af/offline-vexv5cpp-api
+
+赛事规则：左侧新增“赛事规则”，按 12 个分区浏览 Override v2.1，支持编号和中英文搜索、收藏、中英对照及原页配图。中文为 Codex 撰写的条款要点译解，非逐句全文翻译；细则及处罚须核对英文、官方原页和官方 Q&A。

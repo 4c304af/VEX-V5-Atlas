@@ -12,7 +12,7 @@ A bilingual, offline Windows and macOS desktop reference for the VEX V5 C++ API,
 
 ## 使用
 
-在 [Releases](https://github.com/4c304af/VEX-V5-Atlas/releases) 下载 `V5-Atlas-1.1.1-Windows-x64.exe`。关闭正在运行的旧版后，双击新版运行。首次启动不会在程序所在目录生成附带文件；文档资源、WebView2 缓存、收藏、偏好与错误日志统一保存在 `%LOCALAPPDATA%\V5 Atlas`。检测到程序旁的旧版 `.v5-atlas` 时，会复制其中的阅读配置与已下载文档；旧数据保留，新位置已有的数据不会被覆盖。程序自更新时，仍需对可执行文件所在目录有写入权限。
+在 [Releases](https://github.com/4c304af/VEX-V5-Atlas/releases) 下载 `V5-Atlas-1.2.0-Windows-x64.exe`。关闭正在运行的旧版后，双击新版运行。首次启动不会在程序所在目录生成附带文件；文档资源、WebView2 缓存、收藏、偏好与错误日志统一保存在 `%LOCALAPPDATA%\V5 Atlas`。检测到程序旁的旧版 `.v5-atlas` 时，会复制其中的阅读配置与已下载文档；旧数据保留，新位置已有的数据不会被覆盖。程序自更新时，仍需对可执行文件所在目录有写入权限。
 
 运行平台为 Windows 10/11 x64，使用系统的 Microsoft Edge WebView2 Runtime。文档、搜索、示例、图片、字体和动画在本地运行；“文档更新”支持自动同步，也可手动核对，点击官方来源链接会打开系统浏览器。
 
@@ -76,7 +76,7 @@ npm run setup:windows
 npm run package
 ```
 
-`setup:windows` 从 Microsoft NuGet 下载固定版本的构建 SDK，校验 SHA-256 后解压到 `build/webview2/sdk`，不会安装系统软件。`package` 生成 `release/V5-Atlas-1.1.1-Windows-x64.exe` 、`release/SHA256SUMS.txt` 和独立文档包 `release/V5-Atlas-documents.zip`。
+`setup:windows` 从 Microsoft NuGet 下载固定版本的构建 SDK，校验 SHA-256 后解压到 `build/webview2/sdk`，不会安装系统软件。`package` 生成 `release/V5-Atlas-1.2.0-Windows-x64.exe` 、`release/SHA256SUMS.txt` 和独立文档包 `release/V5-Atlas-documents.zip`。
 
 ```powershell
 npm run dev
@@ -124,3 +124,12 @@ npm run test:mac
 `test:auto-updates` 验证损坏包、目录穿越、翻译完整性、取消、快照恢复和实际程序替换；随后 `test:desktop-sync` 验证新增页面的桌面离线搜索和重启持久化。
 
 这是独立制作的离线阅读器，非 VEX Robotics 官方产品。官方文档、代码示例、配图和商标的权利归原权利人所有，本仓库没有对第三方内容重新授予许可。详细来源与依赖说明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+
+
+## 赛事规则分区
+
+左侧“赛事规则”收录 2026–2027 Override v2.1，按 12 个分区及 155 条规则编号组织为 167 个条目。可搜索编号或中英文关键词、收藏规则、切换中英对照，并查看 144 页官方原页图像；官方 PDF 也随程序保存在离线资源中。
+
+中文为 Codex 撰写的**条款要点译解，非逐句全文翻译**。英文提取正文及官方原页保留完整细则、图表与违规备注，赛事判定以官方手册和官方 Q&A 为准。当前规则快照发布于 2026-10-08，不含实时 Q&A；规则快照随程序版本更新，API 文档包的自动同步不修改赛事赛季。
+
+维护规则：安装 `tools/requirements-rules.txt`，执行 `python tools/build_rules.py` 和 `python tools/verify_rules.py`。`sources/rules-manifest.json` 固定官方 PDF 哈希，`sources/rules-editorial.txt` 保存中文要点；源文件发生变化时导入会停止，需先重新审核译解和章节边界。

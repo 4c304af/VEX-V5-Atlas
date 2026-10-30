@@ -17,3 +17,8 @@ VEX and VEXcode are marks of their respective owners.
 - Lucide: ISC-licensed icons; see the upstream Lucide license.
 
 The app's robot illustration and application icon are project-specific assets. No repository-wide license is asserted over the third-party reference content above.
+
+
+## Competition manual
+
+The bundled Override v2.1 English PDF and original-page renderings are from https://content.vexrobotics.com/docs/2026-2027/override/files/Override-2.1.pdf (2026–2027 season, released October 8, 2026). Copyright ©2026 Innovation First, Inc. / VEX Robotics, Inc. All rights remain with their owners. Chinese clause summaries are unofficial editorial aids written by Codex and are not a full translation or an official ruling. Live Q&A is not included. No new license is granted over third-party material.

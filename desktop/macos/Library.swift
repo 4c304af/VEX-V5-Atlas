@@ -30,8 +30,9 @@ func newer(_ left: String, than right: String) throws -> Bool {
     return b.lexicographicallyPrecedes(a)
 }
 func officialSource(_ url: URL) -> Bool {
-    url.scheme == "https" && url.host == "api.vex.com" && url.user == nil && url.password == nil &&
-        (url.port == nil || url.port == 443) && url.path.hasPrefix("/v5/")
+    url.scheme == "https" && url.user == nil && url.password == nil &&
+        (url.port == nil || url.port == 443) && ((url.host == "api.vex.com" && url.path.hasPrefix("/v5/")) ||
+        (url.host == "content.vexrobotics.com" && url.path == "/docs/2026-2027/override/files/Override-2.1.pdf"))
 }
 
 // The WebView never accesses the network. These bounded requests are used only by the update bridge.
