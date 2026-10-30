@@ -10,6 +10,8 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Security.Principal;
+using System.Security.AccessControl;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 using Microsoft.Web.WebView2.Core;
@@ -22,6 +24,7 @@ internal static class Program {
     internal static string DataRoot = StoragePaths.DefaultRoot;
     internal static string LogPath { get { return Path.Combine(DataRoot, "V5Atlas-startup.log"); } }
     internal static string DocumentsRoot;
+    internal static bool StorageRecovered;
     internal static AutomaticUpdater Updater;
     private static Mutex instance;
     [DllImport("user32.dll")] private static extern bool SetProcessDpiAwarenessContext(IntPtr context);
@@ -34,17 +37,35 @@ internal static class Program {
             if(apply!=null) { AutomaticUpdater.Apply(int.Parse(apply.Substring(15)));return; }
             Testing = args.Contains("--test");
             string customProfile = args.FirstOrDefault(a => a.StartsWith("--profile="));
-            var storage = new StoragePaths(customProfile == null ? null : customProfile.Substring(10));
+            string testRoot = Testing ? args.FirstOrDefault(a => a.StartsWith("--user-root=")) : null;
+            var storage = new StoragePaths(customProfile == null ? null : customProfile.Substring(10), testRoot == null ? StoragePaths.DefaultRoot : Path.GetFullPath(testRoot.Substring(12)));
             Profile = storage.Profile;
             DataRoot = storage.DataRoot;
             bool created;
-            instance = new Mutex(true, Testing ? "V5Atlas.Test." + Guid.NewGuid().ToString("N") : "V5Atlas.Desktop", out created);
+            string instanceName = Testing ? "V5Atlas.Test." + Guid.NewGuid().ToString("N") : "Local\\V5Atlas.Desktop." + WindowsIdentity.GetCurrent().User.Value;
+            try { instance = new Mutex(true, instanceName, out created); }
+            catch (UnauthorizedAccessException) {
+                // An elevated instance may deny FullControl but still allow synchronization.
+                using (Mutex existing = Mutex.OpenExisting(instanceName, MutexRights.Synchronize)) { return; }
+            }
             if (!created) return;
             if (customProfile == null) storage.MigrateLegacy(AppDomain.CurrentDomain.BaseDirectory);
+            storage.Prepare();
+            Profile = storage.Profile;
+            DataRoot = storage.DataRoot;
+            StorageRecovered = storage.Recovered || storage.LegacySkipped;
             try { SetProcessDpiAwarenessContext(new IntPtr(-4)); } catch (EntryPointNotFoundException) { }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            ExtractBundle();
+            try { ExtractBundle(); }
+            catch (UnauthorizedAccessException) {
+                storage.Recover();
+                Profile = storage.Profile; DataRoot = storage.DataRoot; StorageRecovered = true;
+                ExtractBundle();
+            }
+            if (StorageRecovered) {
+                try { File.AppendAllText(LogPath, DateTime.UtcNow.ToString("O") + " Old storage was inaccessible; preserved existing data. Active data: " + DataRoot + "\r\n"); } catch { }
+            }
             string appVersion=Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
             Updater=new AutomaticUpdater(DataRoot,Path.Combine(BundleRoot,"app","docs"),appVersion,Assembly.GetExecutingAssembly().Location);
             DocumentsRoot=Updater.Store.ActiveRoot;
@@ -179,6 +200,7 @@ internal sealed class AtlasForm : Form {
                   }),
                   cancelDocUpdateCheck:()=>send('docs:cancel'),
                   automaticUpdatesEnabled:__AUTO_ENABLED__,
+                  storageRecovered:__STORAGE_RECOVERED__,
                   runAutoUpdates:(options,progress)=>new Promise((resolve,reject)=>{
                     const requestId='auto-'+(++sequence);
                     const timer=setTimeout(()=>{pending.delete(requestId);send('docs:cancel');reject(new Error('timeout'));},600000);
@@ -188,7 +210,7 @@ internal sealed class AtlasForm : Form {
                   restartToUpdate:()=>send('auto:restart'),
                   openSource:url=>{let ok=false;try{const u=new URL(url);ok=u.protocol==='https:'&&((u.hostname==='api.vex.com'&&u.pathname.startsWith('/v5/'))||(u.hostname==='content.vexrobotics.com'&&u.pathname==='/docs/2026-2027/override/files/Override-2.1.pdf'));}catch{}if(ok)send('source',url);return Promise.resolve(ok);}
                 });
-            ".Replace("__AUTO_ENABLED__",Program.Testing?"false":"true"));
+            ".Replace("__AUTO_ENABLED__",Program.Testing?"false":"true").Replace("__STORAGE_RECOVERED__",Program.StorageRecovered?"true":"false"));
             core.Navigate(Origin + "/index.html");
         } catch (Exception error) {
             Program.Fail("webview",error);

@@ -1,7 +1,7 @@
 {
   "name": "v5atlas",
   "productName": "V5 Atlas",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "VEX V5 C++ bilingual offline reference",
   "author": "4c304af",
   "private": true,
@@ -24,7 +24,8 @@
     "test:desktop-updates": "node tools/test_desktop_updates.mjs",
     "test:auto-updates": "python tools/test_auto_updates.py",
     "test:desktop-sync": "node tools/test_desktop_sync.mjs",
-    "verify:rules": "python tools/verify_rules.py"
+    "verify:rules": "python tools/verify_rules.py",
+    "test:desktop-permissions": "node tools/test_desktop_permissions.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.3.0",

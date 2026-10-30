@@ -57,7 +57,9 @@ try{
   assert.deepEqual(errors,[]);assert.deepEqual(remote,[]);
   await page.evaluate(()=>{location.hash='#rules';});
   await page.locator('.rules-hero').waitFor();
-  assert.equal(await page.locator('.rule-card').count(),167);
+  assert.equal(await page.locator('.rule-section-card').count(),12);
+  assert.equal(await page.locator('.rule-card').count(),0);
+  await page.screenshot({path:path.join(capture,`desktop-${version}-rules-sections.png`)});
   await page.getByRole('textbox',{name:'搜索赛事规则'}).fill('水平展开限制');
   await page.locator('.rule-card').click();
   await page.locator('.rule-columns').waitFor();

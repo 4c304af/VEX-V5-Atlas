@@ -29,6 +29,7 @@ declare global {
     checkDocUpdates?:(onProgress?:(progress:DocumentationProgress)=>void)=>Promise<DocumentationUpdateResult>;
     cancelDocUpdateCheck?:()=>void;
     automaticUpdatesEnabled?:boolean;
+    storageRecovered?:boolean;
     runAutoUpdates?:(options:{documents:boolean;application:boolean},onProgress?:(value:string)=>void)=>Promise<AutoUpdateResult>;
     restartToUpdate?:()=>void;
   } }

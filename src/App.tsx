@@ -50,6 +50,7 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [toast, setToast] = useState('');
   const [retry, setRetry] = useState(0);
+  const [storageNotice,setStorageNotice]=useState(window.atlasDesktop?.storageRecovered??false);
   const documentationUpdates=useDocumentationUpdates(catalog?.snapshotId);
   const autoUpdates=useAutoUpdates(settings);
   const scrollRef = useRef<HTMLElement>(null);
@@ -175,6 +176,7 @@ export default function App() {
           </header>
 
           <main ref={scrollRef} className={'main-scroll '+(page.kind==='doc'?'reading-scroll':'')} id="main-content">
+            {storageNotice&&<div className="startup-storage-notice" role="status"><ShieldCheck size={19}/><p>{t('部分旧数据目录无法访问，已使用当前用户可写的目录启动。旧数据已保留，部分收藏和偏好可能暂时不可用。','Some old data folders were inaccessible. The app opened using writable user storage. Existing data was preserved; some bookmarks and preferences may be unavailable.')}</p><button className="icon-button" aria-label={t('关闭提示','Dismiss notice')} onClick={()=>setStorageNotice(false)}><X size={17}/></button></div>}
             {!catalog ? <div className="loading-state"><div className="morph-loader"/><h2>{loadError ? t('文档加载失败','Could not load documents') : t('正在打开你的离线文档库','Opening your offline library')}</h2>{loadError && <button className="primary-button" onClick={() => {setLoadError(false);setRetry(r=>r+1);}}>{t('重试','Retry')}</button>}</div> :
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div key={page.kind === 'doc' ? page.id : page.kind+(page.group??'')} className={'page page-'+page.kind} {...transitions}>

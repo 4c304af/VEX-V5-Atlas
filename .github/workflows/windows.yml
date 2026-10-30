@@ -25,6 +25,7 @@ jobs:
       - run: npm run verify:docs
       - run: npm run verify:rules
       - run: npm run test:updates
+      - run: npm run test:storage
       - run: npm run setup:windows
       - run: npm run package
       - run: npm run test:auto-updates
