@@ -139,6 +139,10 @@ drivetrain myDrivetrain = drivetrain(
 ## Actions
 ### drive
 
+```{vexcode_new}
+id: v5_drivetrain_drive
+```
+
 ```{vexcode}
 id: v5_drivetrain_drive
 ```
@@ -201,6 +205,10 @@ myDrivetrain.stop();
 ```
 
 ### driveFor
+
+```{vexcode_new}
+id: v5_drivetrain_drive_for
+```
 
 ```{vexcode}
 id: v5_drivetrain_drive_for
@@ -294,6 +302,10 @@ myDrivetrain.driveFor(reverse, 200, mm);
 
 ### turn
 
+```{vexcode_new}
+id: v5_drivetrain_turn
+```
+
 ```{vexcode}
 id: v5_drivetrain_turn
 ```
@@ -357,6 +369,10 @@ myDrivetrain.stop();
 ```
 
 ### turnFor
+
+```{vexcode_new}
+id: v5_drivetrain_turn_for
+```
 
 ```{vexcode}
 id: v5_drivetrain_turn_for
@@ -449,6 +465,10 @@ myDrivetrain.turnFor(left, 90, degrees);
 
 ### stop
 
+```{vexcode_new}
+id: v5_drivetrain_stop
+```
+
 ```{vexcode}
 id: v5_drivetrain_stop
 ```
@@ -500,6 +520,10 @@ myDrivetrain.stop(coast);
 
 ## Mutators
 ### setDriveVelocity
+
+```{vexcode_new}
+id: v5_drivetrain_set_drive_velocity
+```
 
 ```{vexcode}
 id: v5_drivetrain_set_drive_velocity
@@ -558,6 +582,10 @@ myDrivetrain.stop(coast);
 
 ### setTurnVelocity
 
+```{vexcode_new}
+id: v5_drivetrain_set_turn_velocity
+```
+
 ```{vexcode}
 id: v5_drivetrain_set_turn_velocity
 ```
@@ -615,6 +643,10 @@ myDrivetrain.turnFor(right, 360, degrees);
 
 ### setStopping
 
+```{vexcode_new}
+id: v5_drivetrain_set_stopping
+```
+
 ```{vexcode}
 id: v5_drivetrain_set_stopping
 ```
@@ -652,6 +684,10 @@ This function does not return a value.
 - The stopping mode applies to all subsequent [<code>stop</code>](#stop) calls unless a specific stopping mode is provided in the function call.
 
 ### setTimeout
+
+```{vexcode_new}
+id: v5_drivetrain_set_timeout
+```
 
 ```{vexcode}
 id: v5_drivetrain_set_timeout
@@ -705,6 +741,10 @@ myDrivetrain.turnFor(right, 90, degrees);
 
 ### isDone
 
+```{vexcode_new}
+id: v5_drivetrain_is_done
+```
+
 ```{vexcode}
 id: v5_drivetrain_is_done
 ```
@@ -741,6 +781,10 @@ This function does not accept any parameters.
 
 ### isMoving
 
+```{vexcode_new}
+id: v5_drivetrain_is_moving
+```
+
 ```{vexcode}
 id: v5_drivetrain_is_moving
 ```
@@ -776,6 +820,10 @@ This function does not accept any parameters.
 - <code>isMoving</code> is not compatible with functions such as [<code>drive</code>](#drive) and [<code>turn</code>](#turn), since they do not use target-based movement.
 
 ### velocity
+
+```{vexcode_new}
+id: v5_drivetrain_velocity
+```
 
 ```{vexcode}
 id: v5_drivetrain_velocity
@@ -825,6 +873,10 @@ myDrivetrain.stop();
 
 ### current
 
+```{vexcode_new}
+id: v5_drivetrain_current
+```
+
 ```{vexcode}
 id: v5_drivetrain_current
 ```
@@ -868,6 +920,10 @@ Returns the drivetrain current as a <code>double</code> in the selected unit.
 
 ### power
 
+```{vexcode_new}
+id: v5_drivetrain_power
+```
+
 ```{vexcode}
 id: v5_drivetrain_power
 ```
@@ -902,6 +958,10 @@ double power(
 Returns drivetrain power as a <code>double</code> in watts.
 
 ### torque
+
+```{vexcode_new}
+id: v5_drivetrain_torque
+```
 
 ```{vexcode}
 id: v5_drivetrain_torque
@@ -940,6 +1000,10 @@ Returns drivetrain torque as a <code>double</code> in the selected unit.
 
 ### efficiency
 
+```{vexcode_new}
+id: v5_drivetrain_efficiency
+```
+
 ```{vexcode}
 id: v5_drivetrain_efficiency
 ```
@@ -975,6 +1039,10 @@ double efficiency(
 Returns drivetrain efficiency as a <code>double</code> in the selected unit.
 
 ### temperature
+
+```{vexcode_new}
+id: v5_drivetrain_temperature
+```
 
 ```{vexcode}
 id: v5_drivetrain_temperature

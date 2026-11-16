@@ -19,6 +19,10 @@ The <code>competition</code> class helps you structure a V5 project for official
 
 ## Class Constructors
 
+```{vexcode_new}
+id: v5_events_competition
+```
+
 ```cpp
 competition();
 ```
@@ -62,6 +66,10 @@ competition Competition = competition();
 ```
 
 ### autonomous
+
+```{vexcode_new}
+id: v5_events_when_autonomous
+```
 
 ```{vexcode}
 id: v5_competition_autonomous
@@ -117,6 +125,10 @@ int main(){
 ```
 
 ### drivercontrol
+
+```{vexcode_new}
+id: v5_events_when_driver
+```
 
 ```{vexcode}
 id: v5_competition_drivercontrol

@@ -20,6 +20,10 @@ Threads allow a robot to run multiple tasks simultaneously within the same progr
 
 ## Class Constructors
 
+```{vexcode_new}
+id: v5_logic_thread
+```
+
 > **__1__ —** Creates and starts a new thread with a function.
 > ```cpp
 > thread( void (* callback)(void) );

@@ -69,6 +69,10 @@ limit LimitSwitchA = limit(Brain.ThreeWirePort.A);
 
 ### pressing
 
+```{vexcode_new}
+id: v5_sensing_limit_pressing
+```
+
 Returns whether the Limit Switch is currently being pressed. This can be used to check if the robot bumps into other objects.
 
 <span style="font-size: 1.5rem; ">
@@ -95,6 +99,10 @@ Returns an <code>int32_t</code> indicating whether the Limit Switch is being pre
 - <code>0</code> — The Limit Switch is not being pressed.
 
 ### pressed
+
+```{vexcode_new}
+id: v5_events_limit_pressed
+```
 
 Registers a function to be called when the Limit Switch is pressed.
 
@@ -147,6 +155,10 @@ This function does not return a value.
 > ```
 
 ### released
+
+```{vexcode_new}
+id: v5_events_limit_released
+```
 
 Registers a function to be called when the Limit Switch is released.
 

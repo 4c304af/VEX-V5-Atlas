@@ -67,6 +67,10 @@ light LightA = light(Brain.ThreeWirePort.A);
 
 ### brightness
 
+```{vexcode_new}
+id: v5_sensing_light_brightness
+```
+
 ```{vexcode}
 id: v5_3-wire_light_brightness
 ```

@@ -66,6 +66,10 @@ optical Optical1 = optical(PORT1);
 
 ### setLight
 
+```{vexcode_new}
+id: v5_sensing_optical_set_light
+```
+
 Sets Optical Sensor's LED to on or off. The light can help the Optical Sensor detect objects and colors more clearly.
 
 <span style="font-size: 1.5rem; ">
@@ -100,6 +104,10 @@ Optical.setLight(ledState::on);
 ```
 
 ### setLightPower
+
+```{vexcode_new}
+id: v5_sensing_optical_set_light_power
+```
 
 Sets the brightness of the Optical Sensor's LED. The light can help the Optical Sensor detect objects and colors more clearly.
 
@@ -145,6 +153,10 @@ Optical.setLightPower(50, percent);
 
 ### isNearObject
 
+```{vexcode_new}
+id: v5_sensing_optical_is_near_object
+```
+
 Returns if the Optical Sensor detects a nearby object.
 
 <span style="font-size: 1.5rem; ">
@@ -183,6 +195,10 @@ if (Optical.isNearObject()){
 ```
 
 ### color
+
+```{vexcode_new}
+id: v5_sensing_optical_color
+```
 
 Returns the color detected by the Optical Sensor.
 
@@ -233,6 +249,10 @@ Brain.Screen.print(detectColor);
 
 ### brightness
 
+```{vexcode_new}
+id: v5_sensing_optical_brightness
+```
+
 Returns the amount of light reflected from the object.
 
 A higher percentage means more light is reflected back to the Optical Sensor. A lower percentage means less light is reflected back.
@@ -275,6 +295,10 @@ Brain.Screen.print(brightness);
 
 ### hue
 
+```{vexcode_new}
+id: v5_sensing_optical_hue
+```
+
 Returns the hue value of the detected color.
 
 Hue is a way to describe color using numbers around a color wheel.
@@ -312,6 +336,10 @@ double hue = Optical.hue();
 ```
 
 ### objectDetected
+
+```{vexcode_new}
+id: v5_sensing_optical_object_detected
+```
 
 Registers a callback function for when an object is detected.
 
@@ -358,6 +386,10 @@ This function does not return a value.
 > ```
 
 ### objectLost
+
+```{vexcode_new}
+id: v5_sensing_optical_object_lost
+```
 
 Registers a callback function for when an object is lost.
 

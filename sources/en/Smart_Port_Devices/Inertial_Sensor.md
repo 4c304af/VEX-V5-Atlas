@@ -87,6 +87,10 @@ inertial myInertial = inertial(PORT1);
 
 ### heading
 
+```{vexcode_new}
+id: v5_sensing_inertial_heading
+```
+
 A heading is the direction the sensor is facing, measured in degrees from 0 to 359.99. This function returns the sensor's current heading.
 
 The starting heading is 0 degrees. If the sensor turns past 359.99 degrees, the heading wraps back to 0 degrees.
@@ -130,6 +134,10 @@ Brain.Screen.print("%f", myInertial.heading(degrees));
 ```
 
 ### rotation
+
+```{vexcode_new}
+id: v5_sensing_inertial_rotation
+```
 
 Returns the current rotation of the Inertial Sensor.
 
@@ -175,6 +183,10 @@ Brain.Screen.print("%f", myInertial.rotation(degrees));
 
 ### setHeading
 
+```{vexcode_new}
+id: v5_sensing_inertial_set_heading
+```
+
 A heading is the direction the sensor is facing, measured in degrees from 0 to 359.99. This function changes the Inertial Sensor's current heading to a new heading value.
 
 For example, if the sensor has turned to face right, setting the heading to 0 degrees makes that right-facing position the new 0 degrees. Then the sensor can track other headings based on that new direction.
@@ -214,6 +226,10 @@ Drivetrain.turnToHeading(0, degrees);
 
 ### setRotation
 
+```{vexcode_new}
+id: v5_sensing_inertial_set_rotation
+```
+
 Rotation is how much the sensor has turned, measured in degrees. Unlike heading, rotation can increase past 359.99 degrees or decrease below 0 degrees. At the beginning of a project, the rotation value is set to 0 degrees. This function changes the Inertial Sensor's current rotation to a new value.
 
 For example, if the sensor has made two full turns to the right, its rotation value will be 720 degrees. Setting the rotation to 0 degrees will reset that rotation from 720 to 0 degrees. Then the sensor can track rotations based on that new value.
@@ -252,6 +268,10 @@ Drivetrain.turnToRotation(0, degrees);
 ```
 
 ### calibrate
+
+```{vexcode_new}
+id: v5_sensing_inertial_calibrate
+```
 
 Calibrates the Inertial Sensor.
 
@@ -452,6 +472,10 @@ Returns a Boolean indicating whether the Inertial Sensor is installed and connec
 
 ### acceleration
 
+```{vexcode_new}
+id: v5_sensing_inertial_acceleration
+```
+
 Acceleration is how quickly the sensor is speeding up or slowing down. This function returns the acceleration of the Inertial Sensor on the selected axis, from -4.0 G to 4.0 G.
 
 A <code>G</code> is a unit used to measure acceleration. 1 G is about the acceleration you feel from gravity while sitting still. The value can be positive or negative depending on the direction of acceleration on the selected axis.
@@ -485,6 +509,10 @@ Returns a <code>double</code> representing the acceleration along the specified 
 - Acceleration values are reported in units of <code>G</code>.
 
 ### gyroRate
+
+```{vexcode_new}
+id: v5_sensing_inertial_gyro_rate
+```
 
 Gyro rate is how fast the Inertial Sensor is rotating. This function returns the current rotation speed of the Inertial Sensor on the selected axis.
 
@@ -528,6 +556,10 @@ Drivetrain.stop();
 ```
 
 ### orientation
+
+```{vexcode_new}
+id: v5_sensing_inertial_orientation
+```
 
 Orientation is the Inertial Sensor's current angle on a selected axis. This function returns the current orientation of the Inertial Sensor for the specified axis.
 

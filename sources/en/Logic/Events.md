@@ -35,6 +35,10 @@ In order to create and then use an Event, follow these steps in order:
 
 ## Class Constructors
 
+```{vexcode_new}
+id: v5_events_new_event
+```
+
 > **__1__ —** Creates an <code>event</code> object without a callback function.
 > ```cpp
 > event();
@@ -127,6 +131,10 @@ event myEvent(onMyEvent);
 
 ### operator
 
+```{vexcode_new}
+id: v5_events_callback
+```
+
 Sets a callback function for the event using the function call operator.
 
 <span style="font-size: 1.5rem;">
@@ -205,6 +213,10 @@ int main() {
 
 ### broadcast
 
+```{vexcode_new}
+id: v5_events_broadcast
+```
+
 ```{vexcode}
 id: v5_events_event_broadcast
 ```
@@ -258,6 +270,10 @@ int main() {
 ```
 
 ### broadcastAndWait
+
+```{vexcode_new}
+id: v5_events_broadcast_and_wait
+```
 
 Starts the callback and waits until it finishes (or times out).
 

@@ -147,6 +147,7 @@ Drivetrain/index
 Motors_and_MotorControllers/index
 Controller/index
 Brain/index
+./Sound
 ./Competition
 Smart_Port_Devices/index
 3-Wire_Devices/index

@@ -71,6 +71,10 @@ servo myServo = servo(Brain.ThreeWirePort.A);
 
 ### setPosition
 
+```{vexcode_new}
+id: v5_motion_servo_set_position
+```
+
 ```{vexcode}
 id: v5_motion_servo_set_position
 ```

@@ -68,6 +68,10 @@ led LEDA = led(Brain.ThreeWirePort.A);
 
 ### on
 
+```{vexcode_new}
+id: v5_looks_led_on
+```
+
 ```{vexcode}
 id: v5_3-wire_led_on
 ```
@@ -110,6 +114,10 @@ LEDA.off();
 ```
 
 ### off
+
+```{vexcode_new}
+id: v5_looks_led_off
+```
 
 ```{vexcode}
 id: v5_3-wire_led_off

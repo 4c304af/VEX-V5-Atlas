@@ -177,6 +177,14 @@ motor Motor1 = motor(PORT1);
 ## Actions
 ### spin
 
+```{vexcode_new}
+id: v5_motion_motor_spin
+```
+
+```{vexcode_new}
+id: v5_motion_motor_spin_at_voltage
+```
+
 ```{vexcode}
 id: v5_motion_motor_spin
 ```
@@ -251,6 +259,10 @@ Motor1.stop();
 ```
 
 ### spinFor
+
+```{vexcode_new}
+id: v5_motion_motor_spin_for
+```
 
 ```{vexcode}
 id: v5_motion_motor_spin_for
@@ -379,6 +391,10 @@ Motor1.spinFor(reverse, 1, turns, 20, velocityUnits::pct, true);
 
 ### spinToPosition
 
+```{vexcode_new}
+id: v5_motion_motor_spin_to_position
+```
+
 ```{vexcode}
 id: v5_motion_motor_spin_to_position
 ```
@@ -456,6 +472,10 @@ Motor1.spinToPosition(90, degrees);
 
 ### stop
 
+```{vexcode_new}
+id: v5_motion_motor_stop
+```
+
 ```{vexcode}
 id: v5_motion_motor_stop
 ```
@@ -514,6 +534,10 @@ Motor1.stop(coast);
 ## Mutators
 ### setPosition
 
+```{vexcode_new}
+id: v5_motion_motor_set_position
+```
+
 ```{vexcode}
 id: v5_motion_motor_set_position
 ```
@@ -554,6 +578,10 @@ This function does not return a value.
 - After calling <code>setPosition</code>, subsequent calls to [<code>spinToPosition</code>](#spintoposition) will use the updated position as the reference.
 
 ### setVelocity
+
+```{vexcode_new}
+id: v5_motion_motor_set_velocity
+```
 
 ```{vexcode}
 id: v5_motion_motor_set_velocity
@@ -613,6 +641,10 @@ Motor1.spinFor(forward, 180, degrees);
 
 ### setStopping
 
+```{vexcode_new}
+id: v5_motion_motor_set_stopping
+```
+
 ```{vexcode}
 id: v5_motion_motor_set_stopping
 ```
@@ -649,6 +681,10 @@ This function does not return a value.
 - Any subsequent call to [<code>stop</code>](#stop) without a specified brake mode will use this value.
 
 ### setMaxTorque
+
+```{vexcode_new}
+id: v5_motion_motor_set_max_torque
+```
 
 ```{vexcode}
 id: v5_motion_motor_set_max_torque
@@ -713,6 +749,10 @@ This function does not return a value.
 
 ### setTimeout
 
+```{vexcode_new}
+id: v5_motion_motor_set_timeout
+```
+
 ```{vexcode}
 id: v5_motion_motor_set_timeout
 ```
@@ -763,6 +803,10 @@ Motor1.spinToPosition(0, degrees);
 
 ## Getters
 ### isDone
+
+```{vexcode_new}
+id: v5_motion_motor_is_done
+```
 
 ```{vexcode}
 id: v5_motion_motor_is_done
@@ -824,6 +868,10 @@ while (true) {
 
 ### isSpinning
 
+```{vexcode_new}
+id: v5_motion_motor_is_spinning
+```
+
 ```{vexcode}
 id: v5_motion_motor_is_spinning
 ```
@@ -884,6 +932,10 @@ while (true) {
 
 ### position
 
+```{vexcode_new}
+id: v5_motion_motor_position
+```
+
 ```{vexcode}
 id: v5_motion_motor_position
 ```
@@ -937,6 +989,10 @@ Brain.Screen.print("Pos: %f", Motor1.position(degrees));
 
 ### velocity
 
+```{vexcode_new}
+id: v5_motion_motor_velocity
+```
+
 ```{vexcode}
 id: v5_motion_motor_velocity
 ```
@@ -973,6 +1029,10 @@ Returns a <code>double</code> representing how fast the motor or motor group is 
 - When called on a <code>motor_group</code>, this function returns the velocity of the first motor in the group.
 
 ### current
+
+```{vexcode_new}
+id: v5_motion_motor_current
+```
 
 ```{vexcode}
 id: v5_motion_motor_current
@@ -1023,6 +1083,10 @@ Returns a <code>double</code> representing how much electrical current the motor
 
 ### power
 
+```{vexcode_new}
+id: v5_motion_motor_power
+```
+
 ```{vexcode}
 id: v5_motion_motor_power
 ```
@@ -1057,6 +1121,10 @@ Returns a <code>double</code> representing how much power the motor or motor gro
 - When called on a <code>motor_group</code>, this function returns the electrical power of the first motor in the group.
 
 ### torque
+
+```{vexcode_new}
+id: v5_motion_motor_torque
+```
 
 ```{vexcode}
 id: v5_motion_motor_torque
@@ -1097,6 +1165,10 @@ Returns a <code>double</code> representing how much torque the motor or motor gr
 
 ### efficiency
 
+```{vexcode_new}
+id: v5_motion_motor_efficiency
+```
+
 ```{vexcode}
 id: v5_motion_motor_efficiency
 ```
@@ -1131,6 +1203,10 @@ Returns a <code>double</code> representing how efficiently the motor or motor gr
 - When called on a <code>motor_group</code>, this function returns the efficiency of the first motor in the group.
 
 ### temperature
+
+```{vexcode_new}
+id: v5_motion_motor_temperature
+```
 
 ```{vexcode}
 id: v5_motion_motor_temperature

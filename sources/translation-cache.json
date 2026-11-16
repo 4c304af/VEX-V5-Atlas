@@ -3550,5 +3550,18 @@
  "21a9bb6f61e614da7235a97bd6a1f10ae12e06337facb929f8edb7357baad165": "<a href=\"#pump_on\"><code>pump_on</code></a>— 打开气动泵。",
  "a06c24708d1c832f18dc5fede02601c5fc75a9ffae0f76d6ac5efca1ad23f2d3": "<a href=\"#pump_off\"><code>pump_off</code></a>— 关闭气动泵。",
  "ebb22dc1e62b0b669cc14132985c6d37864395c2b6892eebbc8a116b975762ae": "使用<a href=\"#class-constructors\"><code>event</code></a>创建事件。",
- "4ab71da3c0994a90b9dc771589fccfce138fea5d642bc2e6d0aa33f24f931b38": "光学传感器检测到的颜色作为<a href=\"#doc/Logic/Custom_color\">颜色类</a>的实例。"
+ "4ab71da3c0994a90b9dc771589fccfce138fea5d642bc2e6d0aa33f24f931b38": "光学传感器检测到的颜色作为<a href=\"#doc/Logic/Custom_color\">颜色类</a>的实例。",
+ "4155ae6362a53e71eef39935fa3d05607f1db431237da0d2bdfe8203c2a2c189": "playVexcodeSound",
+ "a2c59b740e7d3c26b4707e807e3b904bc9b01a3cd45a139ad3ac93fcfe71d6a3": "<code>sound</code>",
+ "f7e3da2218cd454a23b7e7a0e966a32344a8518aca9815e9bcbc0fb401b09eb8": "命令帮助",
+ "61d01701fed3cd32bc9b7cfb88c88523201833ef4b94c0de00dfbc88d2fd7100": "要查看命令的帮助，请在“帮助”窗口打开时左键单击工具箱中的任何命令。",
+ "b7ff79dbb1cc009774bf392aaaa248bdd5e163cc8c8e2e29a7f9872801f42ced": "您还可以通过右键单击工作区中的<strong>方法</strong>，从命令的上下文菜单中选择<strong>命令帮助</strong>。",
+ "0f7a393371faeb37cfd4b7ecabf3dcc42c14a976afe85f0512a164795088867f": "如果您正在寻找除 VEXcode 内的命令如何工作之外的设置指南或故障排除步骤，请查看 VEX 库。",
+ "46124e023603420f8670526e3eb9a603935e8916cb8e0428ea84bbe42d85d297": "声音",
+ "192412be7ff4399b88fc5d08dabb68a4540fe14f224131be7692c6af1e848931": "声音功能通过V5 主控器连接到的运行 VEXcode 的计算机播放内置 VEXcode 声音。",
+ "1b379d8af52ca09c9b46072944c68c11203891387ef6375a095c079b243aad4d": "<strong>操作 — 播放声音。</strong>",
+ "4e2cea387b34d77c66b653470b61400fc4b6bc967e8b422c8a096e4d2fdf4ade": "<a href=\"#playvexcodesound\"><code>playVexcodeSound</code></a>— 通过计算机播放内置的 VEXcode 声音。",
+ "1031d55a05499e2d0482c50d490fe0f439096622056ea643d081ab7f0238ab19": "<code>playVexcodeSound</code>通过V5 主控器连接的运行 VEXcode 的计算机播放内置 VEXcode 声音。",
+ "83cec80b1262cffd913bc75ba034e2aab62e644b65306963f6c4c7a768f8274e": "<strong>用法：</strong><br/><code>playVexcodeSound(sound);</code>",
+ "d223d7be8fa1171299e3414d4cc88ce2a24418d2df8f268da75ef3655b6a35e3": "要播放的声音：<code>\"game over\"</code>。"
 }

@@ -118,6 +118,10 @@ gps GPS1 = gps(PORT1);
 
 ### calibrate
 
+```{vexcode_new}
+id: v5_sensing_gps_calibrate
+```
+
 Calibrates the GPS Sensor. This will set the GPS’ configured heading (according to its angle offset) as the current heading of the Drivetrain.
 
 The GPS Sensor must remain still during the calibration process.
@@ -153,6 +157,10 @@ Drivetrain.turnToHeading(180, degrees)
 ```
 
 ### setOrigin
+
+```{vexcode_new}
+id: v5_sensing_gps_set_origin
+```
 
 Sets the origin of the GPS coordinate system.
 
@@ -196,6 +204,10 @@ This function does not return a value.
 - Changing the origin affects values returned by [<code>xPosition</code>](#xposition) and [<code>yPosition</code>](#yposition).
 
 ### setLocation
+
+```{vexcode_new}
+id: v5_sensing_gps_set_location
+```
 
 Sets the current GPS position and heading.
 
@@ -244,6 +256,10 @@ This function does not return a value.
 
 ### xPosition
 
+```{vexcode_new}
+id: v5_sensing_gps_x_position
+```
+
 Returns the current X position of the GPS Sensor.
 
 <span style="font-size: 1.5rem; ">
@@ -290,6 +306,10 @@ Drivetrain.stop();
 ```
 
 ### yPosition
+
+```{vexcode_new}
+id: v5_sensing_gps_y_position
+```
 
 Returns the current Y position of the GPS Sensor.
 
@@ -338,6 +358,10 @@ Drivetrain.stop();
 
 ### heading
 
+```{vexcode_new}
+id: v5_sensing_gps_heading
+```
+
 Returns the current heading (yaw angle) of the GPS Sensor.
 
 <span style="font-size: 1.5rem; ">
@@ -385,6 +409,10 @@ Drivetrain.stop();
 
 ### acceleration
 
+```{vexcode_new}
+id: v5_sensing_gps_acceleration
+```
+
 Returns the linear acceleration measured by the GPS Sensor along the specified axis.
 
 <span style="font-size: 1.5rem; ">
@@ -418,6 +446,10 @@ Returns a <code>double</code> representing the acceleration along the specified 
 
 ### gyroRate
 
+```{vexcode_new}
+id: v5_sensing_gps_gyro_rate
+```
+
 Returns the angular velocity measured by the GPS Sensor along the specified axis.
 
 <span style="font-size: 1.5rem; ">
@@ -446,6 +478,10 @@ double gyroRate(
 Returns a <code>double</code> representing the angular velocity along the specified axis in the selected units.
 
 ### orientation
+
+```{vexcode_new}
+id: v5_sensing_gps_orientation
+```
 
 Returns the orientation angle of the GPS Sensor for the specified axis.
 
@@ -476,6 +512,10 @@ Returns a <code>double</code> representing the orientation of the specified axis
 
 ### quality
 
+```{vexcode_new}
+id: v5_sensing_gps_signal_quality
+```
+
 Returns the perceived GPS signal quality.
 
 <span style="font-size: 1.5rem; ">
@@ -505,6 +545,10 @@ Returns an <code>int32_t</code> representing the GPS signal quality as a percent
 | <code>0 – 80</code> | Only heading values are valid. As time passes without sufficient scanning of the GPS Field Code, signal quality continues to decrease until <code>0</code>, at which point GPS data is effectively frozen and no longer valid. |
 
 ### changed
+
+```{vexcode_new}
+id: v5_sensing_gps_changed
+```
 
 Registers a callback function that runs when the GPS heading value changes.
 

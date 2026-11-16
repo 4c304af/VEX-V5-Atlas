@@ -69,6 +69,10 @@ bumper BumperA = bumper(Brain.ThreeWirePort.A);
 
 ### pressing
 
+```{vexcode_new}
+id: v5_sensing_bumper_pressing
+```
+
 ```{vexcode}
 id: v5_3-wire_bumper_pressing
 ```
@@ -99,6 +103,10 @@ Returns an <code>int32_t</code> indicating whether the Bumper Switch is being pr
 - <code>0</code> — The Bumper Switch is not being pressed.
 
 ### pressed
+
+```{vexcode_new}
+id: v5_events_bumper_pressed
+```
 
 ```{vexcode}
 id: v5_3-wire_bumper_pressed
@@ -153,6 +161,10 @@ This function does not return a value.
 > ```
 
 ### released
+
+```{vexcode_new}
+id: v5_events_bumper_released
+```
 
 ```{vexcode}
 id: v5_3-wire_bumper_released

@@ -48,6 +48,10 @@ The <code>axis</code> class includes the following member functions:
 
 ### position
 
+```{vexcode_new}
+id: v5_controller_axis1_position
+```
+
 ```{vexcode}
 id: v5_controller_axis_position
 ```
@@ -94,6 +98,10 @@ while (true) {
 ## Callback
 
 ### changed
+
+```{vexcode_new}
+id: v5_events_controller_axis_changed
+```
 
 ```{vexcode}
 id: v5_controller_axis_changed

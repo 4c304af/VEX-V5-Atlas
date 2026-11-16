@@ -299,6 +299,10 @@ aivision AIVision1(
 
 ### takeSnapshot
 
+```{vexcode_new}
+id: v5_sensing_aivision_take_snapshot
+```
+
 ```{vexcode}
 id: v5_vision_aivision_take_snapshot
 ```
@@ -443,6 +447,10 @@ The following properties are available:
 
 ### objectCount
 
+```{vexcode_new}
+id: v5_sensing_aivision_object_count
+```
+
 ```{vexcode}
 id: v5_vision_aivision_objectCount
 ```
@@ -546,6 +554,10 @@ AIVisionSensor.objects[index].property
 
 #### .exists
 
+```{vexcode_new}
+id: v5_sensing_ai_vision_exists
+```
+
 ```{vexcode}
 id: v5_vision_aivision_exists
 ```
@@ -585,6 +597,10 @@ while (true) {
 
 #### .width
 
+```{vexcode_new}
+id: v5_sensing_ai_vision_width
+```
+
 ```{vexcode}
 id: v5_vision_aivision_width
 ```
@@ -622,6 +638,10 @@ while (true) {
 ```
 
 #### .height
+
+```{vexcode_new}
+id: v5_sensing_ai_vision_height
+```
 
 ```{vexcode}
 id: v5_vision_aivision_height
@@ -661,6 +681,10 @@ while (true) {
 
 #### .centerX
 
+```{vexcode_new}
+id: v5_sensing_ai_vision_centerX
+```
+
 ```{vexcode}
 id: v5_vision_aivision_centerX
 ```
@@ -696,6 +720,10 @@ while (true) {
 ```
 
 #### .centerY
+
+```{vexcode_new}
+id: v5_sensing_ai_vision_centerY
+```
 
 ```{vexcode}
 id: v5_vision_aivision_centerY
@@ -734,6 +762,10 @@ while (true) {
 ```
 
 #### .angle
+
+```{vexcode_new}
+id: v5_sensing_ai_vision_angle
+```
 
 ```{vexcode}
 id: v5_vision_aivision_angle
@@ -777,6 +809,10 @@ while (true) {
 
 #### .originX
 
+```{vexcode_new}
+id: v5_sensing_ai_vision_originX
+```
+
 ```{vexcode}
 id: v5_vision_aivision_originX
 ```
@@ -816,6 +852,10 @@ while (true) {
 
 #### .originY
 
+```{vexcode_new}
+id: v5_sensing_ai_vision_originY
+```
+
 ```{vexcode}
 id: v5_vision_aivision_originY
 ```
@@ -852,6 +892,10 @@ while (true) {
 ```
 
 #### .id
+
+```{vexcode_new}
+id: v5_sensing_ai_vision_id
+```
 
 ```{vexcode}
 id: v5_vision_aivision_id
@@ -890,6 +934,10 @@ while (true) {
 ```
 
 #### .score
+
+```{vexcode_new}
+id: v5_sensing_ai_vision_score
+```
 
 ```{vexcode}
 id: v5_vision_aivision_score

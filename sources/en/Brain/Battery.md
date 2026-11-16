@@ -37,6 +37,10 @@ brain Brain = brain();
 
 ### voltage
 
+```{vexcode_new}
+id: v5_sensing_battery_voltage
+```
+
 ```{vexcode}
 id: v5_sensing_brain_battery_voltage
 ```
@@ -69,6 +73,10 @@ Returns a <code>double</code> representing the battery voltage in the specified 
 
 ### current
 
+```{vexcode_new}
+id: v5_sensing_battery_current
+```
+
 ```{vexcode}
 id: v5_sensing_brain_battery_current
 ```
@@ -98,6 +106,10 @@ double current( currentUnits units = currentUnits::amp );
 Returns a <code>double</code> representing the electrical current drawn from the V5 Brain battery in amperes.
 
 ### capacity
+
+```{vexcode_new}
+id: v5_sensing_battery_level
+```
 
 ```{vexcode}
 id: v5_sensing_brain_battery_capacity

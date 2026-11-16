@@ -68,6 +68,10 @@ sonar RangeFinderA = sonar(Brain.ThreeWirePort.A);
 
 ### foundObject
 
+```{vexcode_new}
+id: v5_sensing_range_finder_found_object
+```
+
 ```{vexcode}
 id: v5_3-wire_range_finder_found_object
 ```
@@ -109,6 +113,10 @@ if (RangeFinderA.foundObject()){
 ```
 
 ### distance
+
+```{vexcode_new}
+id: v5_sensing_range_finder_distance
+```
 
 ```{vexcode}
 id: v5_3-wire_range_finder_distance

@@ -60,6 +60,10 @@ The <code>screen</code> class includes the following member functions:
 
 ### print
 
+```{vexcode_new}
+id: v5_controller_screen_print
+```
+
 ```{vexcode}
 id: v5_controller_screen_print
 ```
@@ -111,6 +115,10 @@ Controller.Screen.print("Score: %d", 25);
 
 ### setCursor
 
+```{vexcode_new}
+id: v5_controller_screen_set_cursor
+```
+
 ```{vexcode}
 id: v5_controller_screen_set_cursor
 ```
@@ -145,6 +153,10 @@ Controller.Screen.print("Row 2, Column 3");
 
 ### newLine
 
+```{vexcode_new}
+id: v5_controller_screen_next_row
+```
+
 ```{vexcode}
 id: v5_controller_screen_new_line
 ```
@@ -176,6 +188,10 @@ Controller.Screen.print("Line 2");
 
 ### clearScreen
 
+```{vexcode_new}
+id: v5_controller_screen_clear_screen
+```
+
 ```{vexcode}
 id: v5_controller_screen_clear_screen
 ```
@@ -206,6 +222,10 @@ Controller.Screen.clearScreen();
 ```
 
 ### clearLine
+
+```{vexcode_new}
+id: v5_controller_screen_clear_row
+```
 
 ```{vexcode}
 id: v5_controller_screen_clear_line

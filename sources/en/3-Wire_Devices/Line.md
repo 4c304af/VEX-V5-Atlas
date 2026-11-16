@@ -67,6 +67,10 @@ line LineTrackerA = line(Brain.ThreeWirePort.A);
 
 ### reflectivity
 
+```{vexcode_new}
+id: v5_sensing_line_tracker_reflectivity
+```
+
 ```{vexcode}
 id: v5_3-wire_line_tracker_reflectivity
 ```

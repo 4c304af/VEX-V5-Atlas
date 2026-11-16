@@ -80,6 +80,10 @@ motor29 Motor393_A = motor29(
 
 ### spin
 
+```{vexcode_new}
+id: v5_motion_motor393_spin
+```
+
 ```{vexcode}
 id: v5_motion_motor393_spin
 ```
@@ -120,6 +124,10 @@ This function does not return a value.
 
 ### stop
 
+```{vexcode_new}
+id: v5_motion_motor393_stop
+```
+
 ```{vexcode}
 id: v5_motion_motor393_stop
 ```
@@ -141,6 +149,10 @@ This function does not take any parameters.
 This function does not return a value.
 
 ### setVelocity
+
+```{vexcode_new}
+id: v5_motion_motor393_set_velocity
+```
 
 ```{vexcode}
 id: v5_motion_motor393_set_velocity

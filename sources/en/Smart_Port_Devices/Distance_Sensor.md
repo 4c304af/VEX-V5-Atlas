@@ -77,6 +77,10 @@ distance Distance1 = distance(PORT1);
 
 ### objectDistance
 
+```{vexcode_new}
+id: v5_sensing_distance_object_distance
+```
+
 Returns the distance between the Distance Sensor and the nearest detected object.
 
 <span style="font-size: 1.5rem; ">
@@ -102,6 +106,10 @@ double objectDistance( distanceUnits units );
 Returns a <code>double</code> representing the distance between the Distance Sensor and the nearest detected object in the specified units.
 
 ### objectSize
+
+```{vexcode_new}
+id: v5_sensing_distance_object_size
+```
 
 Returns the estimated size of the object detected by the Distance Sensor.
 
@@ -143,6 +151,10 @@ Returns a <code>sizeType</code> indicating the estimated size of the detected ob
 
 ### objectVelocity
 
+```{vexcode_new}
+id: v5_sensing_distance_object_velocity
+```
+
 Returns the relative velocity of the detected object.
 
 Velocity shows how quickly the object is moving toward or away from the Distance Sensor. A value near 0 means the object is not moving much relative to the sensor.
@@ -168,6 +180,10 @@ This function does not take any parameters.
 Returns a <code>double</code> representing the relative velocity of the detected object in m/s (meters per second).
 
 ### isObjectDetected
+
+```{vexcode_new}
+id: v5_sensing_distance_is_object_detected
+```
 
 Returns whether the Distance Sensor currently detects an object.
 

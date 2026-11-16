@@ -156,6 +156,10 @@ C++ supports several types of data that can be stored in variables. Some types c
 
 ### Integer
 
+```{vexcode_new}
+id: v5_variables_my_number
+```
+
 ```{vexcode}
 id: v5_variables_my_number
 ```
@@ -181,6 +185,10 @@ int main() {
 ```
 
 ### Double
+
+```{vexcode_new}
+id: v5_variables_my_double
+```
 
 ```{vexcode}
 id: v5_variables_my_double
@@ -220,6 +228,10 @@ int main() {
 
 ### String
 
+```{vexcode_new}
+id: v5_variables_my_string
+```
+
 ```{vexcode}
 id: v5_variables_my_string
 ```
@@ -238,6 +250,10 @@ int main() {
 ```
 
 ### Boolean
+
+```{vexcode_new}
+id: v5_variables_my_boolean
+```
 
 ```{vexcode}
 id: v5_variables_my_boolean
@@ -295,6 +311,10 @@ int main() {
 
 ### Arrays
 
+```{vexcode_new}
+id: v5_variables_my_list
+```
+
 
 ```{vexcode}
 id: v5_variables_my_list
@@ -319,6 +339,10 @@ int main() {
 ```
 
 ### 2D Arrays
+
+```{vexcode_new}
+id: v5_variables_my_2d_list
+```
 
 ```{vexcode}
 id: v5_variables_my_2d_list

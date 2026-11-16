@@ -69,6 +69,10 @@ gyro GyroA = gyro(Brain.ThreeWirePort.A);
 
 ### calibrate
 
+```{vexcode_new}
+id: v5_sensing_gyro_calibrate
+```
+
 Calibrates the Gyro Sensor.
 
 <span style="font-size: 1.5rem; ">
@@ -111,6 +115,10 @@ GyroA.calibrate(3);
 
 ### setHeading
 
+```{vexcode_new}
+id: v5_sensing_gyro_set_heading
+```
+
 Sets the heading of the Gyro Sensor to a specific value.
 
 <span style="font-size: 1.5rem; ">
@@ -135,6 +143,10 @@ void setHeading(
 This function does not return a value.
 
 ### setRotation
+
+```{vexcode_new}
+id: v5_sensing_gyro_set_rotation
+```
 
 Sets the rotation of the Gyro Sensor to a specific value.
 
@@ -164,6 +176,10 @@ void setRotation(
 This function does not return a value.
 
 ### heading
+
+```{vexcode_new}
+id: v5_sensing_gyro_heading
+```
 
 Returns the current heading of the Gyro Sensor.
 
@@ -201,6 +217,10 @@ Brain.Screen.print(value);
 ```
 
 ### rotation
+
+```{vexcode_new}
+id: v5_sensing_gyro_rotation
+```
 
 Returns the current rotation of the Gyro Sensor.
 

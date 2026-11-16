@@ -74,6 +74,10 @@ rotation Rotation1 = rotation(PORT1);
 
 ### setPosition
 
+```{vexcode_new}
+id: v5_sensing_rotation_set_position
+```
+
 Sets the Rotation Sensor's current position to a specific value.
 
 Position is how far the shaft has rotated during a project. Setting the position changes the current position value without moving the shaft.
@@ -104,6 +108,10 @@ void setPosition(
 This function does not return a value.
 
 ### angle
+
+```{vexcode_new}
+id: v5_sensing_rotation_angle
+```
 
 Returns the shaft's current angle.
 
@@ -146,6 +154,10 @@ Returns a <code>double</code> representing the shaft's current angle in the spec
 
 ### position
 
+```{vexcode_new}
+id: v5_sensing_rotation_position
+```
+
 Returns how far the shaft has rotated.
 
 Unlike angle, position can increase past 359.99 degrees or decrease below 0 degrees. Position tracks how far the shaft rotates forward or reverse during a project and can be reset as needed.
@@ -173,6 +185,10 @@ Unlike angle, position can increase past 359.99 degrees or decrease below 0 degr
 Returns a <code>double</code> representing how far the shaft has rotated in the specified units.
 
 ### velocity
+
+```{vexcode_new}
+id: v5_sensing_rotation_velocity
+```
 
 Returns how fast the shaft is rotating.
 

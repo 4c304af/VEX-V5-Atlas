@@ -69,6 +69,10 @@ encoder EncoderA = encoder(Brain.ThreeWirePort.A);
 
 ### setPosition
 
+```{vexcode_new}
+id: v5_sensing_encoder_set_position
+```
+
 ```{vexcode}
 id: v5_3-wire_encoder_set_position
 ```
@@ -111,6 +115,10 @@ EncoderA.setPosition(180, degrees);
 
 ### position
 
+```{vexcode_new}
+id: v5_sensing_encoder_position
+```
+
 ```{vexcode}
 id: v5_3-wire_encoder_position
 ```
@@ -150,6 +158,10 @@ double value = EncoderA.position(degrees);
 ``` -->
 
 ### velocity
+
+```{vexcode_new}
+id: v5_sensing_encoder_velocity
+```
 
 ```{vexcode}
 id: v5_3-wire_encoder_velocity

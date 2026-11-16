@@ -15,6 +15,10 @@ description: Reference documentation for using functions in VEX V5 C++. Includes
 
 ## Introduction
 
+```{vexcode_new}
+id: v5_function_name
+```
+
 Functions are a fundamental component of C++ programming, packaging code snippets into reusable, efficient sections of code designed to perform a specific task. Functions can be called multiple times within a program, making code organization easier, and helping to avoid repeated code. Functions also make code easier to debug.
 
 This page covers the basics of using functions in C++, including:

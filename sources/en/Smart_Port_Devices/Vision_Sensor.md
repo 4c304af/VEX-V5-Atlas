@@ -303,6 +303,10 @@ vision Vision1 = vision(
 
 ### takeSnapshot
 
+```{vexcode_new}
+id: v5_sensing_vision_take_snapshot
+```
+
 ```{vexcode}
 id: v5_vision_take_snapshot
 ```
@@ -478,6 +482,10 @@ The following properties are available:
 
 ### largestObject
 
+```{vexcode_new}
+id: v5_vision_vision_largest_object
+```
+
 ```{vexcode}
 id: v5_vision_largest_object
 ```
@@ -526,6 +534,10 @@ int main() {
 
 ### objectCount
 
+```{vexcode_new}
+id: v5_vision_vision_object_count
+```
+
 ```{vexcode}
 id: v5_vision_object_count
 ```
@@ -571,6 +583,10 @@ int main() {
 
 ### objects
 
+```{vexcode_new}
+id: v5_vision_vision_objects
+```
+
 ```{vexcode}
 id: v5_vision_objects
 ```
@@ -601,6 +617,10 @@ VisionSensor.objects[index].property
 
 
 #### .exists
+
+```{vexcode_new}
+id: v5_vision_object_exists
+```
 
 ```{vexcode}
 id: v5_vision_vision_object_exists
@@ -646,6 +666,10 @@ while (true) {
 
 #### .width
 
+```{vexcode_new}
+id: v5_vision_object_width
+```
+
 ```{vexcode}
 id: v5_vision_vision_object_width
 ```
@@ -679,6 +703,10 @@ while (true) {
 ```
 
 #### .height
+
+```{vexcode_new}
+id: v5_vision_object_height
+```
 
 ```{vexcode}
 id: v5_vision_vision_object_height
@@ -715,6 +743,10 @@ while (true) {
 
 #### .centerX
 
+```{vexcode_new}
+id: v5_vision_object_centerX
+```
+
 ```{vexcode}
 id: v5_vision_vision_object_centerX
 ```
@@ -750,6 +782,10 @@ while (true) {
 ```
 
 #### .centerY
+
+```{vexcode_new}
+id: v5_vision_object_centerY
+```
 
 ```{vexcode}
 id: v5_vision_vision_object_centerY
@@ -789,6 +825,10 @@ while (true) {
 
 #### .originX
 
+```{vexcode_new}
+id: v5_vision_object_originX
+```
+
 ```{vexcode}
 id: v5_vision_vision_object_originX
 ```
@@ -827,6 +867,10 @@ while (true) {
 
 #### .originY
 
+```{vexcode_new}
+id: v5_vision_object_originY
+```
+
 ```{vexcode}
 id: v5_vision_vision_object_originY
 ```
@@ -863,6 +907,10 @@ while (true) {
 ```
 
 #### .angle
+
+```{vexcode_new}
+id: v5_vision_object_angle
+```
 
 ```{vexcode}
 id: v5_vision_vision_object_angle

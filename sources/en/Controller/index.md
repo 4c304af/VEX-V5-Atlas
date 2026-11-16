@@ -105,6 +105,10 @@ The <code>controller</code> class includes the following member functions:
 
 ### rumble
 
+```{vexcode_new}
+id: v5_controller_rumble
+```
+
 ```{vexcode}
 id: v5_controller_rumble
 ```
@@ -157,6 +161,10 @@ Returns a Boolean value.
 ## Global Variables
 
 ### RemoteControlCodeEnabled
+
+```{vexcode_new}
+id: v5_controller_remote_control_code_enabled
+```
 
 ```{vexcode}
 id: v5_controller_remote_control_code_enabled

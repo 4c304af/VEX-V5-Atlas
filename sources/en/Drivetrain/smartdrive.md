@@ -147,6 +147,10 @@ smartdrive myDrivetrain = smartdrive(
 
 ### turnToHeading
 
+```{vexcode_new}
+id: v5_drivetrain_turn_to_heading
+```
+
 ```{vexcode}
 id: v5_drivetrain_turn_to_heading
 ```
@@ -219,6 +223,10 @@ myDrivetrain.turnToHeading(0, degrees);
 ```
 
 ### turnToRotation
+
+```{vexcode_new}
+id: v5_drivetrain_turn_to_rotation
+```
 
 ```{vexcode}
 id: v5_drivetrain_turn_to_rotation
@@ -296,6 +304,10 @@ myDrivetrain.turnToRotation(0, degrees);
 
 ### calibrateDrivetrain
 
+```{vexcode_new}
+id: v5_drivetrain_calibrate
+```
+
 ```{vexcode}
 id: v5_drivetrain_calibrate_drivetrain
 ```
@@ -361,6 +373,10 @@ void calibrateDrivetrain() {
 
 ### setHeading
 
+```{vexcode_new}
+id: v5_drivetrain_set_heading
+```
+
 ```{vexcode}
 id: v5_drivetrain_set_heading
 ```
@@ -405,6 +421,10 @@ myDrivetrain.turnToHeading(0, degrees);
 
 ### setRotation
 
+```{vexcode_new}
+id: v5_drivetrain_set_rotation
+```
+
 ```{vexcode}
 id: v5_drivetrain_set_rotation
 ```
@@ -448,6 +468,10 @@ myDrivetrain.turnToRotation(0, degrees);
 ```
 
 ### heading
+
+```{vexcode_new}
+id: v5_drivetrain_heading
+```
 
 ```{vexcode}
 id: v5_drivetrain_heading
@@ -494,6 +518,10 @@ myDrivetrain.stop();
 ```
 
 ### rotation
+
+```{vexcode_new}
+id: v5_drivetrain_rotation
+```
 
 ```{vexcode}
 id: v5_drivetrain_rotation

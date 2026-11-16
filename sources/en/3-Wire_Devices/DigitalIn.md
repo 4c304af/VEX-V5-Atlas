@@ -67,6 +67,10 @@ digital_in DigitalInA = digital_in(Brain.ThreeWirePort.A);
 
 ### value
 
+```{vexcode_new}
+id: v5_sensing_digital_in_value
+```
+
 ```{vexcode}
 id: v5_3-wire_digital_in_value
 ```

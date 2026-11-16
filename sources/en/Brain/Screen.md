@@ -87,6 +87,10 @@ brain Brain = brain();
 
 ### print
 
+```{vexcode_new}
+id: v5_looks_brain_screen_print
+```
+
 ```{vexcode}
 id: v5_looks_brain_screen_print
 ```
@@ -151,6 +155,10 @@ Brain.Screen.print("Hello, Robot!");
 
 ### setCursor
 
+```{vexcode_new}
+id: v5_looks_brain_screen_set_cursor
+```
+
 ```{vexcode}
 id: v5_looks_brain_screen_set_cursor
 ```
@@ -206,6 +214,10 @@ Brain.Screen.print("Row 3, Column 12");
 
 ### newLine
 
+```{vexcode_new}
+id: v5_looks_brain_screen_new_line
+```
+
 ```{vexcode}
 id: v5_looks_brain_screen_new_line
 ```
@@ -254,6 +266,10 @@ Brain.Screen.print("Line 2");
 ![A screenshot of the V5 Brain screen showing two lines of white text in the upper left corner. The top line reads Line 1, and the second line directly below it reads Line 2.](/_static/img/screen/next-row.png)
 
 ### clearLine
+
+```{vexcode_new}
+id: v5_looks_brain_screen_clear_line
+```
 
 ```{vexcode}
 id: v5_looks_brain_screen_clear_line
@@ -341,6 +357,10 @@ Brain.Screen.clearLine(2);
 
 ### row
 
+```{vexcode_new}
+id: v5_sensing_brain_screen_row
+```
+
 ```{vexcode}
 id: v5_sensing_brain_screen_row
 ```
@@ -392,6 +412,10 @@ Brain.Screen.print(Brain.Screen.row());
 ![A screenshot of the V5 Brain screen showing the text 3 in white in the upper left quadrant of the screen, at the row 3 column 12 position.](/_static/img/screen/row.png)
 
 ### column
+
+```{vexcode_new}
+id: v5_sensing_brain_screen_column
+```
 
 ```{vexcode}
 id: v5_sensing_brain_screen_column
@@ -581,6 +605,10 @@ Brain.Screen.printAt(220, 120, "Center");
 
 ### clearScreen
 
+```{vexcode_new}
+id: v5_looks_brain_screen_clear_screen
+```
+
 ```{vexcode}
 id: v5_looks_brain_screen_clear_screen
 ```
@@ -662,6 +690,10 @@ Brain.Screen.clearScreen(blue);
 
 ### setFont
 
+```{vexcode_new}
+id: v5_looks_brain_screen_set_font
+```
+
 ```{vexcode}
 id: v5_looks_brain_screen_set_font
 ```
@@ -723,6 +755,10 @@ Brain.Screen.print("VEX机器人");
 
 ### setPenWidth
 
+```{vexcode_new}
+id: v5_looks_brain_screen_set_pen_width
+```
+
 ```{vexcode}
 id: v5_looks_brain_screen_set_pen_width
 ```
@@ -771,6 +807,10 @@ Brain.Screen.drawRectangle(50, 50, 130, 60);
 ![A screenshot of the V5 Brain screen showing a rectangle with thick borders printed in the upper left quadrant of the screen.](/_static/img/screen/set-pen-width.png)
 
 ### setPenColor
+
+```{vexcode_new}
+id: v5_looks_brain_screen_set_pen_color
+```
 
 ```{vexcode}
 id: v5_looks_brain_screen_set_pen_color
@@ -839,6 +879,10 @@ Brain.Screen.drawRectangle(50, 50, 130, 60);
 ![A screenshot of the V5 Brain screen showing a rectangle drawn in orange in the upper left quadrant of the screen.](/_static/img/screen/set-pen-color.png)
 
 ### setFillColor
+
+```{vexcode_new}
+id: v5_looks_brain_screen_set_fill_color
+```
 
 ```{vexcode}
 id: v5_looks_brain_screen_set_fill_color
@@ -1028,6 +1072,10 @@ Brain.Screen.printAt(60, 60, "Cut off!");
 
 ### drawPixel
 
+```{vexcode_new}
+id: v5_looks_brain_screen_draw_pixel
+```
+
 ```{vexcode}
 id: v5_looks_brain_screen_draw_pixel
 ```
@@ -1082,6 +1130,10 @@ Brain.Screen.drawPixel(275, 125);
 ![A screenshot of the V5 Brain screen showing an assortment of pixels showing the corners of a square near the center of the screen.](/_static/img/screen/draw-pixel.png)
 
 ### drawLine
+
+```{vexcode_new}
+id: v5_looks_brain_screen_draw_line
+```
 
 ```{vexcode}
 id: v5_looks_brain_screen_draw_line
@@ -1139,6 +1191,10 @@ Brain.Screen.drawLine(0, 0, 479, 239);
 ![A screenshot of the V5 Brain screen shows a thin diagonal line across the center, from the upper left corner to the lower right corner.](/_static/img/screen/draw-line.png)
 
 ### drawRectangle
+
+```{vexcode_new}
+id: v5_looks_brain_screen_draw_rectangle
+```
 
 ```{vexcode}
 id: v5_looks_brain_screen_draw_rectangle
@@ -1235,6 +1291,10 @@ Brain.Screen.drawRectangle(50, 50, 130, 60);
 ![A screenshot of the V5 Brain's screen shows a rectangle with a thin white border printed in the upper left quadrant.](/_static/img/screen/draw-rectangle.png)
 
 ### drawCircle
+
+```{vexcode_new}
+id: v5_looks_brain_screen_draw_circle
+```
 
 ```{vexcode}
 id: v5_looks_brain_screen_draw_circle
@@ -1435,6 +1495,10 @@ Brain.Screen.render();
 
 ### pressing
 
+```{vexcode_new}
+id: v5_sensing_brain_screen_pressing
+```
+
 ```{vexcode}
 id: v5_sensing_brain_screen_pressing
 ```
@@ -1498,6 +1562,10 @@ Brain.Screen.newLine();
 
 ### xPosition
 
+```{vexcode_new}
+id: v5_sensing_brain_screen_x_position
+```
+
 ```{vexcode}
 id: v5_sensing_brain_screen_xPosition
 ```
@@ -1539,6 +1607,10 @@ Brain.Screen.drawCircle(Brain.Screen.xPosition(), Brain.Screen.yPosition(), 20, 
 
 ### yPosition
 
+```{vexcode_new}
+id: v5_sensing_brain_screen_y_position
+```
+
 ```{vexcode}
 id: v5_sensing_brain_screen_yPosition
 ```
@@ -1579,6 +1651,10 @@ Brain.Screen.drawCircle(Brain.Screen.xPosition(), Brain.Screen.yPosition(), 20, 
 ```
 
 ### pressed
+
+```{vexcode_new}
+id: v5_events_brain_screen_pressed
+```
 
 ```{vexcode}
 id: v5_brain_screen_pressed
@@ -1661,6 +1737,10 @@ This function does not return a value.
 > ```
 
 ### released
+
+```{vexcode_new}
+id: v5_events_brain_screen_released
+```
 
 ```{vexcode}
 id: v5_brain_screen_released

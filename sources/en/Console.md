@@ -31,6 +31,14 @@ Below is a list of all functions:
 
 ### printf
 
+```{vexcode_new}
+id: v5_looks_console_print
+```
+
+```{vexcode_new}
+id: v5_looks_console_clear_console
+```
+
 ```{vexcode}
 id: v5_console_print
 ```

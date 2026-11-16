@@ -34,6 +34,10 @@ Below is a list of available controls, including API functions and C++ keywords:
 
 ### wait
 
+```{vexcode_new}
+id: v5_logic_wait
+```
+
 ```{vexcode}
 id: v5_control_wait
 ```
@@ -77,6 +81,10 @@ Drivetrain.stop();
 ```
 
 ### for
+
+```{vexcode_new}
+id: v5_logic_for_loop
+```
 
 ```{vexcode}
 id: v5_control_for
@@ -142,6 +150,10 @@ for (int d : distances) {
 
 ### if
 
+```{vexcode_new}
+id: v5_logic_if_statement
+```
+
 ```{vexcode}
 id: v5_control_if
 ```
@@ -191,6 +203,10 @@ while (true) {
 
 (if-else)=
 ### if/else
+
+```{vexcode_new}
+id: v5_logic_if_else_statement
+```
 
 ```{vexcode}
 id: v5_control_if_else
@@ -242,6 +258,10 @@ while (true) {
 ```
 
 ### if/else if/else
+
+```{vexcode_new}
+id: v5_logic_elseif_statement
+```
 
 ```{vexcode}
 id: v5_control_elseif
@@ -312,6 +332,14 @@ while (true) {
 
 ### while
 
+```{vexcode_new}
+id: v5_logic_wait_until
+```
+
+```{vexcode_new}
+id: v5_logic_while_loop
+```
+
 ```{vexcode}
 id: v5_control_while
 ```
@@ -378,6 +406,10 @@ Brain.Screen.clearScreen(green);
 
 ### break
 
+```{vexcode_new}
+id: v5_logic_break
+```
+
 ```{vexcode}
 id: v5_control_break
 ```
@@ -429,6 +461,10 @@ while (true) {
 ```
 
 ### programStop
+
+```{vexcode_new}
+id: v5_logic_stop_project
+```
 
 ```{vexcode}
 id: v5_control_stop_project

@@ -65,6 +65,10 @@ digital_out DigitalOutA = digital_out(Brain.ThreeWirePort.A);
 
 ### set
 
+```{vexcode_new}
+id: v5_sensing_digital_out_set
+```
+
 ```{vexcode}
 id: v5_3-wire_digital_out_set
 ```

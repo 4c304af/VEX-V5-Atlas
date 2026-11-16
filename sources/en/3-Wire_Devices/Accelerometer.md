@@ -78,6 +78,10 @@ accelerometer Accel2GA = accelerometer(Brain.ThreeWirePort.A, true);
 
 ### acceleration
 
+```{vexcode_new}
+id: v5_sensing_accelerometer_acceleration
+```
+
 ```{vexcode}
 id: v5_3-wire_accelerometer_acceleration
 ```

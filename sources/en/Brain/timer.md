@@ -62,6 +62,10 @@ brain Brain = brain();
 
 ### clear
 
+```{vexcode_new}
+id: v5_logic_timer_reset
+```
+
 ```{vexcode}
 id: v5_sensing_brain_timer_clear
 ```
@@ -114,6 +118,10 @@ while (true) {
 ```
 
 ### time
+
+```{vexcode_new}
+id: v5_logic_timer_time
+```
 
 ```{vexcode}
 id: v5_sensing_brain_timer_time
@@ -175,6 +183,10 @@ while (true) {
 ```
 
 ### event
+
+```{vexcode_new}
+id: v5_logic_timer_event
+```
 
 ```{vexcode}
 id: v5_events_brain_timer

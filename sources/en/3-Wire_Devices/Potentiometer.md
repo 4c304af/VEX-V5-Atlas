@@ -106,6 +106,10 @@ potV2 PotentiometerV2A = potV2(Brain.ThreeWirePort.A);
 
 ### angle
 
+```{vexcode_new}
+id: v5_sensing_potentiometer_angle
+```
+
 ```{vexcode}
 id: v5_3-wire_potentiometer_angle
 ```

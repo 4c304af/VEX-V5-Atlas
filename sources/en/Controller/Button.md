@@ -56,6 +56,10 @@ The <code>button</code> class includes the following member functions:
 
 ### pressing
 
+```{vexcode_new}
+id: v5_controller_button_up_pressing
+```
+
 ```{vexcode}
 id: v5_controller_button_pressing
 ```
@@ -98,6 +102,10 @@ while (true) {
 ## Callbacks
 
 ### pressed
+
+```{vexcode_new}
+id: v5_events_controller_button_pressed
+```
 
 ```{vexcode}
 id: v5_controller_button_pressed
@@ -142,6 +150,10 @@ int main() {
 ```
 
 ### released
+
+```{vexcode_new}
+id: v5_events_controller_button_released
+```
 
 ```{vexcode}
 id: v5_controller_button_released
