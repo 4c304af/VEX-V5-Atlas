@@ -6,7 +6,7 @@
 
 A bilingual, offline Windows and macOS desktop reference for the VEX V5 C++ API, with a Material 3 Expressive interface and automatic documentation synchronization.
 
-[下载 Windows 版本](https://github.com/4c304af/VEX-V5-Atlas/releases/latest) · [macOS 构建与下载](https://github.com/4c304af/VEX-V5-Atlas/actions/workflows/macos.yml) · [官方 C++ API](https://api.vex.com/v5/home/cpp/index.html) · [第三方内容说明](THIRD_PARTY_NOTICES.md)
+[下载 Windows 和 macOS 版本](https://github.com/4c304af/VEX-V5-Atlas/releases/latest) · [官方 C++ API](https://api.vex.com/v5/home/cpp/index.html) · [第三方内容说明](THIRD_PARTY_NOTICES.md)
 
 ![V5 Atlas 概览](docs/images/overview.png)
 
@@ -24,7 +24,7 @@ A bilingual, offline Windows and macOS desktop reference for the VEX V5 C++ API,
 
 Mac 版使用原生 AppKit 窗口与系统 WKWebView，通用程序同时包含 Apple Silicon（arm64）与 Intel（x86_64），最低 macOS 12。无需安装 Node.js、Python 或额外浏览器。
 
-在 [macOS build](https://github.com/4c304af/VEX-V5-Atlas/actions/workflows/macos.yml) 中打开成功的构建，下载 `V5-Atlas-macOS-universal` 附件并解压，打开其中的 `.dmg`，将 `V5 Atlas.app` 拖入“应用程序”。也可使用同一附件中的应用 ZIP。正式发布后，可从 Releases 下载 `V5-Atlas-1.1.1-macOS-universal.dmg`。
+在 [Releases](https://github.com/4c304af/VEX-V5-Atlas/releases/latest) 下载 `V5-Atlas-1.2.1-macOS-universal.dmg`，打开后将 `V5 Atlas.app` 拖入“应用程序”。也可下载同页的应用 ZIP。
 
 当前构建采用临时签名，尚未使用 Apple Developer ID 签名和公证。若 macOS 拦截打开，请在“系统设置 → 隐私与安全性”中允许此次打开；无需关闭系统安全保护。
 
@@ -108,7 +108,7 @@ npm run test:mac-core
 npm run test:mac
 ```
 
-生成 `build/macos/V5 Atlas.app`、`release/V5-Atlas-1.1.1-macOS-universal.dmg`、同名 ZIP 和 `release/macOS-SHA256SUMS.txt`。脚本分别编译两种架构、合并为通用程序并验证签名。Windows 无法本地编译 AppKit；仓库 `.github/workflows/macos.yml` 使用 macOS 运行器构建，并在 Apple Silicon 和 Intel 上对同一个 WKWebView 成品执行启动、离线搜索、剪贴板、双语代码、调色、收藏及完整进程重启测试，同时检查应用目录没有被改写。工作流还上传实际运行截图，便于在 Windows 上查看。
+生成 `build/macos/V5 Atlas.app`、`release/V5-Atlas-1.2.1-macOS-universal.dmg`、同名 ZIP 和 `release/macOS-SHA256SUMS.txt`。脚本分别编译两种架构、合并为通用程序并验证签名。Windows 无法本地编译 AppKit；仓库 `.github/workflows/macos.yml` 使用 macOS 运行器构建，并在 Apple Silicon 和 Intel 上对同一个 WKWebView 成品执行启动、离线搜索、剪贴板、双语代码、调色、收藏及完整进程重启测试，同时检查应用目录没有被改写。工作流还上传实际运行截图，便于在 Windows 上查看。
 
 ## 文档数据
 

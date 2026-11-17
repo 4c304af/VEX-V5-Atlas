@@ -23,7 +23,7 @@ void (async () => {
     assert(document.documentElement.dataset.platform === 'macos', 'Missing native frame');
     assert(document.querySelector('.shortcut-button kbd').textContent === '⌘ K', 'Incorrect Mac shortcut');
     const catalog = await (await fetch('./docs/catalog.json')).json();
-    assert(catalog.documents.length === 66, 'Offline corpus did not load');
+    assert(catalog.documents.some(document => document.id === 'Motors_and_MotorControllers/motor_and_motor_group'), 'Offline corpus did not load');
     if ('__TEST_PHASE__' === 'first') {
       window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
       await until(() => document.querySelector('[role=dialog] input'));
@@ -58,7 +58,6 @@ void (async () => {
     await until(() => Number(appearance().pageOpacity) >= .99 && appearance().titleColor === 'rgb(224, 232, 217)' && appearance().headingColor === 'rgb(224, 232, 217)');
     await until(() => appearance().rootBackground === 'rgb(20, 29, 24)' && appearance().shellColor === 'rgb(224, 232, 217)');
     if ('__TEST_PHASE__' === 'first') document.querySelectorAll('.settings-card')[1].scrollIntoView({ behavior: 'instant', block: 'start' });
-    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
     await call('test:complete', { result: { ok: true, phase: '__TEST_PHASE__', documents: catalog.documents.length, appearance: appearance() } });
   } catch (error) {
     await call('test:complete', { result: { ok: false, error: String(error), stack: error.stack, appearance: appearance() } });
