@@ -25,7 +25,7 @@ internal static class AutoUpdateTests {
         try{store.Install(File.ReadAllBytes(Path.Combine(fixtures,"added.zip")),cancelled.Token);throw new Exception("Ignored cancellation");}catch(OperationCanceledException) {Console.WriteLine("PASS cancelled install keeps library");}
         Assert(store.Install(File.ReadAllBytes(Path.Combine(fixtures,"added.zip")),CancellationToken.None),"Did not install new page");
         var catalog=UpdateFiles.Json.Deserialize<LibraryCatalog>(File.ReadAllText(Path.Combine(store.ActiveRoot,"catalog.json")));
-        Assert(catalog.documents.Length==67&&catalog.documents.Any(d=>d.id=="Smart_Port_Devices/Atlas_Test_Sensor"),"New page not indexed");
+        Assert(catalog.documents.Length==UpdateFiles.Json.Deserialize<LibraryCatalog>(File.ReadAllText(Path.Combine(bundled,"catalog.json"))).documents.Length+1&&catalog.documents.Any(d=>d.id=="Smart_Port_Devices/Atlas_Test_Sensor"),"New page not indexed");
         Assert(!store.Install(File.ReadAllBytes(Path.Combine(fixtures,"added.zip")),CancellationToken.None),"Installed unchanged snapshot");
         string first=store.ActiveRoot;
         var reopened=new DocumentationStore(root,bundled,"1.1.0");Assert(reopened.ActiveRoot==first,"Update lost after reopen");

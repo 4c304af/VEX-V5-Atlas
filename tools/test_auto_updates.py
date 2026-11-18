@@ -17,10 +17,10 @@ def make_fixture(kind):
     if kind=='modified':page['zh']=page['zh'].replace('uniqueSyncToken','uniqueSyncToken modified')
     if kind=='empty-translation':page['zh']=''
     snapshot=hashlib.sha256(('fixture-'+kind).encode()).hexdigest()
-    for item in [catalog,baseline]:item.update(snapshotId=snapshot,snapshotDate='2020-01-01' if kind=='older' else '2026-10-27')
+    for item in [catalog,baseline]:item.update(snapshotId=snapshot,snapshotDate='2020-01-01' if kind=='older' else baseline['snapshotDate'])
     files['catalog.json']=json.dumps(catalog,ensure_ascii=False).encode();files['update-manifest.json']=json.dumps(baseline,ensure_ascii=False).encode()
     files[entry['key']+'.json']=json.dumps(page,ensure_ascii=False).encode()
-    manifest={'format':1,'minimumAppVersion':'999.0.0' if kind=='future' else '1.1.0','snapshotId':snapshot,'snapshotDate':baseline['snapshotDate'],'documentCount':67,'files':[{'name':name,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()} for name,data in sorted(files.items())]}
+    manifest={'format':1,'minimumAppVersion':'999.0.0' if kind=='future' else '1.1.0','snapshotId':snapshot,'snapshotDate':baseline['snapshotDate'],'documentCount':len(catalog['documents']),'files':[{'name':name,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()} for name,data in sorted(files.items())]}
     if kind=='hash':files[entry['key']+'.json']+=b' '
     if kind=='traversal':files['../escape.json']=b'{}'
     if kind=='missing':del files[entry['key']+'.json']
